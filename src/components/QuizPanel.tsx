@@ -5,9 +5,10 @@ import { Sparkles, Send, Volume2, Bookmark, CheckCircle2, Award, FileText, Arrow
 interface QuizPanelProps {
   vocabList: VocabItem[];
   onUpdateScore: (id: string, score: number) => void;
+  initialItem?: VocabItem | null;
 }
 
-export default function QuizPanel({ vocabList, onUpdateScore }: QuizPanelProps) {
+export default function QuizPanel({ vocabList, onUpdateScore, initialItem }: QuizPanelProps) {
   const [selectedItem, setSelectedItem] = useState<VocabItem | null>(null);
   const [loadingQuiz, setLoadingQuiz] = useState(false);
   const [quizSituation, setQuizSituation] = useState<QuizSituation | null>(null);
@@ -17,12 +18,14 @@ export default function QuizPanel({ vocabList, onUpdateScore }: QuizPanelProps) 
   const [result, setResult] = useState<EvaluationResult | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Initialize with the first item in the list if available
+  // Initialize with initialItem or first item of the list
   useEffect(() => {
-    if (vocabList.length > 0 && !selectedItem) {
+    if (initialItem) {
+      setSelectedItem(initialItem);
+    } else if (vocabList.length > 0 && !selectedItem) {
       setSelectedItem(vocabList[0]);
     }
-  }, [vocabList, selectedItem]);
+  }, [vocabList, selectedItem, initialItem]);
 
   // Handle speaker audio using Web Speech synthesis
   const handleTTS = (text: string) => {

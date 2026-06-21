@@ -5,7 +5,10 @@ import VocabCard from "./components/VocabCard";
 import QuizPanel from "./components/QuizPanel";
 import WordIndex from "./components/WordIndex";
 import StatsPanel from "./components/StatsPanel";
-import { BookOpen, Sparkles, Award, MessageSquare, TrendingUp, ChevronLeft, ChevronRight, RefreshCw, AlertCircle, PlayCircle, Plus } from "lucide-react";
+import { 
+  BookOpen, Sparkles, Award, MessageSquare, TrendingUp, 
+  ChevronLeft, ChevronRight, RefreshCw, AlertCircle, PlayCircle, Plus, Info 
+} from "lucide-react";
 
 type ActiveTab = "drop" | "quiz" | "library" | "stats";
 
@@ -21,6 +24,22 @@ export default function App() {
 
   // Preselected item when shifting from WordIndex database to the Quiz simulator
   const [preselectedQuizItem, setPreselectedQuizItem] = useState<VocabItem | null>(null);
+
+  // Live status bar mock phone clock
+  const [currentTime, setCurrentTime] = useState("09:41");
+
+  // Keep digital time updated
+  useEffect(() => {
+    const updateTime = () => {
+      const date = new Date();
+      setCurrentTime(
+        date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })
+      );
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 15000);
+    return () => clearInterval(interval);
+  }, []);
 
   // ─── LOCAL STORAGE LIFE CYCLES ─────────────────────────────────────────────
   useEffect(() => {
@@ -122,6 +141,40 @@ export default function App() {
     saveStateToStorage(updatedVocab, updatedDrops);
   };
 
+  // Add term from Lexicon Matrix to active practicing workspace
+  const handleAddTermToStudyList = (item: VocabItem) => {
+    // Check if it's already in our syllabus
+    if (vocabList.some((v) => v.term.toLowerCase() === item.term.toLowerCase())) {
+      return;
+    }
+
+    const newItem: VocabItem = {
+      ...item,
+      id: `man-add-${item.term.toLowerCase().replace(/\s+/g, "-")}-${Date.now()}`,
+      unlockedAt: new Date().toLocaleDateString(),
+      masteryScore: undefined,
+      timesTested: 0,
+      userNotes: "",
+      userBestResponse: "",
+      status: "review" as const
+    };
+
+    const updatedVocab = [...vocabList, newItem];
+    
+    // Add to current active day drop items so it becomes instantly practiceable
+    const updatedDrops = dayDrops.map((drop) => {
+      if (drop.day === activeDay) {
+        return {
+          ...drop,
+          items: [newItem, ...drop.items]
+        };
+      }
+      return drop;
+    });
+
+    saveStateToStorage(updatedVocab, updatedDrops);
+  };
+
   // ─── DROP GENERATION CALL DETAILS ──────────────────────────────────────────
   const requestNextDayDrop = async (nextDayNum: number, specificInterests?: string) => {
     setIsLoadingDrop(true);
@@ -209,224 +262,260 @@ export default function App() {
   const currentDrop = dayDrops.find((d) => d.day === activeDay);
 
   return (
-    <div className="min-h-screen bg-[#05070a] text-slate-100 flex flex-col justify-between" id="lingoflex-root">
+    <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col justify-center items-center py-0 md:py-8 px-0 sm:px-4" id="lingoflex-root">
       
-      {/* ─── HEADER / NAVIGATION ─────────────────────────────────────────────── */}
-      <header className="bg-[#05070a]/80 backdrop-blur-md border-b border-slate-850 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      {/* ─── SMARTPHONE DEVICE WRAPPER MOCKUP ──────────────────────────────────── */}
+      {/* This renders as a premium high-end hardware phone shell on desktop screens, falling back seamlessly edge-to-edge on actual mobile glass to preserve real touch-app looks */}
+      <div className="w-full max-w-md bg-[#05070a] text-slate-100 flex flex-col justify-between 
+                      md:rounded-[42px] md:border-[12px] md:border-slate-800 md:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] 
+                      md:min-h-[810px] md:max-h-[850px] relative overflow-hidden transition-all duration-300" 
+           id="lingoflex-smartphone">
+        
+        {/* Virtual Phone Hardware Notch & Status Gauges Bar (Hidden on small screens) */}
+        <div className="hidden md:flex justify-between items-center px-6 pt-3 pb-2 bg-slate-950 text-slate-400 text-[10.5px] font-mono select-none relative z-50">
+          {/* Live Mobile Clock */}
+          <div className="font-bold text-white select-none">{currentTime}</div>
           
-          {/* Logo Brand Title */}
-          <div className="flex items-center space-x-3 select-none">
-            <div className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-emerald-405 bg-cyan-500 flex items-center justify-center text-slate-950 shadow-lg shadow-cyan-500/20 font-display font-extrabold text-lg select-none">
+          {/* Virtual Top Camera Notch */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-1.5 w-24 h-4 bg-slate-900 rounded-full border border-slate-800/40 flex justify-center items-center">
+            <div className="w-2.5 h-2.5 bg-[#08080c] border border-slate-800/80 rounded-full mr-2.5"></div>
+            <div className="w-1.5 h-1.5 bg-cyan-900/40 rounded-full"></div>
+          </div>
+          
+          {/* Connectivity Gauges */}
+          <div className="flex items-center space-x-1.5 text-[10px]">
+            <span>LTE</span>
+            <div className="flex space-x-0.5 items-end h-2 w-3">
+              <div className="bg-slate-500 w-[2.2px] h-[3px]"></div>
+              <div className="bg-slate-500 w-[2.2px] h-[5px]"></div>
+              <div className="bg-cyan-500 w-[2.2px] h-[7px]"></div>
+              <div className="bg-cyan-500 w-[2.2px] h-[9px]"></div>
+            </div>
+            <div className="flex items-center border border-slate-650 rounded-[3px] h-3 px-[1px] w-5 relative">
+              <div className="bg-emerald-500 rounded-[1px] h-[7px] w-full"></div>
+              <div className="bg-slate-600 rounded-r h-1 w-[1px] absolute -right-[2px]"></div>
+            </div>
+            <span className="text-[10px] text-emerald-400 font-bold">100%</span>
+          </div>
+        </div>
+
+        {/* Small screen mobile header */}
+        <header className="bg-slate-950/90 backdrop-blur border-b border-slate-900/60 px-4 py-3 flex justify-between items-center relative z-40 select-none">
+          <div className="flex items-center space-x-2">
+            <div className="h-7 w-7 rounded-lg bg-gradient-to-tr from-cyan-500 to-emerald-450 bg-cyan-500 flex items-center justify-center text-slate-950 shadow-inner font-display font-extrabold text-xs select-none">
               LF
             </div>
             <div>
-              <h1 className="text-xl font-display font-bold text-white tracking-tight flex items-center gap-2">
+              <h1 className="text-xs font-display font-black text-white tracking-tight leading-none">
                 LingoFlex 
-                <span className="text-3xs uppercase tracking-widest px-2.5 py-0.5 rounded-md bg-cyan-950/40 border border-cyan-800/40 text-cyan-300 font-mono font-bold select-none leading-none">
-                  Core Engine
-                </span>
               </h1>
-              <p className="text-xs text-slate-400 select-none">Intermediate-Advanced ESL Muscle Memory</p>
+              <p className="text-[9px] text-slate-450 font-medium">ESL Active Muscle Memory</p>
             </div>
           </div>
+          
+          <span className="text-[8.5px] uppercase tracking-wider px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-800/30 text-cyan-300 font-mono leading-none">
+            Dictionary: 4K+ Words
+          </span>
+        </header>
 
-          {/* Nav Activities Menus */}
-          <nav className="flex items-center space-x-1 bg-slate-950 p-1.5 rounded-2xl border border-slate-850">
-            <button
-              onClick={() => setActiveTab("drop")}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-300 ${activeTab === "drop" ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20" : "text-slate-400 hover:text-white"}`}
-              id="tab-btn-drop"
-            >
-              <Sparkles className="h-4 w-4" />
-              <span>Daily Drop</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("quiz")}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-300 ${activeTab === "quiz" ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20" : "text-slate-400 hover:text-white"}`}
-              id="tab-btn-quiz"
-            >
-              <MessageSquare className="h-4 w-4" />
-              <span>Practice Arena</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("library")}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-300 ${activeTab === "library" ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20" : "text-slate-400 hover:text-white"}`}
-              id="tab-btn-library"
-            >
-              <BookOpen className="h-4 w-4" />
-              <span>Lexicon Matrix</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("stats")}
-              className={`flex items-center space-x-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-300 ${activeTab === "stats" ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20" : "text-slate-400 hover:text-white"}`}
-              id="tab-btn-stats"
-            >
-              <TrendingUp className="h-4 w-4" />
-              <span>Fluency Lab</span>
-            </button>
-          </nav>
-        </div>
-      </header>
-
-      {/* ─── MAIN PORTAL CONTENT ──────────────────────────────────────────────── */}
-      <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        {/* 1. Daily Drop Panel */}
-        {activeTab === "drop" && (
-          <div className="space-y-6 animate-fade-in" id="daily-drop-viewport">
-            
-            {/* Day Selector and customized interests filter */}
-            <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-slate-900/40 border border-slate-800 p-5 rounded-3xl shadow-xl">
-              <div className="flex items-center gap-3">
+        {/* ─── SCROLLABLE PHONE PORTAL CONTEXT AREA ─────────────────────────────────── */}
+        <main className="flex-grow overflow-y-auto bg-[#05070a] px-3 py-4" id="phone-main-viewport" style={{ scrollbarWidth: "none" }}>
+          
+          {/* 1. Daily Word Drops Screen */}
+          {activeTab === "drop" && (
+            <div className="space-y-4 animate-fade-in" id="daily-drop-viewport">
+              
+              {/* Day controller bar (fitted nicely for smartphone width) */}
+              <div className="flex items-center justify-between bg-slate-900/40 border border-slate-850 p-3.5 rounded-2xl shadow">
                 <button
                   onClick={() => handleDayNavigation("prev")}
                   disabled={activeDay === 1 || isLoadingDrop}
-                  className="p-3 bg-slate-950 hover:bg-slate-900 rounded-2xl text-slate-400 disabled:opacity-30 disabled:hover:bg-slate-950 transition-all cursor-pointer shadow-sm border border-slate-850"
+                  className="p-2 bg-slate-950 hover:bg-slate-900 rounded-xl text-slate-400 disabled:opacity-20 transition"
                   id="prev-day-navigation"
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <ChevronLeft className="h-4 w-4" />
                 </button>
-                <div className="text-center md:text-left min-w-[130px]">
-                  <h3 className="font-display font-bold text-lg text-white leading-tight">Word Drop Day {activeDay}</h3>
-                  <p className="text-2xs text-cyan-400 font-semibold uppercase tracking-wider font-mono">
-                    {currentDrop?.isCustom ? "Custom AI Generated" : "Universal Syllabus"}
+                <div className="text-center">
+                  <h3 className="font-display font-black text-xs text-white leading-tight">Word Drop Day {activeDay}</h3>
+                  <p className="text-[9px] text-cyan-400 font-bold uppercase tracking-wider font-mono">
+                    {currentDrop?.isCustom ? "Customised Drop" : "Syllabus Track"}
                   </p>
                 </div>
                 <button
                   onClick={() => handleDayNavigation("next")}
                   disabled={isLoadingDrop}
-                  className="p-3 bg-slate-950 hover:bg-slate-900 rounded-2xl text-slate-400 disabled:opacity-30 disabled:hover:bg-slate-950 transition-all cursor-pointer shadow-sm border border-slate-850"
+                  className="p-2 bg-slate-950 hover:bg-slate-900 rounded-xl text-slate-400 disabled:opacity-20 transition"
                   id="next-day-navigation"
                 >
-                  <ChevronRight className="h-5 w-5" />
+                  <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
 
-              {/* Interests prompt entry */}
-              <div className="flex-grow max-w-md flex flex-col md:flex-row items-stretch md:items-center gap-2">
-                <input
-                  type="text"
-                  value={interests}
-                  onChange={(e) => setInterests(e.target.value)}
-                  placeholder="Themed Drop (e.g. airport scenario, tech meeting)..."
-                  className="flex-grow bg-slate-950 border border-slate-850 text-xs px-4 py-2.5 rounded-xl text-white placeholder-slate-550 focus:bg-slate-900 focus:outline-none focus:border-cyan-500 transition"
-                  id="interests-drop-input"
-                  disabled={isLoadingDrop}
-                />
-                <button
-                  onClick={() => requestNextDayDrop(dayDrops.length + 1)}
-                  disabled={isLoadingDrop}
-                  className="px-4 py-2.5 bg-cyan-500 hover:bg-cyan-450 text-slate-950 font-bold rounded-xl text-xs transition-all shadow-lg shadow-cyan-500/10 flex items-center justify-center space-x-1.5 cursor-pointer"
-                  id="themed-drop-trigger"
-                >
-                  {isLoadingDrop ? (
-                    <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                  ) : (
-                    <>
-                      <Plus className="h-3.5 w-3.5" />
-                      <span>Custom Drop</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Loading Cover */}
-            {isLoadingDrop ? (
-              <div className="bg-slate-900/50 rounded-3xl border border-slate-800 shadow-2xl p-16 flex flex-col items-center justify-center text-center h-[460px]">
-                <div className="relative mb-6">
-                  <div className="rounded-full bg-cyan-950/20 p-10 animate-ping absolute inset-0 opacity-20"></div>
-                  <div className="relative rounded-full bg-cyan-950/40 border border-cyan-905 border-cyan-900/20 p-8">
-                    <RefreshCw className="h-8 w-8 text-cyan-400 animate-spin" />
-                  </div>
-                </div>
-                <h4 className="text-xl font-display font-semibold text-white mb-2">Generating Bespoke Lexical Drop...</h4>
-                <p className="text-slate-400 text-xs italic max-w-sm leading-relaxed">
-                  LingoFlex is constructing semantic structures. Selecting high-yield ESL phrasal verbs, idioms, and vocabulary elements with rich native samples...
-                </p>
-              </div>
-            ) : errorMsg ? (
-              <div className="bg-slate-900/50 rounded-3xl border border-rose-950/40 p-12 text-center shadow-xl flex flex-col items-center justify-center">
-                <div className="text-rose-450 bg-rose-950/30 p-3.5 rounded-full mb-4 border border-rose-900/40">
-                  <AlertCircle className="h-8 w-8 text-rose-400" />
-                </div>
-                <h4 className="text-white font-display font-bold text-lg mb-1">Interactive Engine Timeout</h4>
-                <p className="text-slate-400 text-xs max-w-md leading-relaxed mb-6">
-                  {errorMsg}
-                </p>
-                <button
-                  onClick={() => requestNextDayDrop(activeDay)}
-                  className="px-5 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs rounded-xl shadow-lg shadow-rose-500/15 cursor-pointer"
-                >
-                  Retry Drop Request
-                </button>
-              </div>
-            ) : currentDrop ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8" id={`day-${activeDay}-items-container`}>
-                {currentDrop.items.map((item) => (
-                  <VocabCard
-                    key={item.id}
-                    item={item}
-                    dayNum={activeDay}
-                    onUpdateMastery={updateItemMasteryScore}
+              {/* Quick interests injection query block */}
+              <div className="bg-slate-950 border border-slate-850/80 p-3 rounded-2xl flex flex-col gap-2">
+                <span className="text-[9px] text-slate-500 uppercase tracking-widest font-mono font-bold block">Need dynamic customized words?</span>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={interests}
+                    onChange={(e) => setInterests(e.target.value)}
+                    placeholder="e.g. startup interview, business email..."
+                    className="flex-grow bg-slate-900 border border-slate-800 text-[11px] px-2.5 py-1.5 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-cyan-550 transition"
+                    id="interests-drop-input"
+                    disabled={isLoadingDrop}
                   />
-                ))}
+                  <button
+                    onClick={() => requestNextDayDrop(dayDrops.length + 1)}
+                    disabled={isLoadingDrop}
+                    className="px-3 bg-cyan-555 bg-cyan-500 text-slate-950 font-bold rounded-xl text-[10px] uppercase tracking-wider hover:bg-cyan-400 transition"
+                  >
+                    Generate
+                  </button>
+                </div>
               </div>
-            ) : (
-              <div className="bg-slate-900/50 rounded-3xl p-16 text-center border border-slate-800 select-none flex flex-col items-center">
-                <BookOpen className="h-10 w-10 text-slate-600 mb-2 animate-bounce" />
-                <h5 className="font-semibold text-white text-sm">No items in drop slot</h5>
-                <p className="text-slate-550 text-slate-400 text-xs max-w-xs mt-1">This slot does not exist yet in the local active memory indices.</p>
-                <button
-                  onClick={() => requestNextDayDrop(activeDay)}
-                  className="mt-4 px-4 py-2 bg-cyan-500 text-slate-950 font-bold rounded-xl text-xs"
-                >
-                  Initialize Day {activeDay} Drop
-                </button>
-              </div>
-            )}
-          </div>
-        )}
 
-        {/* 2. Live Practice Arena */}
-        {activeTab === "quiz" && (
-          <div className="animate-fade-in" id="practice-viewport">
-            <QuizPanel
-              vocabList={vocabList}
-              onUpdateScore={updateItemScoreOnly}
-            />
-          </div>
-        )}
+              {/* Status and core drop card listings */}
+              {isLoadingDrop ? (
+                <div className="bg-slate-900/30 rounded-3xl border border-slate-850 p-6 flex flex-col items-center justify-center text-center py-16">
+                  <RefreshCw className="h-6 w-6 text-cyan-400 animate-spin mb-3" />
+                  <h4 className="text-xs font-display font-bold text-white mb-1">Weaving Dynamic Lexicon Card...</h4>
+                  <p className="text-slate-500 text-[9.5px] italic max-w-xs">
+                    Gemini is generating advanced ESL words and phrasal verbs with rich authentic native conversation dialogues...
+                  </p>
+                </div>
+              ) : errorMsg ? (
+                <div className="bg-slate-905 border border-rose-950/40 p-6 rounded-2xl text-center space-y-3">
+                  <AlertCircle className="h-6 w-6 text-rose-500 mx-auto" />
+                  <p className="text-rose-400 text-2xs leading-relaxed">{errorMsg}</p>
+                  <button
+                    onClick={() => requestNextDayDrop(activeDay)}
+                    className="px-4 py-1.5 bg-rose-505 bg-rose-600 text-white text-3xs font-mono rounded-lg"
+                  >
+                    Retry Request
+                  </button>
+                </div>
+              ) : currentDrop ? (
+                <div className="space-y-4" id={`day-${activeDay}-items-container`}>
+                  {currentDrop.items.map((item) => (
+                    <VocabCard
+                      key={item.id}
+                      item={item}
+                      dayNum={activeDay}
+                      onUpdateMastery={updateItemMasteryScore}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-slate-900/20 rounded-2xl p-8 text-center border border-slate-850">
+                  <BookOpen className="h-6 w-6 text-slate-655 mx-auto mb-2" />
+                  <p className="text-[10px] text-slate-500">Day Drop does not exist yet.</p>
+                  <button
+                    onClick={() => requestNextDayDrop(activeDay)}
+                    className="mt-3 px-4 py-1.5 bg-cyan-500 text-slate-950 font-bold text-3xs rounded-lg"
+                  >
+                    Bootstrap Now
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
-        {/* 3. Global Dictionary Matrix */}
-        {activeTab === "library" && (
-          <div className="animate-fade-in" id="library-viewport">
-            <WordIndex
-              items={vocabList}
-              onStartQuiz={handleStartQuizFromDictionary}
-              onGenerateCustomDrop={handleGenerateCustomThemedDrop}
-              isGeneratingDrop={isLoadingDrop}
-            />
-          </div>
-        )}
+          {/* 2. Interactive Roleplay Practice Arena Screen */}
+          {activeTab === "quiz" && (
+            <div className="animate-fade-in" id="practice-viewport">
+              <QuizPanel
+                vocabList={vocabList}
+                onUpdateScore={updateItemScoreOnly}
+                initialItem={preselectedQuizItem}
+              />
+            </div>
+          )}
 
-        {/* 4. Fluency Dashboard */}
-        {activeTab === "stats" && (
-          <div className="animate-fade-in" id="stats-viewport">
-            <StatsPanel items={vocabList} />
-          </div>
-        )}
+          {/* 3. Global Dictionary Matrix Screen (Browsing 4,000+ words) */}
+          {activeTab === "library" && (
+            <div className="animate-fade-in" id="library-viewport">
+              <WordIndex
+                items={vocabList}
+                onStartQuiz={handleStartQuizFromDictionary}
+                onGenerateCustomDrop={handleGenerateCustomThemedDrop}
+                isGeneratingDrop={isLoadingDrop}
+                onAddTermToStudyList={handleAddTermToStudyList}
+              />
+            </div>
+          )}
 
-      </main>
+          {/* 4. Fluency dashboard / metrics screen */}
+          {activeTab === "stats" && (
+            <div className="animate-fade-in text-xs" id="stats-viewport">
+              <StatsPanel items={vocabList} />
+            </div>
+          )}
 
-      {/* ─── FOOTER ────────────────────────────────────────────────────────── */}
-      <footer className="bg-[#05070a] border-t border-slate-850/80 py-6 mt-12 select-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 font-mono tracking-tight flex flex-col sm:flex-row justify-between items-center gap-2">
-          <span>&copy; LingoFlex Inc. Powering active English communication.</span>
-          <span>Index Capacity: <b>4,000+ total unique lexical items</b> target</span>
+        </main>
+
+        {/* ─── FLOATING BOTTOM MOBILE NAVIGATION BAR ───────────────────────────── */}
+        {/* Dynamic touch feedback icons resembling a native premium smartphone app */}
+        <nav className="bg-slate-950 border-t border-slate-900/80 px-2 py-2.5 flex justify-around items-center relative z-40 select-none">
+          <button
+            onClick={() => {
+              setActiveTab("drop");
+              setPreselectedQuizItem(null);
+            }}
+            className={`flex flex-col items-center justify-center space-y-1 transition duration-200 cursor-pointer ${
+              activeTab === "drop" ? "text-cyan-400 font-bold" : "text-slate-500 hover:text-slate-300"
+            }`}
+            id="tab-btn-drop"
+          >
+            <Sparkles className="h-4 w-4" />
+            <span className="text-[9px] tracking-tight">Drops</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab("quiz")}
+            className={`flex flex-col items-center justify-center space-y-1 transition duration-200 cursor-pointer ${
+              activeTab === "quiz" ? "text-cyan-400 font-bold" : "text-slate-500 hover:text-slate-300"
+            }`}
+            id="tab-btn-quiz"
+          >
+            <MessageSquare className="h-4 w-4" />
+            <span className="text-[9px] tracking-tight">Arena</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveTab("library");
+              setPreselectedQuizItem(null);
+            }}
+            className={`flex flex-col items-center justify-center space-y-1 transition duration-200 cursor-pointer ${
+              activeTab === "library" ? "text-cyan-400 font-bold" : "text-slate-500 hover:text-slate-300"
+            }`}
+            id="tab-btn-library"
+          >
+            <BookOpen className="h-4 w-4" />
+            <span className="text-[9px] tracking-tight">Lexicon 4K</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveTab("stats");
+              setPreselectedQuizItem(null);
+            }}
+            className={`flex flex-col items-center justify-center space-y-1 transition duration-200 cursor-pointer ${
+              activeTab === "stats" ? "text-cyan-400 font-bold" : "text-slate-500 hover:text-slate-300"
+            }`}
+            id="tab-btn-stats"
+          >
+            <TrendingUp className="h-4 w-4" />
+            <span className="text-[9px] tracking-tight">Fluency</span>
+          </button>
+        </nav>
+
+        {/* Decorative iOS Home Indicator bar line representation */}
+        <div className="hidden md:block bg-slate-950 pb-1.5 pt-0.5">
+          <div className="w-24 h-1 bg-slate-800 rounded-full mx-auto"></div>
         </div>
-      </footer>
+
+      </div>
 
     </div>
   );
