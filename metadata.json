@@ -1,0 +1,6 @@
+{
+  "name": "LingoFlex",
+  "description": "An advanced ESL vocabulary and idiom builder designed to foster active language muscle memory with interactive, situation-based AI quizzes and personalized daily word drops.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
