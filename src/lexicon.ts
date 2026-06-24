@@ -795,6 +795,136 @@ const newIdiomsAndPhrases: IndexTerm[] = [
       "We need a down-to-earth manager who understands the practical challenges of coding."
     ],
     muscle_memory_prompt: "Who is the most down-to-earth person you know, and what makes them that way?"
+  },
+  {
+    term: "Cry over spilled milk",
+    type: "idiom",
+    category: "Everyday",
+    definition: "To waste time worrying about past mistakes or events that cannot be undone.",
+    pronunciation_respelling: "kry oh-ver spild milk",
+    synonyms: ["regret past actions", "grieve in vain", "worry over history"],
+    examples: [
+      "I know you made a mistake on the IELTS practice exam, but there is no use crying over spilled milk.",
+      "Worrying about yesterday's game is just crying over spilled milk; let's focus on tomorrow."
+    ],
+    muscle_memory_prompt: "When was a time you realized it was useless to cry over spilled milk?"
+  },
+  {
+    term: "Hit the books",
+    type: "idiom",
+    category: "Everyday",
+    definition: "To begin studying hard, especially for an upcoming exam.",
+    pronunciation_respelling: "hit thuh buks",
+    synonyms: ["study hard", "prepare", "cram", "read up"],
+    examples: [
+      "I need to hit the books tonight if I want to pass my IELTS reading section.",
+      "The library was packed with students hitting the books before finals week."
+    ],
+    muscle_memory_prompt: "How many hours before a big test do you usually decide to hit the books?"
+  },
+  {
+    term: "Spill the beans",
+    type: "idiom",
+    category: "Everyday",
+    definition: "To reveal secret or confidential information prematurely.",
+    pronunciation_respelling: "spil thuh beenz",
+    synonyms: ["reveal secrets", "let the cat out of the bag", "confess", "expose"],
+    examples: [
+      "We were planning a surprise birthday party, but someone spilled the beans.",
+      "Trust me not to spill the beans about the new project timeline before the official launch."
+    ],
+    muscle_memory_prompt: "Who is the most trustworthy person you know who never spills the beans?"
+  },
+  {
+    term: "Take it with a grain of salt",
+    type: "idiom",
+    category: "Academic",
+    definition: "To view a claim or piece of information with healthy skepticism or not interpret it literally.",
+    pronunciation_respelling: "tayk it with uh grayn ov sawlt",
+    synonyms: ["be skeptical", "doubt", "verify", "keep an open mind"],
+    examples: [
+      "You should take those internet rumors with a grain of salt until they are confirmed.",
+      "She takes everything her rival says with a grain of salt."
+    ],
+    muscle_memory_prompt: "What is an online claim or advice that you always take with a grain of salt?"
+  },
+  {
+    term: "A blessing in disguise",
+    type: "idiom",
+    category: "Everyday",
+    definition: "An apparent misfortune that eventually has unexpectedly good results.",
+    pronunciation_respelling: "uh bles-ing in dis-gyz",
+    synonyms: ["hidden benefit", "unexpected boon", "fortunate turn", "lucky break"],
+    examples: [
+      "Losing that job was a blessing in disguise because it forced me to start my own successful agency.",
+      "The flight delay was a blessing in disguise, as we avoided a severe storm."
+    ],
+    muscle_memory_prompt: "Have you ever experienced a setback that turned out to be a blessing in disguise?"
+  },
+  {
+    term: "In the long run",
+    type: "phrase",
+    category: "Business",
+    definition: "Over a long period of time; ultimately in the end.",
+    pronunciation_respelling: "in thuh lawng ruhn",
+    synonyms: ["eventually", "ultimately", "over time", "in the end"],
+    examples: [
+      "Studying academic vocabulary might seem tedious now, but it will pay off in the long run.",
+      "Investing in green energy technologies is highly profitable in the long run."
+    ],
+    muscle_memory_prompt: "What is a daily habit you practice that you know will benefit you in the long run?"
+  },
+  {
+    term: "On the verge of",
+    type: "phrase",
+    category: "Everyday",
+    definition: "Very close to experiencing, discovering, or doing something.",
+    pronunciation_respelling: "on thuh verj ov",
+    synonyms: ["on the brink of", "close to", "about to", "nearing"],
+    examples: [
+      "The research team is on the verge of finding a cure for the rare virus.",
+      "The country's economy is on the verge of a major transformation."
+    ],
+    muscle_memory_prompt: "What is a project or skill you feel you are on the verge of mastering?"
+  },
+  {
+    term: "By and large",
+    type: "phrase",
+    category: "Academic",
+    definition: "On the whole; everything considered; generally speaking.",
+    pronunciation_respelling: "by and lahry",
+    synonyms: ["generally", "mostly", "overall", "typically"],
+    examples: [
+      "By and large, the presentation was received very well by the stakeholders.",
+      "The new rules have been successful, by and large, in reducing unnecessary traffic."
+    ],
+    muscle_memory_prompt: "By and large, do you prefer studying in quiet spaces or active environments?"
+  },
+  {
+    term: "In light of",
+    type: "phrase",
+    category: "Academic",
+    definition: "Drawing knowledge or information from; considering specific circumstances or evidence.",
+    pronunciation_respelling: "in lyt ov",
+    synonyms: ["considering", "given", "because of", "on account of"],
+    examples: [
+      "In light of the new research, we have updated our safety protocols.",
+      "We decided to postpone the campaign in light of the sudden economic changes."
+    ],
+    muscle_memory_prompt: "What is a decision you recently changed in light of new information?"
+  },
+  {
+    term: "Needless to say",
+    type: "phrase",
+    category: "Everyday",
+    definition: "Obviously; as is self-evident or universally understood.",
+    pronunciation_respelling: "need-lis too say",
+    synonyms: ["obviously", "clearly", "self-evidently", "of course"],
+    examples: [
+      "Needless to say, you must study regularly to score high on the IELTS exam.",
+      "Needless to say, the safety of our customers is our top priority."
+    ],
+    muscle_memory_prompt: "Needless to say, what is the one food you can never live without?"
   }
 ];
 
@@ -1006,9 +1136,218 @@ const raw100WordsPart2: { term: string; def: string; tts: string; syns: string[]
   { term: "Kinetic", def: "Relating to or resulting from motion.", tts: "kih-NET-ik", syns: ["active", "moving", "dynamic", "energetic"], exs: ["The dance performance was full of kinetic energy and fluid movements.", "The sculpture's kinetic parts spin beautifully in the wind."], cat: "Everyday" }
 ];
 
+// Part 3: 100 high-utility advanced IELTS words (B1 to C2)
+const raw100WordsPart3: { term: string; def: string; tts: string; syns: string[]; exs: string[]; cat: "Business" | "Everyday" | "Academic" | "Colloquial" }[] = [
+  { term: "Abundant", def: "Available in large quantities; more than enough.", tts: "uh-BUHN-duhnt", syns: ["plentiful", "copious", "overflowing", "ample"], exs: ["The region has abundant natural resources.", "There was abundant evidence to support the theory."], cat: "Academic" },
+  { term: "Accumulate", def: "Gather together or acquire an increasing number or quantity of.", tts: "uh-KYOO-myoo-layt", syns: ["gather", "collect", "amass", "pile up"], exs: ["Dust began to accumulate on the old books.", "Over the years, she managed to accumulate a vast library."], cat: "Academic" },
+  { term: "Acquire", def: "Obtain an asset or object; learn or develop a skill.", tts: "uh-KWYR", syns: ["obtain", "gain", "learn", "procure"], exs: ["The company looks to acquire new talents.", "It takes time to acquire a foreign language."], cat: "Academic" },
+  { term: "Adequate", def: "Satisfactory or acceptable in quality or quantity.", tts: "AD-ih-kwit", syns: ["sufficient", "enough", "passable", "decent"], exs: ["The training was adequate but not spectacular.", "Ensure you get adequate sleep before the exam."], cat: "Academic" },
+  { term: "Adversity", def: "A state of serious or continued difficulty or misfortune.", tts: "ad-VER-sih-thee", syns: ["hardship", "misfortune", "tribulation", "distress"], exs: ["She showed resilience in the face of adversity.", "Overcoming adversity makes us stronger."], cat: "Academic" },
+  { term: "Advocate", def: "Publicly recommend or support.", tts: "AD-vuh-kayt", syns: ["support", "champion", "endorse", "promote"], exs: ["Many scientists advocate for green energy.", "He was an advocate for educational reform."], cat: "Academic" },
+  { term: "Aesthetic", def: "Concerned with beauty or the appreciation of beauty.", tts: "es-THET-ik", syns: ["artistic", "beautiful", "appealing", "graceful"], exs: ["The building's aesthetic design was praised by critics.", "She has a highly refined aesthetic sense."], cat: "Academic" },
+  { term: "Alleviate", def: "Make suffering, deficiency, or a problem less severe.", tts: "uh-LEE-vee-ayt", syns: ["relieve", "ease", "soothe", "reduce"], exs: ["The doctor gave her medicine to alleviate the pain.", "Measures were taken to alleviate traffic congestion."], cat: "Academic" },
+  { term: "Ambiguity", def: "The quality of being open to more than one interpretation; inexactness.", tts: "am-bih-GYOO-ih-thee", syns: ["vagueness", "uncertainty", "obscurity", "indefiniteness"], exs: ["We must avoid ambiguity in legal contracts.", "The author uses ambiguity to create suspense."], cat: "Academic" },
+  { term: "Ample", def: "Enough or more than enough; plentiful.", tts: "AM-puhl", syns: ["plentiful", "abundant", "sufficient", "liberal"], exs: ["There was ample time to complete the assignment.", "The kitchen has ample storage space for groceries."], cat: "Academic" },
+  { term: "Analogy", def: "A comparison between two things for the purpose of explanation or clarification.", tts: "uh-NAL-uh-jee", syns: ["comparison", "parallel", "correlation", "likeness"], exs: ["He drew an analogy between the brain and a computer.", "The analogy helped make the complex topic easier to understand."], cat: "Academic" },
+  { term: "Anomalous", def: "Deviating from what is standard, normal, or expected.", tts: "uh-NOM-uh-luhs", syns: ["abnormal", "atypical", "irregular", "unusual"], exs: ["The sensor registered an anomalous temperature spike.", "His behavior on that day was completely anomalous."], cat: "Academic" },
+  { term: "Antagonize", def: "Cause someone to become hostile.", tts: "an-TAG-uh-nyz", syns: ["provoke", "irritate", "anger", "offend"], exs: ["Do not antagonize your coworkers if you want a happy office.", "His comments managed to antagonize the entire panel."], cat: "Everyday" },
+  { term: "Apathy", def: "Lack of interest, enthusiasm, or concern.", tts: "AP-uh-thee", syns: ["indifference", "lethargy", "unconcern", "passivity"], exs: ["Student apathy is a major challenge for educators.", "He reacted to the tragic news with complete apathy."], cat: "Everyday" },
+  { term: "Arbitrary", def: "Based on random choice or personal whim, rather than reason or system.", tts: "AHR-bih-trehr-ee", syns: ["random", "chance", "capricious", "erratic"], exs: ["The decision felt completely arbitrary and lacked logic.", "The rules seemed to be enforced in an arbitrary manner."], cat: "Academic" },
+  { term: "Assert", def: "State a fact or belief confidently and forcefully.", tts: "uh-SERT", syns: ["declare", "state", "maintain", "claim"], exs: ["He continues to assert his innocence.", "She stood up to assert her rights during the discussion."], cat: "Academic" },
+  { term: "Assimilate", def: "Take in information, ideas, or culture and understand fully; absorb.", tts: "uh-SIM-ih-layt", syns: ["absorb", "integrate", "incorporate", "adapt"], exs: ["It takes time to assimilate new ideas into your workflow.", "Immigrants often strive to assimilate into the local culture."], cat: "Academic" },
+  { term: "Astute", def: "Having or showing an ability to accurately assess situations and turn this to one's advantage.", tts: "uh-STOOT", syns: ["shrewd", "sharp", "clever", "discerning"], exs: ["An astute businessman knows when to take calculated risks.", "She made several astute observations during the debate."], cat: "Business" },
+  { term: "Attrition", def: "The gradual reduction of strength or numbers through sustained pressure.", tts: "uh-TRISH-uhn", syns: ["reduction", "erosion", "weakening", "depletion"], exs: ["The company is reducing staff numbers through natural attrition.", "The war of attrition dragged on for several grueling months."], cat: "Business" },
+  { term: "Augment", def: "Make something greater by adding to it; increase.", tts: "awg-MENT", syns: ["increase", "supplement", "boost", "expand"], exs: ["He took a part-time job to augment his monthly income.", "We must augment our servers to handle the holiday traffic."], cat: "Business" },
+  { term: "Autonomous", def: "Existing or functioning independently; self-governing.", tts: "aw-TON-uh-muhs", syns: ["independent", "self-governing", "free", "sovereign"], exs: ["The university's branches operate as autonomous entities.", "Self-driving cars rely on autonomous navigation systems."], cat: "Academic" },
+  { term: "Belligerent", def: "Hostile and aggressive.", tts: "buh-LIJ-er-uhnt", syns: ["aggressive", "hostile", "combative", "warlike"], exs: ["The customer became belligerent when his request was denied.", "The nation adopted a belligerent foreign policy posture."], cat: "Everyday" },
+  { term: "Benevolent", def: "Well meaning and kindly.", tts: "buh-NEV-uh-luhnt", syns: ["kind", "generous", "altruistic", "charitable"], exs: ["A benevolent donor paid for the school's new computer lab.", "The dictator tried to project a benevolent image to the public."], cat: "Everyday" },
+  { term: "Bewilder", def: "Cause someone to become perplexed and confused.", tts: "bih-WIL-der", syns: ["confuse", "perplex", "baffle", "mystify"], exs: ["The complex instructions completely bewildered the users.", "Her sudden change of heart seemed to bewilder everyone."], cat: "Everyday" },
+  { term: "Bias", def: "Prejudice in favor of or against one thing, person, or group in a way considered unfair.", tts: "BY-uhs", syns: ["prejudice", "partiality", "favoritism", "slant"], exs: ["The study was accused of having a commercial bias.", "We must eliminate personal bias during candidate interviews."], cat: "Academic" },
+  { term: "Brevity", def: "Concise and exact use of words in writing or speech; shortness of time.", tts: "BREV-ih-thee", syns: ["conciseness", "shortness", "briefness", "succinctness"], exs: ["The brevity of his explanation was highly appreciated.", "For the sake of brevity, I will summarize the key points."], cat: "Academic" },
+  { term: "Cacophony", def: "A harsh, discordant mixture of sounds.", tts: "kuh-KOF-uh-nee", syns: ["din", "racket", "noise", "discordance"], exs: ["A cacophony of car horns kept us awake all night.", "The classroom descended into a cacophony of shouts."], cat: "Everyday" },
+  { term: "Candid", def: "Truthful and straightforward; frank.", tts: "KAN-did", syns: ["frank", "honest", "straightforward", "outspoken"], exs: ["She gave a candid assessment of the project's chances of success.", "The photographer captured candid shots of the children playing."], cat: "Everyday" },
+  { term: "Catalyst", def: "A person or thing that precipitates an event or change.", tts: "KAT-uh-list", syns: ["stimulus", "spark", "incentive", "trigger"], exs: ["The protest acted as a catalyst for sweeping political reforms.", "An enthusiastic manager can be a catalyst for team innovation."], cat: "Academic" },
+  { term: "Chronological", def: "Starting with the earliest and following the order in which they occurred.", tts: "kron-uh-LOJ-ih-kuhl", syns: ["sequential", "consecutive", "ordered", "historical"], exs: ["Please list your work experience in reverse chronological order.", "The museum exhibit is arranged in chronological sequence."], cat: "Academic" },
+  { term: "Coherent", def: "Logical and consistent; clear and easy to understand.", tts: "koh-HEER-uhnt", syns: ["logical", "consistent", "clear", "orderly"], exs: ["She formulated a coherent strategy for the product relaunch.", "He was too tired to give a coherent explanation."], cat: "Academic" },
+  { term: "Collaborate", def: "Work jointly on an activity, especially to produce or create something.", tts: "kuh-LAB-uh-rayt", syns: ["cooperate", "work together", "join forces", "team up"], exs: ["The two research institutes agreed to collaborate on the study.", "Writers and designers must collaborate closely on this project."], cat: "Business" },
+  { term: "Commendable", def: "Deserving praise.", tts: "kuh-MEN-duh-buhl", syns: ["praiseworthy", "admirable", "laudable", "excellent"], exs: ["Her efforts to help the homeless are highly commendable.", "The team showed commendable courage during the crisis."], cat: "Everyday" },
+  { term: "Compelling", def: "Evoking interest, attention, or admiration in an irresistible way; convincing.", tts: "kuhm-PEL-ing", syns: ["convincing", "powerful", "persuasive", "cogent"], exs: ["The forensic team found compelling evidence linking the suspect to the crime.", "She wrote a compelling novel about life in the futuristic city."], cat: "Academic" },
+  { term: "Compensate", def: "Give someone something in recognition of loss or injury; make up for.", tts: "KOM-puhn-sayt", syns: ["reimburse", "make up for", "offset", "repay"], exs: ["The airline agreed to compensate passengers for the long delay.", "His dedication and hard work compensate for his lack of experience."], cat: "Business" },
+  { term: "Competent", def: "Having the necessary ability, knowledge, or skill to do something successfully.", tts: "KOM-pih-tuhnt", syns: ["capable", "proficient", "skilled", "adept"], exs: ["We need a competent accountant to handle the tax filing.", "She is highly competent in several programming languages."], cat: "Business" },
+  { term: "Complacent", def: "Showing smug or uncritical satisfaction with oneself or one's achievements.", tts: "kuhm-PLAY-suhnt", syns: ["self-satisfied", "smug", "contented", "gloating"], exs: ["We must not become complacent despite our recent successes.", "A complacent attitude can lead to costly operational mistakes."], cat: "Everyday" },
+  { term: "Comprehend", def: "Grasp mentally; understand.", tts: "kom-prih-HEND", syns: ["understand", "grasp", "fathom", "perceive"], exs: ["He struggled to comprehend the scale of the disaster.", "I cannot comprehend why anyone would want to vandalize the park."], cat: "Academic" },
+  { term: "Comprehensive", def: "Complete; including all or nearly all elements or aspects of something.", tts: "kom-prih-HEN-siv", syns: ["complete", "thorough", "exhaustive", "all-inclusive"], exs: ["The guide offers a comprehensive review of the tourist sites.", "We need a comprehensive security plan for the database."], cat: "Academic" },
+  { term: "Concede", def: "Admit that something is true or valid after first denying or resisting it.", tts: "kuhn-SEED", syns: ["admit", "acknowledge", "yield", "grant"], exs: ["He was forced to concede that his theory had a major flaw.", "The candidate refused to concede the election until all votes were counted."], cat: "Academic" },
+  { term: "Concise", def: "Giving a lot of information clearly and in a few words; brief.", tts: "kuhn-SYS", syns: ["brief", "succinct", "short", "to the point"], exs: ["Your resume should be clear, concise, and professional.", "She gave a concise summary of the quarterly report."], cat: "Academic" },
+  { term: "Concur", def: "Be of the same opinion; agree.", tts: "kuhn-KER", syns: ["agree", "coincide", "approve", "harmonize"], exs: ["The other board members strongly concur with your proposal.", "I concur with your assessment of the market conditions."], cat: "Academic" },
+  { term: "Condense", def: "Make denser or more concise; express in fewer words.", tts: "kuhn-DENS", syns: ["abbreviate", "summarize", "shorten", "compress"], exs: ["You should condense this long paragraph into a single clear sentence.", "The report was condensed into a three-page executive summary."], cat: "Academic" },
+  { term: "Condone", def: "Accept and allow behavior that is considered morally wrong to continue.", tts: "kuhn-DOHN", syns: ["tolerate", "excuse", "overlook", "forgive"], exs: ["We do not condone cheating of any kind in our academy.", "The government was accused of condoning human rights violations."], cat: "Academic" },
+  { term: "Conducive", def: "Making a certain situation or outcome likely or possible.", tts: "kuhn-DYOO-siv", syns: ["favorable", "helpful", "beneficial", "advantageous"], exs: ["A quiet library is highly conducive to effective studying.", "The warm climate is conducive to growing grapes."], cat: "Academic" },
+  { term: "Conform", def: "Comply with rules, standards, or laws; behave according to conventions.", tts: "kuhn-FORM", syns: ["comply", "obey", "adhere", "fit in"], exs: ["All new buildings must conform to strict safety regulations.", "He refused to conform to traditional corporate dress codes."], cat: "Academic" },
+  { term: "Conundrum", def: "A confusing and difficult problem or question.", tts: "kuh-NUHN-druhm", syns: ["puzzle", "riddle", "problem", "dilemma"], exs: ["How to distribute vaccine doses fairly was an ethical conundrum.", "This code bug presents a highly confusing conundrum for the team."], cat: "Academic" },
+  { term: "Converge", def: "Come together from different directions so as eventually to meet.", tts: "kuhn-VERj", syns: ["meet", "merge", "unite", "join"], exs: ["Thousands of fans converged on the stadium for the concert.", "Our separate research projects started to converge on a single solution."], cat: "Academic" },
+  { term: "Corroborate", def: "Confirm or give support to a statement, theory, or finding.", tts: "kuh-ROB-uh-rayt", syns: ["confirm", "verify", "support", "validate"], exs: ["The witness was able to corroborate his story with photographic evidence.", "Recent studies corroborate the theory of climate change."], cat: "Academic" },
+  { term: "Credible", def: "Able to be believed; convincing.", tts: "KRED-ih-buhl", syns: ["convincing", "believable", "trustworthy", "reliable"], exs: ["We need a credible spokesperson to address the media.", "The prosecutor presented a highly credible case to the jury."], cat: "Academic" },
+  { term: "Crucial", def: "Extremely important or necessary.", tts: "KROO-shuhl", syns: ["essential", "critical", "pivotal", "vital"], exs: ["Hard work is crucial if you want to achieve a high score.", "Getting prompt medical care is crucial in an emergency."], cat: "Academic" },
+  { term: "Cumbersome", def: "Large or heavy and difficult to carry or use; slow or complicated.", tts: "KUHM-ber-suhm", syns: ["clumsy", "awkward", "unwieldy", "heavy"], exs: ["The old filing system was highly cumbersome and slow.", "Carrying the cumbersome packages up the stairs was exhausting."], cat: "Everyday" },
+  { term: "Curtail", def: "Reduce in extent or quantity; impose a restriction on.", tts: "ker-TAYL", syns: ["reduce", "restrict", "limit", "decrease"], exs: ["The school had to curtail its spending on extracurricular activities.", "New laws aim to curtail the power of large monopolies."], cat: "Business" },
+  { term: "Cynical", def: "Believing that people are motivated purely by self-interest; distrustful of sincerity.", tts: "SIN-ih-kuhl", syns: ["distrustful", "skeptical", "pessimistic", "sardonic"], exs: ["He has a cynical view of politics, believing all politicians are corrupt.", "She was cynical about their sudden offer of assistance."], cat: "Everyday" },
+  { term: "Decipher", def: "Succeed in understanding, interpreting, or identifying something obscure.", tts: "dih-SY-fer", syns: ["decode", "interpret", "understand", "solve"], exs: ["The experts worked for months to decipher the ancient scroll.", "I cannot decipher his messy handwriting on this form."], cat: "Academic" },
+  { term: "Depict", def: "Show or represent by a drawing, painting, or other art form; describe.", tts: "dih-PIKT", syns: ["describe", "portray", "represent", "illustrate"], exs: ["The painting seeks to depict the serenity of the countryside.", "The author's latest book depicts the struggles of working-class families."], cat: "Academic" },
+  { term: "Deplorable", def: "Deserving strong condemnation; shockingly bad in quality.", tts: "dih-PLOR-uh-buhl", syns: ["shocking", "dreadful", "shameful", "terrible"], exs: ["The prisoners were kept in deplorable sanitary conditions.", "His behavior during the formal dinner was absolutely deplorable."], cat: "Academic" },
+  { term: "Depreciate", def: "Diminish in value over a period of time.", tts: "dih-PREE-shee-ayt", syns: ["devalue", "cheapen", "drop", "decline"], exs: ["New cars depreciate in value as soon as they leave the dealership.", "The country's currency continues to depreciate rapidly against the dollar."], cat: "Business" },
+  { term: "Derived", def: "Obtain something from a specified source.", tts: "dih-RYVD", syns: ["obtained", "extracted", "originated", "sourced"], exs: ["Many modern medicines are derived from rare plants.", "The word is derived from an ancient Greek term."], cat: "Academic" },
+  { term: "Deteriorate", def: "Become progressively worse.", tts: "dih-TEER-ee-uh-rayt", syns: ["worsen", "decline", "decay", "degenerate"], exs: ["If neglected, the historic building will continue to deteriorate.", "His health began to deteriorate rapidly after the operation."], cat: "Everyday" },
+  { term: "Devastating", def: "Highly destructive or damaging; causing severe shock or grief.", tts: "DEV-uh-stay-ting", syns: ["destructive", "ruinous", "shattering", "disastrous"], exs: ["The earthquake had a devastating impact on the coastal town.", "We received some devastating news regarding the budget cuts."], cat: "Everyday" },
+  { term: "Devoid", def: "Entirely lacking or free from.", tts: "dih-VOYD", syns: ["lacking", "empty", "vacant", "barren"], exs: ["The landscape was completely devoid of trees and vegetation.", "His explanation was entirely devoid of any logical reasoning."], cat: "Academic" },
+  { term: "Differentiate", def: "Recognize or ascertain what makes someone or something different.", tts: "dif-uh-REN-shee-ayt", syns: ["distinguish", "discriminate", "tell apart", "separate"], exs: ["It is hard to differentiate between the two identical products.", "Our premium features are what differentiate us from our competitors."], cat: "Academic" },
+  { term: "Diligent", def: "Having or showing care and conscientiousness in one's work or duties.", tts: "DIL-ih-juhnt", syns: ["hardworking", "industrious", "conscientious", "meticulous"], exs: ["A diligent student will always excel in their studies over time.", "The researchers did a diligent job verifying the sources."], cat: "Academic" },
+  { term: "Diminish", def: "Make or become less.", tts: "dih-MIN-ish", syns: ["decrease", "reduce", "lessen", "shrink"], exs: ["The pain began to diminish after she took the medicine.", "We must not let these setbacks diminish our enthusiasm for the project."], cat: "Academic" },
+  { term: "Discrepancy", def: "An illogical lack of compatibility or similarity between two or more facts.", tts: "dih-SKREP-uhn-see", syns: ["difference", "inconsistency", "variance", "disparity"], exs: ["There was a slight discrepancy between the two bank statements.", "We must investigate the discrepancy in our audit reports."], cat: "Academic" },
+  { term: "Disdain", def: "The feeling that someone or something is unworthy of consideration or respect.", tts: "dis-DAYN", syns: ["contempt", "scorn", "disrespect", "derision"], exs: ["He treated their unsolicited advice with obvious disdain.", "She looked at the cheap imitation watch with cold disdain."], cat: "Academic" },
+  { term: "Dismay", def: "Concern and distress caused by something unexpected.", tts: "dis-MAY", syns: ["apprehension", "distress", "alarm", "consternation"], exs: ["To our utter dismay, the flight had been cancelled without warning.", "The news of the store closing was received with widespread dismay."], cat: "Everyday" },
+  { term: "Disparate", def: "Essentially different in kind; not allowing comparison.", tts: "DIS-puh-rit", syns: ["contrasting", "different", "diverse", "unrelated"], exs: ["The team is composed of individuals from highly disparate backgrounds.", "It is difficult to merge two completely disparate database schemas."], cat: "Academic" },
+  { term: "Disseminate", def: "Spread information or news widely.", tts: "dih-SEM-ih-layt", syns: ["spread", "circulate", "distribute", "disperse"], exs: ["The organization works to disseminate agricultural knowledge in rural areas.", "Social media makes it easy to disseminate news rapidly."], cat: "Academic" },
+  { term: "Divergent", def: "Tending to be different or develop in different directions.", tts: "dy-VER-juhnt", syns: ["differing", "varying", "dissimilar", "conflicting"], exs: ["The two political analysts held divergent views on the election.", "Over time, the two closely related languages grew in divergent directions."], cat: "Academic" },
+  { term: "Diverse", def: "Showing a great deal of variety; very different.", tts: "dy-VERS", syns: ["varied", "miscellaneous", "heterogeneous", "manifold"], exs: ["The university has a highly diverse student population.", "Our country has a rich and diverse culinary heritage."], cat: "Academic" },
+  { term: "Dynamic", def: "Characterized by constant change, activity, or progress.", tts: "dy-NAM-ik", syns: ["energetic", "active", "lively", "vibrant"], exs: ["She is a dynamic leader who inspires her team to achieve more.", "The software industry is a dynamic field that is constantly evolving."], cat: "Academic" },
+  { term: "Eccentric", def: "Unconventional and slightly strange.", tts: "ek-SEN-trik", syns: ["unconventional", "peculiar", "odd", "bizarre"], exs: ["The eccentric professor was famous for his unusual teaching methods.", "She lived in an eccentric house decorated with old bicycle wheels."], cat: "Everyday" },
+  { term: "Efficacy", def: "The ability to produce a desired or intended result.", tts: "EF-ih-kuh-see", syns: ["effectiveness", "success", "utility", "usefulness"], exs: ["Clinical trials confirmed the efficacy and safety of the new vaccine.", "Many doubt the efficacy of the current economic reforms."], cat: "Academic" },
+  { term: "Elaborate", def: "Involving many carefully arranged parts or details; detailed in design.", tts: "ih-LAB-uh-rit", syns: ["detailed", "complex", "intricate", "sophisticated"], exs: ["They prepared an elaborate feast for the visiting delegates.", "He gave an elaborate explanation of how the engine works."], cat: "Academic" },
+  { term: "Eloquent", def: "Fluent or persuasive in speaking or writing.", tts: "EL-uh-kwent", syns: ["fluent", "persuasive", "articulate", "silver-tongued"], exs: ["He delivered an eloquent speech defending human rights.", "Her letters were an eloquent testimony to her deep affection."], cat: "Academic" },
+  { term: "Elusive", def: "Difficult to find, catch, or achieve.", tts: "ih-LOO-siv", syns: ["evasive", "slippery", "indefinite", "intangible"], exs: ["Success can be elusive if you do not have a clear strategy.", "The rare bird remains extremely elusive to researchers in the jungle."], cat: "Academic" },
+  { term: "Eminent", def: "Famous and respected within a particular sphere or profession.", tts: "EM-ih-nuhnt", syns: ["renowned", "distinguished", "famous", "illustrious"], exs: ["Several eminent scientists attended the conference on quantum physics.", "He is an eminent scholar of medieval European history."], cat: "Academic" },
+  { term: "Empathy", def: "The ability to understand and share the feelings of another.", tts: "EM-puh-thee", syns: ["understanding", "compassion", "sympathy", "sensitivity"], exs: ["A good counselor must have deep empathy for their clients.", "The story was written with great empathy for the characters."], cat: "Everyday" },
+  { term: "Emphasize", def: "Give special importance or prominence to something in speaking or writing.", tts: "EM-fuh-syz", syns: ["stress", "highlight", "accentuate", "underline"], exs: ["The teacher wanted to emphasize the importance of regular review.", "Our reports emphasize the need for immediate action."], cat: "Academic" },
+  { term: "Empirical", def: "Based on, concerned with, or verifiable by observation or experience rather than theory.", tts: "em-PIR-ih-kuhl", syns: ["observational", "factual", "experimental", "practical"], exs: ["We need empirical evidence to support your claims.", "The study relies on empirical observations gathered over ten years."], cat: "Academic" },
+  { term: "Endeavor", def: "Try hard to do or achieve something.", tts: "en-DEV-er", syns: ["attempt", "strive", "try", "venture"], exs: ["We must endeavor to complete the project on time and within budget.", "Writing a dictionary is a massive scholastic endeavor."], cat: "Academic" },
+  { term: "Enhance", def: "Intensify, increase, or further improve the quality, value, or extent of.", tts: "en-HANS", syns: ["improve", "boost", "heighten", "upgrade"], exs: ["Adding fresh basil will enhance the flavor of the tomato sauce.", "You can use editing software to enhance the quality of your photos."], cat: "Academic" },
+  { term: "Enigma", def: "A person or thing that is mysterious, puzzling, or difficult to understand.", tts: "ih-NIG-muh", syns: ["mystery", "puzzle", "riddle", "conundrum"], exs: ["His sudden departure from the company remains a complete enigma.", "The origin of the ancient stone circles is an archaeological enigma."], cat: "Academic" },
+  { term: "Ephemeral", def: "Lasting for a very short time.", tts: "ih-FEM-er-uhl", syns: ["fleeting", "transient", "short-lived", "brief"], exs: ["Fame is often ephemeral, disappearing as quickly as it arrives.", "The beautiful colors of the sunset are highly ephemeral."], cat: "Academic" },
+  { term: "Epitome", def: "A person or thing that is a perfect example of a particular quality or type.", tts: "ih-PIT-uh-mee", syns: ["perfect example", "embodiment", "paragon", "essence"], exs: ["She is the epitome of elegance, grace, and professionalism.", "This clean code layout is the epitome of premium web design."], cat: "Academic" },
+  { term: "Equivalent", def: "Equal in value, amount, function, meaning, etc.", tts: "ih-KWIV-uh-luhnt", syns: ["equal", "identical", "comparable", "matching"], exs: ["Two hundred dollars is equivalent to about twenty thousand yen.", "They do not have an equivalent qualification in our system."], cat: "Academic" },
+  { term: "Eradicate", def: "Destroy completely; put an end to.", tts: "ih-RAD-ih-kayt", syns: ["eliminate", "destroy", "wipe out", "abolish"], exs: ["The vaccine helped eradicate smallpox from the human population.", "We must work together to eradicate poverty in our city."], cat: "Academic" },
+  { term: "Erratic", def: "Not even or regular in pattern or movement; unpredictable.", tts: "ih-RAT-ik", syns: ["unpredictable", "inconsistent", "unstable", "changeable"], exs: ["The patient showed erratic heartbeats that alarmed the nurses.", "His performance has been erratic, ranging from excellent to poor."], cat: "Academic" },
+  { term: "Erroneous", def: "Wrong; incorrect.", tts: "ih-ROH-nee-uhs", syns: ["incorrect", "wrong", "mistaken", "false"], exs: ["The article was based on erroneous information from an unverified source.", "We must correct these erroneous assumptions before proceeding."], cat: "Academic" },
+  { term: "Esoteric", def: "Intended for or understood by only a small number of people with specialized knowledge.", tts: "es-oh-TEHR-ik", syns: ["obscure", "mysterious", "recondite", "arcane"], exs: ["The journal publishes papers on highly esoteric scientific topics.", "He has a deep interest in esoteric medieval philosophies."], cat: "Academic" },
+  { term: "Essential", def: "Absolutely necessary; extremely important.", tts: "ih-SEN-shuhl", syns: ["crucial", "necessary", "vital", "critical"], exs: ["Water is essential for the survival of all living organisms.", "Getting a high score on the reading section is essential for your IELTS goals."], cat: "Academic" },
+  { term: "Esthetic", def: "Concerned with beauty or the appreciation of beauty.", tts: "es-THET-ik", syns: ["artistic", "beautiful", "appealing", "graceful"], exs: ["The museum was built with strict attention to esthetic principles.", "She appreciated the esthetic quality of the classical music performance."], cat: "Academic" },
+  { term: "Evade", def: "Escape or avoid, especially by cleverness or trickery.", tts: "ih-VAYD", syns: ["avoid", "elude", "dodge", "escape"], exs: ["The suspect managed to evade the police for several weeks.", "You should not try to evade paying taxes or fees."], cat: "Everyday" },
+  { term: "Evaluate", def: "Form an idea of the amount, number, or value of; assess.", tts: "ih-VAL-yoo-ayt", syns: ["assess", "appraise", "judge", "rate"], exs: ["We need to evaluate the potential risks before launching the product.", "The teachers meet regularly to evaluate student progress."], cat: "Academic" },
+  { term: "Exacerbate", def: "Make a problem, bad situation, or negative feeling worse.", tts: "ig-ZAS-er-bayt", syns: ["worsen", "aggravate", "inflame", "intensify"], exs: ["Scratching the skin will only exacerbate the severe itching.", "High interest rates will exacerbate the housing affordability crisis."], cat: "Academic" },
+  { term: "Exceptional", def: "Unusually good; outstanding.", tts: "ik-SEP-shuh-nuhl", syns: ["outstanding", "excellent", "extraordinary", "superb"], exs: ["The young pianist showed exceptional talent for her age.", "We received exceptional service from the hotel staff."], cat: "Academic" },
+  { term: "Exclude", def: "Deny someone or something place, group, or privilege; keep out.", tts: "ik-SKLOOD", syns: ["omit", "leave out", "bar", "eliminate"], exs: ["We should not exclude anyone from participating in the discussions.", "The price of the tour excludes lunch and dinner."], cat: "Academic" },
+  { term: "Exemplify", def: "Be a typical example of.", tts: "ig-ZEM-plih-fy", syns: ["illustrate", "demonstrate", "represent", "epitomize"], exs: ["These custom designs exemplify the high quality of our craftsmanship.", "His hard work and dedication exemplify our company values."], cat: "Academic" }
+];
+
+// Part 4: 100 more high-utility advanced IELTS words (B1 to C2) - F to Z
+const raw100WordsPart4: { term: string; def: string; tts: string; syns: string[]; exs: string[]; cat: "Business" | "Everyday" | "Academic" | "Colloquial" }[] = [
+  { term: "Facilitate", def: "Make an action or process easy or easier.", tts: "fuh-SIL-ih-tayt", syns: ["assist", "ease", "enable", "promote"], exs: ["The new software was designed to facilitate online communication.", "An experienced moderator can facilitate a productive team debate."], cat: "Academic" },
+  { term: "Feasible", def: "Possible to do easily or conveniently; practical.", tts: "FEE-zih-buhl", syns: ["practical", "workable", "viable", "achievable"], exs: ["It is not economically feasible to build a bridge across the bay.", "We need to find a feasible solution to the budget issue."], cat: "Academic" },
+  { term: "Fluctuate", def: "Rise and fall irregularly in number or amount.", tts: "FLUHK-choo-ayt", syns: ["vary", "shift", "oscillate", "waver"], exs: ["Trade volumes fluctuate wildly depending on seasonal demand.", "The stock market indices fluctuate daily based on global events."], cat: "Business" },
+  { term: "Foster", def: "Encourage or promote the development of something, typically something good.", tts: "FOS-ter", syns: ["encourage", "promote", "cultivate", "nurture"], exs: ["The university seeks to foster a culture of open debate and research.", "We must foster positive relationships with our international partners."], cat: "Academic" },
+  { term: "Fundamental", def: "Forming a necessary base or core; of central importance.", tts: "fuhn-duh-MEN-tuhl", syns: ["basic", "essential", "core", "primary"], exs: ["A healthy diet and regular exercise are fundamental to good health.", "The textbook covers the fundamental concepts of organic chemistry."], cat: "Academic" },
+  { term: "Generalize", def: "Make a general or broad statement by inferring from specific cases.", tts: "JEN-er-uh-lyz", syns: ["broaden", "extrapolate", "theorize", "universalize"], exs: ["It is dangerous to generalize based on a single small test group.", "She tended to generalize about the behavior of young children."], cat: "Academic" },
+  { term: "Genuine", def: "Truly what something is said to be; authentic.", tts: "JEN-yoo-in", syns: ["authentic", "real", "true", "sincere"], exs: ["The ancient vase was confirmed to be a genuine artifact.", "He showed a genuine interest in learning about our culture."], cat: "Everyday" },
+  { term: "Grasp", def: "Get a mental hold on; understand fully.", tts: "grasp", syns: ["comprehend", "understand", "fathom", "perceive"], exs: ["She struggled to grasp the complex mathematical formula.", "He has an excellent grasp of several foreign languages."], cat: "Academic" },
+  { term: "Guarantee", def: "Provide a formal assurance, especially that certain conditions will be fulfilled.", tts: "gair-uhn-TEE", syns: ["promise", "assure", "pledge", "ensure"], exs: ["We cannot guarantee that the flight will depart exactly on time.", "The product comes with a lifetime guarantee against defects."], cat: "Business" },
+  { term: "Hazardous", def: "Risky or dangerous, especially to safety or health.", tts: "HAZ-er-duhs", syns: ["dangerous", "risky", "perilous", "unsafe"], exs: ["The disposal of hazardous industrial waste is strictly regulated.", "Driving on icy mountain roads is highly hazardous."], cat: "Everyday" },
+  { term: "Hierarchy", def: "A system in which members of an organization or society are ranked according to status.", tts: "HY-er-ahr-kee", syns: ["ranking", "ladder", "order", "grading"], exs: ["There is a clear corporate hierarchy in traditional banks.", "He rose quickly through the political hierarchy to become minister."], cat: "Academic" },
+  { term: "Hinder", def: "Create difficulties for someone or something, resulting in delay or obstruction.", tts: "HIN-der", syns: ["obstruct", "delay", "impede", "hamper"], exs: ["Bad weather could hinder the rescue team's progress.", "High tax rates can hinder the growth of small business startups."], cat: "Academic" },
+  { term: "Homogeneous", def: "Of the same kind; alike; consisting of parts all of the same kind.", tts: "hoh-muh-JEE-nee-uhs", syns: ["uniform", "identical", "alike", "consistent"], exs: ["The neighborhood has a highly homogeneous population.", "Stir the mixture until it becomes a homogeneous liquid."], cat: "Academic" },
+  { term: "Hypothesis", def: "A proposed explanation made on the basis of limited evidence as a starting point for further investigation.", tts: "hy-POTH-uh-sis", syns: ["theory", "premise", "assumption", "conjecture"], exs: ["The research team set out to test their hypothesis with clinical trials.", "We need more data to either support or disprove the hypothesis."], cat: "Academic" },
+  { term: "Illuminate", def: "Help to clarify or explain; make clear.", tts: "ih-LOO-mih-nayt", syns: ["clarify", "explain", "lucidate", "clear up"], exs: ["The professor's lecture helped illuminate the difficult poem.", "New documents illuminate the events leading up to the historic treaty."], cat: "Academic" },
+  { term: "Illustrate", def: "Explain or make something clear by using examples, charts, or pictures.", tts: "IL-uh-strayt", syns: ["explain", "demonstrate", "show", "exemplify"], exs: ["The teacher drew a diagram on the board to illustrate the process.", "These case studies illustrate the main points of the presentation."], cat: "Academic" },
+  { term: "Imminent", def: "About to happen; forthcoming or impending.", tts: "IM-ih-nuhnt", syns: ["impending", "approaching", "near", "looming"], exs: ["The dark clouds suggested that a heavy storm was imminent.", "Scientists warned that a volcanic eruption could be imminent."], cat: "Everyday" },
+  { term: "Impart", def: "Make information known; communicate; bestow a quality.", tts: "im-PAHRT", syns: ["communicate", "bestow", "lend", "convey"], exs: ["A good teacher strives to impart wisdom, not just facts.", "The spices impart a rich, complex flavor to the chicken soup."], cat: "Academic" },
+  { term: "Impartial", def: "Treating all rivals or disputants equally; unbiased.", tts: "im-PAHR-shuhl", syns: ["unbiased", "neutral", "fair", "objective"], exs: ["The dispute was referred to an impartial arbitrator for resolution.", "A judge must remain completely impartial throughout the trial."], cat: "Academic" },
+  { term: "Impede", def: "Delay or prevent someone or something by obstructing them; hinder.", tts: "im-PEED", syns: ["hinder", "obstruct", "delay", "hamper"], exs: ["Heavy snow began to impede the flow of traffic on the highway.", "The complex bureaucratic rules impede scientific research."], cat: "Academic" },
+  { term: "Imperative", def: "Of vital importance; crucial; an essential or urgent thing.", tts: "im-PEHR-uh-tiv", syns: ["vital", "crucial", "essential", "necessary"], exs: ["It is imperative that we submit the funding proposal before Friday.", "Action is imperative if we want to save the historic forest."], cat: "Academic" },
+  { term: "Implication", def: "The conclusion that can be drawn from something although it is not explicitly stated.", tts: "im-plih-KAY-shuhn", syns: ["suggestion", "inference", "consequence", "repercussion"], exs: ["The implication of his speech was that tax rates would rise.", "We must consider the security implications of this code change."], cat: "Academic" },
+  { term: "Implicit", def: "Implied though not plainly expressed.", tts: "im-PLIS-it", syns: ["implied", "unexpressed", "tacit", "indirect"], exs: ["There was an implicit agreement that she would run the meeting.", "We had implicit trust in our manager's decisions."], cat: "Academic" },
+  { term: "Impoverished", def: "Area or person made poor; deprived of natural strength or richness.", tts: "im-POV-er-isht", syns: ["poor", "destitute", "depleted", "indigent"], exs: ["The charity distributes warm meals in impoverished rural areas.", "The soil is impoverished after years of intensive monoculture farming."], cat: "Everyday" },
+  { term: "Incentivize", def: "Provide someone with an incentive for doing something; motivate.", tts: "in-SEN-tih-vyz", syns: ["motivate", "encourage", "stimulate", "prompt"], exs: ["The company seeks to incentivize staff by offering performance bonuses.", "New tax laws aim to incentivize investment in clean energy technology."], cat: "Business" },
+  { term: "Incline", def: "Feel willing or favorably disposed toward an action, belief, or attitude.", tts: "in-KLYN", syns: ["tend", "lean", "prefer", "dispose"], exs: ["I incline to the view that we should postpone the product release.", "The quiet surroundings incline people to contemplate and read."], cat: "Academic" },
+  { term: "Incorporate", def: "Take in or contain something as part of a whole; include.", tts: "in-KOR-puh-rayt", syns: ["include", "integrate", "absorb", "assimilate"], exs: ["We decided to incorporate user feedback into the new design.", "The book incorporates elements of science fiction and mystery."], cat: "Academic" },
+  { term: "Indifferent", def: "Having no particular interest or sympathy; unconcerned.", tts: "in-DIF-er-uhnt", syns: ["unconcerned", "apathetic", "uninterested", "detached"], exs: ["He was completely indifferent to the criticisms leveled against him.", "She remained indifferent to his persistent pleas for help."], cat: "Everyday" },
+  { term: "Indigenous", def: "Originating or occurring naturally in a particular place; native.", tts: "in-DIJ-uh-nuhs", syns: ["native", "aboriginal", "local", "original"], exs: ["The guide pointed out several rare plants indigenous to the island.", "They work to protect the rights of indigenous communities."], cat: "Academic" },
+  { term: "Indispensable", def: "Absolutely necessary; essential.", tts: "in-dih-SPEN-suh-buhl", syns: ["essential", "necessary", "vital", "crucial"], exs: ["A reliable computer is indispensable for modern university students.", "Her financial acumen makes her indispensable to our startup."], cat: "Academic" },
+  { term: "Induce", def: "Succeed in persuading or influencing someone to do something; bring about.", tts: "in-DYOO-s", syns: ["persuade", "influence", "cause", "prompt"], exs: ["We tried to induce the witness to testify in court.", "Certain foods are known to induce allergic reactions in children."], cat: "Academic" },
+  { term: "Inevitable", def: "Certain to happen; unavoidable.", tts: "in-EV-ih-tuh-buhl", syns: ["unavoidable", "certain", "fated", "sure"], exs: ["Given the circumstances, a direct confrontation was completely inevitable.", "Aging is an inevitable part of human life."], cat: "Academic" },
+  { term: "Infer", def: "Deduce or conclude information from evidence and reasoning rather than from explicit statements.", tts: "in-FER", syns: ["deduce", "conclude", "gather", "reason"], exs: ["From your silence, I infer that you do not approve of our plans.", "We can infer the author's true intentions from her letters."], cat: "Academic" },
+  { term: "Infinite", def: "Limitless or endless in space, extent, or size; impossible to measure.", tts: "IN-fih-nit", syns: ["limitless", "endless", "boundless", "untold"], exs: ["The stars in the night sky seemed to stretch into infinite space.", "She has infinite patience when teaching young children."], cat: "Everyday" },
+  { term: "Inherent", def: "Existing in something as a permanent, essential, or characteristic attribute.", tts: "in-HEER-uhnt", syns: ["intrinsic", "essential", "innate", "built-in"], exs: ["There are inherent risks in any stock market investment.", "Every child has an inherent curiosity about the natural world."], cat: "Academic" },
+  { term: "Inhibit", def: "Hinder, restrain, or prevent an action or process.", tts: "in-HIB-it", syns: ["hinder", "restrain", "prevent", "curb"], exs: ["Fear of failure can inhibit students from trying new skills.", "The chemical formula is designed to inhibit the growth of mold."], cat: "Academic" },
+  { term: "Initiate", def: "Cause a process or action to begin.", tts: "ih-NISH-ee-ayt", syns: ["begin", "start", "launch", "commence"], exs: ["The company decided to initiate a review of its safety policies.", "The government was quick to initiate diplomatic talks."], cat: "Academic" },
+  { term: "Innovate", def: "Make changes in something established, especially by introducing new methods, ideas, or products.", tts: "IN-noh-vayt", syns: ["pioneer", "create", "invent", "reform"], exs: ["Tech startups must constantly innovate to survive in the market.", "The chef loves to innovate by blending disparate culinary styles."], cat: "Business" },
+  { term: "Insight", def: "A deep understanding of a person or thing.", tts: "IN-syt", syns: ["understanding", "discernment", "perception", "acuity"], exs: ["The study offers valuable insights into consumer shopping habits.", "His book shows a deep insight into human relationships."], cat: "Academic" },
+  { term: "Integrate", def: "Combine one thing with another so that they become a whole.", tts: "IN-tih-grayt", syns: ["combine", "merge", "incorporate", "unite"], exs: ["The new system will integrate easily with our existing database.", "Our goal is to integrate all separate tools into a single app."], cat: "Academic" },
+  { term: "Intense", def: "Of extreme force, degree, or strength; highly concentrated.", tts: "in-TENS", syns: ["extreme", "acute", "fierce", "powerful"], exs: ["He was under intense pressure to complete the audit report.", "The sun's heat became so intense that we had to seek shade."], cat: "Everyday" },
+  { term: "Intermittent", def: "Occurring at irregular intervals; not continuous or steady.", tts: "in-ter-MIT-uhnt", syns: ["sporadic", "irregular", "occasional", "fitful"], exs: ["The region experienced intermittent rain showers throughout the day.", "She has an intermittent internet connection in the remote cabin."], cat: "Academic" },
+  { term: "Interpret", def: "Explain the meaning of information, words, or actions.", tts: "in-TER-prit", syns: ["explain", "decode", "translate", "clarify"], exs: ["It is difficult to interpret his silence as a sign of agreement.", "The system can interpret complex mathematical equations in real time."], cat: "Academic" },
+  { term: "Intricate", def: "Very complicated or detailed; containing many interlocking parts.", tts: "IN-trih-kit", syns: ["complex", "complicated", "detailed", "elaborate"], exs: ["The ancient clock has an intricate mechanism with dozens of gears.", "She wove an intricate pattern into the woolen blanket."], cat: "Academic" },
+  { term: "Invaluable", def: "Extremely useful; indispensable.", tts: "in-VAL-yoo-buhl", syns: ["priceless", "precious", "indispensable", "vital"], exs: ["Her advice proved to be invaluable during the negotiation process.", "The library contains an invaluable collection of historic documents."], cat: "Academic" },
+  { term: "Invisible", def: "Unable to be seen by the naked eye.", tts: "in-VIZ-ih-buhl", syns: ["unseen", "imperceptible", "covert", "hidden"], exs: ["The ink is completely invisible until exposed to ultraviolet light.", "Air is a mixture of invisible gases that surround the Earth."], cat: "Everyday" },
+  { term: "Irrespective", def: "Not taking something into account; regardless of.", tts: "ih-rih-SPEK-tiv", syns: ["regardless", "without regard", "disregarding", "anyway"], exs: ["All citizens are equal under the law, irrespective of their income.", "We will proceed with the schedule, irrespective of the weather."], cat: "Academic" },
+  { term: "Justify", def: "Show or prove to be right or reasonable.", tts: "JUS-tih-fy", syns: ["defend", "warrant", "validate", "support"], exs: ["You must justify your decisions with clear empirical evidence.", "Nothing can justify such a flagrant violation of safety rules."], cat: "Academic" },
+  { term: "Lament", def: "Express passionate grief or regret; mourn.", tts: "luh-MENT", syns: ["mourn", "grieve", "regret", "weep"], exs: ["Many citizens lament the decline of local independent bookshops.", "The poet wrote a beautiful elegy to lament the death of his friend."], cat: "Academic" },
+  { term: "Latent", def: "Existing but not yet developed or manifest; hidden or concealed.", tts: "LAY-tuhnt", syns: ["hidden", "dormant", "concealed", "inactive"], exs: ["The teacher recognized the latent musical talent in the young boy.", "The virus can remain latent in the body for several years."], cat: "Academic" },
+  { term: "Legislation", def: "Laws, considered collectively, proposed or enacted by a governing body.", tts: "lej-is-LAY-shuhn", syns: ["laws", "statutes", "regulations", "acts"], exs: ["The government introduced new legislation to protect consumers online.", "The proposed legislation faced heavy criticism from business owners."], cat: "Academic" },
+  { term: "Lethargic", def: "Affected by lethargy; sluggish and apathetic.", tts: "lih-THAHR-jik", syns: ["sluggish", "apathetic", "lazy", "listless"], exs: ["The hot humid weather made everyone feel extremely lethargic.", "If you feel lethargic and tired every day, see a doctor."], cat: "Everyday" },
+  { term: "Liberal", def: "Open to new behavior or opinions and willing to discard traditional values; generous.", tts: "LIB-er-uhl", syns: ["broad-minded", "generous", "bountiful", "flexible"], exs: ["He had a liberal attitude toward corporate dress codes.", "She added a liberal amount of olive oil to the pasta salad."], cat: "Academic" },
+  { term: "Linger", def: "Stay in a place longer than necessary, typically because of a reluctance to leave.", tts: "LING-ger", syns: ["remain", "stay", "loiter", "wait"], exs: ["The sweet scent of lavender continued to linger in the bedroom.", "Guests tended to linger in the garden after the party ended."], cat: "Everyday" },
+  { term: "Lucrative", def: "Producing a great deal of profit.", tts: "LOO-kruh-tiv", syns: ["profitable", "rewarding", "gainful", "fruitful"], exs: ["He left teaching to pursue a highly lucrative career in software sales.", "The company signed a lucrative contract with a retail giant."], cat: "Business" },
+  { term: "Magnify", def: "Make something appear larger than it is; intensify or exaggerate.", tts: "MAG-nih-fy", syns: ["enlarge", "amplify", "intensify", "exaggerate"], exs: ["You can use a magnifying glass to magnify the tiny text.", "Worrying about details will only magnify your anxieties."], cat: "Everyday" },
+  { term: "Maintain", def: "State something strongly; keep in an existing state or condition.", tts: "mayn-TAYN", syns: ["assert", "keep", "preserve", "continue"], exs: ["He continues to maintain that his client is completely innocent.", "We must work hard to maintain standard safety regulations."], cat: "Academic" },
+  { term: "Mandatory", def: "Required by law or rules; compulsory.", tts: "MAN-duh-tor-ee", syns: ["compulsory", "required", "obligatory", "binding"], exs: ["Wearing a seatbelt is mandatory in most countries worldwide.", "The orientation meeting is mandatory for all new students."], cat: "Academic" },
+  { term: "Manifest", def: "Clear or obvious to the eye or mind; demonstrate.", tts: "MAN-ih-fest", syns: ["demonstrate", "show", "exhibit", "obvious"], exs: ["His anger began to manifest itself in his rigid posture.", "The system error was manifest to even the novice developers."], cat: "Academic" },
+  { term: "Marginal", def: "Of minor or secondary importance; relating to or situated at the edge.", tts: "MAHR-jih-nuhl", syns: ["minor", "borderline", "slight", "insignificant"], exs: ["The design changes resulted in only a marginal increase in speed.", "Some remote tribes live in marginal areas of the rainforest."], cat: "Academic" },
+  { term: "Moderate", def: "Average in amount, intensity, quality, or degree.", tts: "MOD-er-it", syns: ["average", "medium", "temperate", "reasonable"], exs: ["The doctor advised her to do moderate exercise every day.", "The hotel rooms are available at a moderate price range."], cat: "Everyday" },
+  { term: "Mutual", def: "Experienced or done by each of two or more parties toward the other.", tts: "MYOO-choo-uhl", syns: ["reciprocal", "shared", "common", "joint"], exs: ["The two research institutes have a mutual interest in the study.", "The partnership was built on mutual respect and trust."], cat: "Business" },
+  { term: "Negligible", def: "So small or unimportant as to be not worth considering; insignificant.", tts: "NEG-lih-jih-buhl", syns: ["insignificant", "trivial", "minor", "trifling"], exs: ["The difference in price between the two models was negligible.", "The risk of an accident during the tour is negligible."], cat: "Academic" },
+  { term: "Nonchalant", def: "Feeling or appearing casually calm and relaxed; unconcerned.", tts: "non-shuh-LAHNT", syns: ["calm", "cool", "unconcerned", "relaxed"], exs: ["She reacted to the shocking news with a nonchalant shrug.", "He walked into the interview room with a nonchalant attitude."], cat: "Colloquial" },
+  { term: "Noteworthy", def: "Interesting, significant, or unusual; worthy of attention.", tts: "NOHT-wer-thee", syns: ["significant", "important", "remarkable", "prominent"], exs: ["The author's latest book is noteworthy for its unique plot.", "There are several noteworthy architectural features in the church."], cat: "Academic" },
+  { term: "Nuance", def: "A subtle difference in or shade of meaning, expression, or sound.", tts: "NOO-ahns", syns: ["subtlety", "nicety", "shade", "distinction"], exs: ["A good translator must understand the nuances of both languages.", "The actor's performance captured every emotional nuance of the character."], cat: "Academic" },
+  { term: "Nurture", def: "Care for and encourage the growth or development of.", tts: "NER-cher", syns: ["cultivate", "foster", "support", "raise"], exs: ["Parents must nurture their children's interests and hobbies.", "We want to nurture a supportive working environment for our team."], cat: "Everyday" },
+  { term: "Objective", def: "Not influenced by personal feelings or opinions in considering and representing facts.", tts: "uhb-JEK-tiv", syns: ["impartial", "unbiased", "fair", "neutral"], exs: ["We need an objective assessment of the project's performance.", "A journalist's duty is to report the news in an objective manner."], cat: "Academic" },
+  { term: "Obscure", def: "Not discovered or known about; uncertain; difficult to understand.", tts: "uhb-SKYOO-r", syns: ["unclear", "doubtful", "unknown", "hidden"], exs: ["The origin of the ancient word remains highly obscure to scholars.", "His explanation was filled with obscure legal terms and codes."], cat: "Academic" },
+  { term: "Obstacle", def: "A thing that blocks one's way or prevents or hinders progress.", tts: "OB-stuh-kuhl", syns: ["barrier", "hurdle", "hindrance", "impediment"], exs: ["Language barriers can be a major obstacle when living abroad.", "Overcoming this final obstacle will ensure the project's success."], cat: "Everyday" },
+  { term: "Obtain", def: "Get, acquire, or secure something.", tts: "uhb-TAYN", syns: ["get", "acquire", "secure", "procure"], exs: ["You must obtain written permission before using the files.", "He managed to obtain a copy of the rare historic journal."], cat: "Academic" },
+  { term: "Obvious", def: "Easily perceived or understood; clear, self-evident, or apparent.", tts: "OB-vee-uhs", syns: ["clear", "apparent", "plain", "evident"], exs: ["There was an obvious discrepancy between the two bank records.", "The solution to the problem was obvious to the math teacher."], cat: "Everyday" },
+  { term: "Omnipresent", def: "Widely or constantly encountered; widespread or constantly present.", tts: "om-nih-PREZ-uhnt", syns: ["ubiquitous", "everywhere", "pervasive", "universal"], exs: ["Smartphones have become an omnipresent part of modern daily life.", "The sound of traffic is omnipresent in large metropolitan cities."], cat: "Academic" },
+  { term: "Onset", def: "The beginning of something, especially something unpleasant.", tts: "ON-set", syns: ["beginning", "start", "commencement", "arrival"], exs: ["The sudden onset of winter took the village by surprise.", "Early treatment can delay the onset of severe disease symptoms."], cat: "Academic" },
+  { term: "Optimal", def: "Best or most favorable; optimum.", tts: "OP-tih-muhl", syns: ["best", "ideal", "peak", "excellent"], exs: ["The plants grow best under optimal temperature and light conditions.", "We need to find the optimal strategy to maximize resource efficiency."], cat: "Academic" },
+  { term: "Paradox", def: "A seemingly absurd or self-contradictory statement or proposition that when investigated may prove to be true.", tts: "PA-ruh-doks", syns: ["contradiction", "puzzle", "anomaly", "enigma"], exs: ["It is a curious paradox that drinking warm tea can help cool you down.", "The paradox of wealth is that it can breed deep unhappiness."], cat: "Academic" },
+  { term: "Paramount", def: "More important than anything else; supreme.", tts: "PA-ruh-mownt", syns: ["supreme", "chief", "primary", "vital"], exs: ["The safety of our travelers remains of paramount importance.", "Understanding the fundamental rules is paramount to solving the puzzle."], cat: "Academic" },
+  { term: "Passive", def: "Accepting or allowing what happens or what others do, without active response or resistance.", tts: "PAS-iv", syns: ["inactive", "yielding", "submissive", "apathetic"], exs: ["He played a passive role in the discussions, rarely speaking up.", "Passive smoking is known to be hazardous to non-smokers' health."], cat: "Academic" },
+  { term: "Perceive", def: "Become aware or conscious of something; come to realize or understand.", tts: "per-SEEV", syns: ["realize", "understand", "notice", "sense"], exs: ["Many people perceive classical music as elitist or boring.", "I was slow to perceive the true significance of her warning."], cat: "Academic" },
+  { term: "Perpetuate", def: "Make something, typically an undesirable situation or belief, continue indefinitely.", tts: "per-PECH-oo-ayt", syns: ["continue", "prolong", "sustain", "maintain"], exs: ["Failing to correct the rumor will only perpetuate the misunderstanding.", "The outdated textbooks tend to perpetuate harmful cultural stereotypes."], cat: "Academic" },
+  { term: "Persist", def: "Continue firmly or obstinately in an opinion or a course of action in spite of difficulty or opposition.", tts: "per-SIST", syns: ["continue", "persevere", "endure", "last"], exs: ["If symptoms persist for more than three days, consult a physician.", "She decided to persist with her studies despite the heavy workload."], cat: "Academic" },
+  { term: "Perspective", def: "A particular attitude toward or way of regarding something; a point of view.", tts: "per-SPEK-tiv", syns: ["viewpoint", "outlook", "stance", "standpoint"], exs: ["The conference aims to explore different perspectives on global trade.", "Travel helps people gain a broader perspective on other cultures."], cat: "Academic" },
+  { term: "Pervasive", def: "Spreading widely throughout an area or a group of people.", tts: "per-VAY-siv", syns: ["widespread", "ubiquitous", "omnipresent", "penetrating"], exs: ["The smell of fresh coffee was pervasive throughout the small house.", "Social media has a pervasive influence on teenage behavior patterns."], cat: "Academic" },
+  { term: "Plausible", def: "Seeming reasonable or probable.", tts: "PLAW-zih-buhl", syns: ["reasonable", "believable", "credible", "likely"], exs: ["She gave a highly plausible explanation for her sudden absence.", "The scientists proposed a plausible theory regarding the galaxy's age."], cat: "Academic" },
+  { term: "Pragmatic", def: "Dealing with things sensibly and realistically in a way that is based on practical rather than theoretical considerations.", tts: "prag-MAT-ik", syns: ["practical", "realistic", "down-to-earth", "sensible"], exs: ["We need to take a pragmatic approach to solve this coding problem.", "He is a pragmatic politician who is willing to compromise to pass laws."], cat: "Academic" },
+  { term: "Precedent", def: "An earlier event or action that is regarded as an example or guide to be considered in subsequent similar circumstances.", tts: "PRES-ih-duhnt", syns: ["example", "guide", "model", "standard"], exs: ["The court's decision set an important legal precedent for future cases.", "There is no historical precedent for a pandemic of this scale."], cat: "Academic" },
+  { term: "Prevalent", def: "Widespread in a particular area or at a particular time.", tts: "PREV-uh-luhnt", syns: ["widespread", "common", "ubiquitous", "frequent"], exs: ["The disease is highly prevalent in damp tropical climates.", "Outdated beliefs regarding education are still prevalent in rural zones."], cat: "Academic" },
+  { term: "Profound", def: "Very great or intense; having or showing great knowledge or insight.", tts: "pruh-FOWND", syns: ["deep", "intense", "insightful", "great"], exs: ["The sudden loss of his father had a profound impact on his art.", "The professor made several profound observations on ancient history."], cat: "Academic" },
+  { term: "Proliferate", def: "Increase rapidly in numbers; multiply.", tts: "pruh-LIF-er-ayt", syns: ["multiply", "mushroom", "expand", "burgeon"], exs: ["Fast-food restaurants continue to proliferate across the country.", "The cell cultures began to proliferate rapidly under the microscope."], cat: "Academic" },
+  { term: "Prominent", def: "Important; famous; particularly noticeable.", tts: "PROM-ih-nuhnt", syns: ["famous", "renowned", "noticeable", "important"], exs: ["She plays a prominent role in several local charity associations.", "The museum features artwork by prominent contemporary painters."], cat: "Academic" },
+  { term: "Propagate", def: "Spread and promote an idea, theory, or knowledge widely.", tts: "PROP-uh-gayt", syns: ["spread", "promote", "disseminate", "circulate"], exs: ["Many insects propagate plant species by carrying golden pollen.", "The group uses online channels to propagate their political views."], cat: "Academic" },
+  { term: "Prospect", def: "The possibility or likelihood of some future event occurring.", tts: "PROS-pekt", syns: ["possibility", "likelihood", "chance", "outlook"], exs: ["The prospect of another long winter filled the villagers with dread.", "She was excited by the prospect of studying abroad in London."], cat: "Academic" },
+  { term: "Provoke", def: "Stimulate or give rise to a reaction or emotion, typically a strong or unwelcome one.", tts: "pruh-VOHK", syns: ["arouse", "trigger", "cause", "prompt"], exs: ["The price hikes provoked widespread protests in the city.", "Do not provoke the dog unless you want to get bitten."], cat: "Everyday" },
+  { term: "Prudent", def: "Acting with or showing care and thought for the future.", tts: "PROO-duhnt", syns: ["wise", "sensible", "cautious", "careful"], exs: ["It would be prudent to save a portion of your income every month.", "The board made a prudent decision to postpone the expansion."], cat: "Academic" },
+  { term: "Qualitative", def: "Relating to, measuring, or measured by the quality of something rather than its quantity.", tts: "KWOL-ih-tay-tiv", syns: ["subjective", "descriptive", "observational"], exs: ["The study relies on qualitative research, including deep interviews.", "We must evaluate the qualitative aspects of candidate performance."], cat: "Academic" },
+  { term: "Quantitative", def: "Relating to, measuring, or measured by the quantity of something rather than its quality.", tts: "KWON-tih-tay-tiv", syns: ["numerical", "statistical", "measurable"], exs: ["The survey gathered quantitative data on voter preferences.", "We need a quantitative analysis of company sales trends over five years."], cat: "Academic" },
+  { term: "Radical", def: "Relating to or affecting the fundamental nature of something; far-reaching or thorough.", tts: "RAD-ih-kuhl", syns: ["drastic", "fundamental", "extreme", "thorough"], exs: ["The company underwent a radical restructuring process last year.", "Her ideas regarding educational reform were considered highly radical."], cat: "Academic" },
+  { term: "Rational", def: "Based on or in accordance with reason or logic.", tts: "RASH-uh-nuhl", syns: ["logical", "sensible", "reasonable", "sane"], exs: ["We must make a rational decision based on facts, not emotions.", "There was no rational explanation for his erratic behavior."], cat: "Academic" },
+  { term: "Reconcile", def: "Restore friendly relations between; make compatible.", tts: "REK-uhn-syl", syns: ["resolve", "settle", "harmonize", "coordinate"], exs: ["It is difficult to reconcile her public image with her private life.", "They worked hard to reconcile their divergent views on the project."], cat: "Academic" },
+  { term: "Redundant", def: "Not or no longer needed or useful; superfluous.", tts: "rih-DUHN-duhnt", syns: ["superfluous", "unnecessary", "excess", "spare"], exs: ["The spelling check tool removed redundant words from the document.", "Many workers were made redundant following the corporate merger."], cat: "Academic" }
+];
+
 // Let's programmatically synthesize a highly realistic, clean, and authentic list of 1,000+ real words
 // to provide a massive database of genuine vocabulary words that help ESL learners build real fluency.
 export function generateLexiconIndex(): IndexTerm[] {
+
   const finalIndex: IndexTerm[] = [...curatedTerms];
   const termsSeen = new Set<string>(curatedTerms.map(t => t.term.toLowerCase()));
 
@@ -1040,6 +1379,42 @@ export function generateLexiconIndex(): IndexTerm[] {
 
   // Add our second batch of 100 words
   raw100WordsPart2.forEach((w) => {
+    const lowercaseWord = w.term.toLowerCase();
+    if (!termsSeen.has(lowercaseWord)) {
+      termsSeen.add(lowercaseWord);
+      finalIndex.push({
+        term: w.term,
+        type: "word",
+        category: w.cat,
+        definition: w.def,
+        pronunciation_respelling: w.tts,
+        synonyms: w.syns,
+        examples: w.exs,
+        muscle_memory_prompt: `Start with: 'To speak professionally, I believe we should utilize "${w.term}" when...'`
+      });
+    }
+  });
+
+  // Add our third batch of 100 words (IELTS focused)
+  raw100WordsPart3.forEach((w) => {
+    const lowercaseWord = w.term.toLowerCase();
+    if (!termsSeen.has(lowercaseWord)) {
+      termsSeen.add(lowercaseWord);
+      finalIndex.push({
+        term: w.term,
+        type: "word",
+        category: w.cat,
+        definition: w.def,
+        pronunciation_respelling: w.tts,
+        synonyms: w.syns,
+        examples: w.exs,
+        muscle_memory_prompt: `Start with: 'To speak professionally, I believe we should utilize "${w.term}" when...'`
+      });
+    }
+  });
+
+  // Add our fourth batch of 100 words (IELTS focused F-Z)
+  raw100WordsPart4.forEach((w) => {
     const lowercaseWord = w.term.toLowerCase();
     if (!termsSeen.has(lowercaseWord)) {
       termsSeen.add(lowercaseWord);
