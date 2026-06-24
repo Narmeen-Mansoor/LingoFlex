@@ -12,6 +12,13 @@ import {
 
 type ActiveTab = "drop" | "quiz" | "library" | "stats";
 
+export function getLocalDateString(d: Date = new Date()) {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 export default function App() {
   // ─── STATE MANAGEMENT ──────────────────────────────────────────────────────
   const [activeTab, setActiveTab] = useState<ActiveTab>("drop");
@@ -27,6 +34,21 @@ export default function App() {
 
   // Live status bar mock phone clock
   const [currentTime, setCurrentTime] = useState("09:41");
+
+  // Real tracking of active streak days
+  const [activityDates, setActivityDates] = useState<string[]>([]);
+
+  const logActivityToday = () => {
+    const todayStr = getLocalDateString(new Date());
+    setActivityDates((prev) => {
+      if (!prev.includes(todayStr)) {
+        const next = [...prev, todayStr];
+        localStorage.setItem("lingoflex_activity_dates", JSON.stringify(next));
+        return next;
+      }
+      return prev;
+    });
+  };
 
   // Keep digital time updated
   useEffect(() => {
@@ -47,6 +69,7 @@ export default function App() {
       const storedVocab = localStorage.getItem("lingoflex_vocab_items");
       const storedDrops = localStorage.getItem("lingoflex_drops");
       const storedDay = localStorage.getItem("lingoflex_active_day");
+      const storedDates = localStorage.getItem("lingoflex_activity_dates");
 
       if (storedVocab && storedDrops) {
         setVocabList(JSON.parse(storedVocab));
@@ -57,6 +80,23 @@ export default function App() {
         setDayDrops(baselineDrops);
         localStorage.setItem("lingoflex_vocab_items", JSON.stringify(baselineVocab));
         localStorage.setItem("lingoflex_drops", JSON.stringify(baselineDrops));
+      }
+
+      if (storedDates) {
+        setActivityDates(JSON.parse(storedDates));
+      } else {
+        // Let's seed with 2 consecutive days ending yesterday to give the user a nice initial active streak!
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const twoDaysAgo = new Date();
+        twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+        
+        const initialDates = [
+          getLocalDateString(twoDaysAgo),
+          getLocalDateString(yesterday)
+        ];
+        setActivityDates(initialDates);
+        localStorage.setItem("lingoflex_activity_dates", JSON.stringify(initialDates));
       }
 
       if (storedDay) {
@@ -111,6 +151,7 @@ export default function App() {
     }));
 
     saveStateToStorage(updatedVocab, updatedDrops);
+    logActivityToday();
   };
 
   const updateItemScoreOnly = (id: string, score: number) => {
@@ -139,6 +180,7 @@ export default function App() {
     }));
 
     saveStateToStorage(updatedVocab, updatedDrops);
+    logActivityToday();
   };
 
   // Add term from Lexicon Matrix to active practicing workspace
@@ -314,7 +356,7 @@ export default function App() {
           </div>
           
           <span className="text-[8.5px] uppercase tracking-wider px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-800/30 text-cyan-300 font-mono leading-none">
-            Dictionary: 4K+ Words
+            Wordbook: 1K+ Words
           </span>
         </header>
 
@@ -378,7 +420,7 @@ export default function App() {
               {isLoadingDrop ? (
                 <div className="bg-slate-900/30 rounded-3xl border border-slate-850 p-6 flex flex-col items-center justify-center text-center py-16">
                   <RefreshCw className="h-6 w-6 text-cyan-400 animate-spin mb-3" />
-                  <h4 className="text-xs font-display font-bold text-white mb-1">Weaving Dynamic Lexicon Card...</h4>
+                  <h4 className="text-xs font-display font-bold text-white mb-1">Weaving Dynamic Wordbook Card...</h4>
                   <p className="text-slate-500 text-[9.5px] italic max-w-xs">
                     Gemini is generating advanced ESL words and phrasal verbs with rich authentic native conversation dialogues...
                   </p>
@@ -447,7 +489,7 @@ export default function App() {
           {/* 4. Fluency dashboard / metrics screen */}
           {activeTab === "stats" && (
             <div className="animate-fade-in text-xs" id="stats-viewport">
-              <StatsPanel items={vocabList} />
+              <StatsPanel items={vocabList} activityDates={activityDates} />
             </div>
           )}
 
@@ -492,7 +534,7 @@ export default function App() {
             id="tab-btn-library"
           >
             <BookOpen className="h-4 w-4" />
-            <span className="text-[9px] tracking-tight">Lexicon 4K</span>
+            <span className="text-[9px] tracking-tight">Wordbook</span>
           </button>
 
           <button

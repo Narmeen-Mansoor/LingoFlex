@@ -48,6 +48,43 @@ app.get("/api/health", (req, res) => {
 app.post("/api/generate-drop", async (req, res) => {
   try {
     const { day, userInterests, bannedTerms = [] } = req.body;
+
+    // Explicitly serve user-requested words on Day 8
+    if (day === 8) {
+      return res.json({
+        day: 8,
+        isCustom: true,
+        items: [
+          {
+            type: "word",
+            term: "Pilfered",
+            pronunciation_respelling: "pil-ferd",
+            definition: "Stolen, especially in a small, sneaky, or petty way. (It is the past tense of pilfer.)",
+            synonyms: ["stolen", "filched", "swiped", "purloined", "looted", "snitched", "pinched"],
+            examples: [
+              "Someone pilfered money from the cash box.",
+              "Office supplies were being pilfered from the storeroom."
+            ],
+            muscle_memory_prompt: "Have you ever had something small pilfered from your desk or bag? Say out loud: 'I noticed someone pilfered my...'"
+          },
+          {
+            type: "word",
+            term: "Abrasive",
+            pronunciation_respelling: "uh-bray-siv",
+            definition: "1. Personality: Harsh, rude, blunt, or unfriendly in speech or behavior. 2. Physical: Rough or scraping material used for rubbing, polishing, or scraping (like sandpaper).",
+            synonyms: ["harsh", "rude", "rough", "blunt", "unfriendly", "coarse", "scraping", "grating"],
+            examples: [
+              "His abrasive manner made it difficult for others to work with him.",
+              "She is knowledgeable, but sometimes her tone can be abrasive.",
+              "The manager's abrasive comments upset the team.",
+              "Sandpaper is an abrasive material."
+            ],
+            muscle_memory_prompt: "Describe a situation where someone was abrasive, or when you had to use an abrasive tool. Say out loud: 'His manner was so abrasive that...'"
+          }
+        ]
+      });
+    }
+
     const ai = getGeminiClient();
 
     if (!ai) {

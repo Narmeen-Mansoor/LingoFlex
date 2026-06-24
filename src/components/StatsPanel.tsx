@@ -1,9 +1,10 @@
 import React from "react";
 import { VocabItem } from "../types";
-import { Award, Zap, BookOpen, CheckCircle2, TrendingUp, History, Copy } from "lucide-react";
+import { Award, Zap, BookOpen, CheckCircle2, TrendingUp, History, Copy, Clock } from "lucide-react";
 
 interface StatsPanelProps {
   items: VocabItem[];
+  activityDates?: string[];
 }
 
 export interface HistoryLog {
@@ -14,14 +15,14 @@ export interface HistoryLog {
   draft: string;
 }
 
-export default function StatsPanel({ items }: StatsPanelProps) {
+export default function StatsPanel({ items, activityDates }: StatsPanelProps) {
   // Calculations
   const totalItems = items.length;
   const testedCount = items.filter(item => item.masteryScore !== undefined).length;
   const masteredCount = items.filter(item => item.masteryScore !== undefined && item.masteryScore >= 80).length;
   
-  // Total Target Index percentage (e.g. out of 4000)
-  const TargetGoal = 4000;
+  // Total Target Index percentage (e.g. out of 1000)
+  const TargetGoal = 1000;
   const dbGoalPercentage = Math.min(100, parseFloat(((totalItems / TargetGoal) * 100).toFixed(2)));
 
   // Average Muscle Memory Score
@@ -33,10 +34,65 @@ export default function StatsPanel({ items }: StatsPanelProps) {
     ? Math.round(evaluatedScores.reduce((sum, current) => sum + current, 0) / evaluatedScores.length)
     : 0;
 
-  // Streak (mock static or loaded from local, let's keep a standard visual display synced with app state)
-  const currentStreak = Math.min(15, items.filter(item => item.masteryScore !== undefined).length + 1 || 1);
+  // Real consecutive daily streak calculation
+  const activeDatesList = activityDates || [];
 
-  // Unlocked items grouped by learning stage
+  const getLocalDateString = (d: Date = new Date()) => {
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const calculateStreak = (dates: string[]): number => {
+    if (dates.length === 0) return 0;
+    
+    // Deduplicate and sort descending lexicographically (since YYYY-MM-DD matches chronologically)
+    const uniqueSorted = Array.from(new Set(dates)).sort((a, b) => b.localeCompare(a));
+    
+    const todayStr = getLocalDateString(new Date());
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = getLocalDateString(yesterday);
+    
+    const latestDate = uniqueSorted[0];
+    if (latestDate !== todayStr && latestDate !== yesterdayStr) {
+      return 0;
+    }
+    
+    let streak = 0;
+    let currentDate = new Date(uniqueSorted[0]);
+    
+    for (let i = 0; i < uniqueSorted.length; i++) {
+      const expectedStr = getLocalDateString(currentDate);
+      if (uniqueSorted[i] === expectedStr) {
+        streak++;
+        currentDate.setDate(currentDate.getDate() - 1);
+      } else {
+        break;
+      }
+    }
+    return streak;
+  };
+
+  const realStreak = calculateStreak(activeDatesList);
+
+  const getLast7Days = () => {
+    const list = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const dateStr = getLocalDateString(d);
+      list.push({
+        dateStr,
+        dayNum: d.getDate(),
+        dayName: d.toLocaleDateString("en-US", { weekday: "short" }),
+        isToday: i === 0,
+      });
+    }
+    return list;
+  };
+
   const masteringTerms = items.filter(item => item.masteryScore !== undefined && item.masteryScore < 80);
   const masteredTerms = items.filter(item => item.masteryScore !== undefined && item.masteryScore >= 80);
   const unpracticedTerms = items.filter(item => item.masteryScore === undefined);
@@ -47,8 +103,8 @@ export default function StatsPanel({ items }: StatsPanelProps) {
       {/* 1. Statistics Bento Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        {/* Lexicon Expansion Card */}
-        <div className="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between" id="stat-lexicon">
+        {/* Wordbook Expansion Card */}
+        <div className="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between" id="stat-wordbook">
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-3xs uppercase text-slate-500 font-bold tracking-widest font-mono">My Global Index</span>
@@ -61,7 +117,7 @@ export default function StatsPanel({ items }: StatsPanelProps) {
           </div>
           <div className="mt-4 pt-4 border-t border-slate-850">
             <div className="flex justify-between items-center text-3xs text-slate-500 mb-1.5 font-mono">
-              <span>Goal: 4,000 terms</span>
+              <span>Goal: 1,000 terms</span>
               <span>{dbGoalPercentage}%</span>
             </div>
             <div className="w-full bg-slate-950 border border-slate-850/40 rounded-full h-1.5 overflow-hidden">
@@ -96,7 +152,7 @@ export default function StatsPanel({ items }: StatsPanelProps) {
                 <Zap className="h-4.5 w-4.5 text-amber-400" />
               </div>
             </div>
-            <h4 className="text-3xl font-display font-bold text-white mb-1">{currentStreak}</h4>
+            <h4 className="text-3xl font-display font-bold text-white mb-1">{realStreak}</h4>
             <p className="text-xs text-slate-400 leading-relaxed">Consecutive active days</p>
           </div>
           <div className="mt-4 pt-4 border-t border-slate-850 text-3xs text-emerald-400 font-mono font-bold flex items-center space-x-1">
@@ -122,6 +178,80 @@ export default function StatsPanel({ items }: StatsPanelProps) {
           </div>
         </div>
 
+      </div>
+
+      {/* Streak Booster Board (Consecutive Days Tracking) */}
+      <div className="bg-slate-900/50 border border-slate-800/80 rounded-3xl p-5 md:p-6 shadow-xl relative overflow-hidden" id="streak-booster-board">
+        <div className="absolute inset-x-0 bottom-0 top-0 bg-[radial-gradient(ellipse_160%_120%_at_40%_120%,rgba(245,158,11,0.04),transparent_60%)] pointer-events-none"></div>
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div className="space-y-1">
+            <div className="inline-flex items-center space-x-1 bg-amber-955 bg-amber-950/20 px-2.5 py-0.5 rounded-full text-amber-400 border border-amber-900/40 text-[9px] uppercase tracking-wider font-mono">
+              <Zap className="h-3.5 w-3.5 animate-pulse text-amber-400" />
+              <span>Consecutive Drills Streak</span>
+            </div>
+            <h3 className="text-sm font-display font-black text-white">Daily Consistency Log</h3>
+            <p className="text-slate-400 text-3xs leading-relaxed">
+              Complete at least one active situation-based practice or vocab evaluation drill daily to maintain consistency.
+            </p>
+          </div>
+          
+          <div className="flex items-center space-x-2.5">
+            <div className="bg-slate-950/80 border border-slate-850 p-3 rounded-2xl flex items-center space-x-3.5 shadow-inner">
+              <div className="text-center">
+                <span className="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">Active</span>
+                <span className="text-xl font-display font-black text-amber-400">{realStreak} {realStreak === 1 ? "Day" : "Days"}</span>
+              </div>
+              <div className="h-8 w-[1px] bg-slate-850"></div>
+              <div>
+                <span className="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">Today's Status</span>
+                {activeDatesList.includes(getLocalDateString(new Date())) ? (
+                  <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1 font-mono">
+                    <CheckCircle2 className="h-3.5 w-3.5" /> Completed
+                  </span>
+                ) : (
+                  <span className="text-[10px] font-bold text-amber-500 flex items-center gap-1 font-mono">
+                    <Clock className="h-3.5 w-3.5 animate-pulse" /> Pending Practice
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 7-day visualization timeline track */}
+        <div className="mt-5 grid grid-cols-7 gap-1.5 md:gap-3">
+          {getLast7Days().map((day) => {
+            const hasActivity = activeDatesList.includes(day.dateStr);
+            return (
+              <div 
+                key={day.dateStr} 
+                className={`p-2.5 rounded-2xl flex flex-col items-center justify-between border text-center transition-all ${
+                  day.isToday 
+                    ? "bg-slate-950 border-cyan-500/50 shadow-md ring-1 ring-cyan-500/20" 
+                    : hasActivity 
+                      ? "bg-slate-900 border-amber-500/20" 
+                      : "bg-slate-950/40 border-slate-850/60"
+                }`}
+              >
+                <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-tight">{day.dayName}</span>
+                <div className={`my-2 h-7 w-7 rounded-full flex items-center justify-center transition-all ${
+                  hasActivity 
+                    ? "bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 shadow" 
+                    : "bg-slate-900 border border-slate-800 text-slate-600"
+                }`}>
+                  {hasActivity ? (
+                    <Zap className="h-4 w-4 fill-current text-slate-950" />
+                  ) : (
+                    <span className="text-2xs font-mono text-slate-500">{day.dayNum}</span>
+                  )}
+                </div>
+                <span className={`text-[8px] font-mono font-medium ${day.isToday ? "text-cyan-400 font-bold" : hasActivity ? "text-amber-400" : "text-slate-600"}`}>
+                  {day.isToday ? "Today" : hasActivity ? "Done" : "Missed"}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* 2. Catalog Breakdown lists and history logs */}

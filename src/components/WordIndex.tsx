@@ -136,7 +136,7 @@ export default function WordIndex({
           <div className="space-y-1">
             <div className="inline-flex items-center space-x-1 bg-cyan-950/65 px-2 py-0.5 rounded-full text-cyan-300 border border-cyan-900/30 text-[9px] uppercase tracking-wider font-mono">
               <Sparkles className="h-3 w-3" />
-              <span>Lexical Extension Engine</span>
+              <span>Wordbook Extension Engine</span>
             </div>
             <h3 className="text-sm font-display font-extrabold tracking-tight text-white">
               Syllabus Custom Generator
@@ -195,7 +195,7 @@ export default function WordIndex({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search 4,000+ native expressions..."
+            placeholder="Search 1,000+ native expressions..."
             className="w-full bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-600 pl-9 pr-3 py-2 focus:outline-none focus:border-cyan-500 transition"
             id="dictionary-search"
           />
@@ -235,7 +235,7 @@ export default function WordIndex({
       </div>
 
       <div className="text-[10px] text-slate-500 font-mono flex justify-between items-center px-1">
-        <span>Lexicon matches: <b>{filteredItems.length}</b></span>
+        <span>Wordbook matches: <b>{filteredItems.length}</b></span>
         {filteredItems.length > visibleCount && (
           <span>Showing 1 - {visibleCount}</span>
         )}
