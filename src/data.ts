@@ -186,11 +186,39 @@ export const baselineVocab: VocabItem[] = [
       "His total lack of punctuality and missing deadlines quickly made him a massive liability to our project team."
     ],
     muscle_memory_prompt: "Explain how an old, unpatched smartphone can become a security liability for a user."
+  },
+  {
+    id: "baseline-15",
+    type: "word",
+    term: "Pilfered",
+    pronunciation_respelling: "pil-ferd",
+    definition: "Stolen, especially in a small, sneaky, or petty way. (Past tense of pilfer)",
+    synonyms: ["stolen", "filched", "swiped", "purloined", "looted", "snitched", "pinched"],
+    examples: [
+      "Someone pilfered money from the cash box.",
+      "Office supplies were being pilfered from the storeroom."
+    ],
+    muscle_memory_prompt: "Have you ever had something small pilfered from your desk or bag? Say out loud: 'I noticed someone pilfered my...'"
+  },
+  {
+    id: "baseline-16",
+    type: "word",
+    term: "Abrasive",
+    pronunciation_respelling: "uh-bray-siv",
+    definition: "1. Personality: Harsh, rude, blunt, or unfriendly in speech or behavior. 2. Physical: Rough material used for rubbing, polishing, or scraping (like sandpaper).",
+    synonyms: ["harsh", "rude", "rough", "blunt", "unfriendly", "coarse", "scraping", "grating"],
+    examples: [
+      "His abrasive manner made it difficult for others to work with him.",
+      "She is knowledgeable, but sometimes her tone can be abrasive.",
+      "The manager's abrasive comments upset the team.",
+      "Sandpaper is an abrasive material."
+    ],
+    muscle_memory_prompt: "Describe a situation where someone was abrasive, or when you had to use an abrasive tool. Say out loud: 'His manner was so abrasive that...'"
   }
 ];
 
 /**
- * Baseline drops chunked into 7 days with exactly 2 items each.
+ * Baseline drops chunked into 8 days with exactly 2 items each.
  */
 export const baselineDrops: DayDrop[] = [
   {
@@ -220,5 +248,9 @@ export const baselineDrops: DayDrop[] = [
   {
     day: 7,
     items: [baselineVocab[12], baselineVocab[13]]
+  },
+  {
+    day: 8,
+    items: [baselineVocab[14], baselineVocab[15]]
   }
 ];

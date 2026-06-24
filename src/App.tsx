@@ -72,8 +72,29 @@ export default function App() {
       const storedDates = localStorage.getItem("lingoflex_activity_dates");
 
       if (storedVocab && storedDrops) {
-        setVocabList(JSON.parse(storedVocab));
-        setDayDrops(JSON.parse(storedDrops));
+        let parsedVocab = JSON.parse(storedVocab) as VocabItem[];
+        let parsedDrops = JSON.parse(storedDrops) as DayDrop[];
+
+        // Dynamically migrate if new baseline days or items are missing
+        if (parsedDrops.length < baselineDrops.length) {
+          const existingDays = new Set(parsedDrops.map((d) => d.day));
+          baselineDrops.forEach((bDrop) => {
+            if (!existingDays.has(bDrop.day)) {
+              parsedDrops.push(bDrop);
+              // Ensure we also merge any baseline terms into vocabList that aren't already there
+              bDrop.items.forEach((item) => {
+                if (!parsedVocab.some((v) => v.term.toLowerCase() === item.term.toLowerCase())) {
+                  parsedVocab.push(item);
+                }
+              });
+            }
+          });
+          localStorage.setItem("lingoflex_vocab_items", JSON.stringify(parsedVocab));
+          localStorage.setItem("lingoflex_drops", JSON.stringify(parsedDrops));
+        }
+
+        setVocabList(parsedVocab);
+        setDayDrops(parsedDrops);
       } else {
         // Hydrate with baseline 14 items
         setVocabList(baselineVocab);
