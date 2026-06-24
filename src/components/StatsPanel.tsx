@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { VocabItem } from "../types";
-import { Award, Zap, BookOpen, CheckCircle2, TrendingUp, History, Copy, Clock, Sparkles } from "lucide-react";
+import { Award, Zap, BookOpen, CheckCircle2, TrendingUp, History, Copy, Clock, Sparkles, Minus, Plus, Target } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 interface StatsPanelProps {
@@ -18,6 +18,16 @@ export interface HistoryLog {
 }
 
 export default function StatsPanel({ items, activityDates, activeDay = 1 }: StatsPanelProps) {
+  const [dailyGoal, setDailyGoal] = useState<number>(() => {
+    const saved = localStorage.getItem("lingoflex_daily_goal");
+    return saved ? parseInt(saved, 10) : 5;
+  });
+
+  const updateDailyGoal = (newGoal: number) => {
+    setDailyGoal(newGoal);
+    localStorage.setItem("lingoflex_daily_goal", String(newGoal));
+  };
+
   // Calculations
   const totalItems = items.length;
   const testedCount = items.filter(item => item.masteryScore !== undefined).length;
@@ -148,11 +158,19 @@ export default function StatsPanel({ items, activityDates, activeDay = 1 }: Stat
   const masteredTerms = items.filter(item => item.masteryScore !== undefined && item.masteryScore >= 80);
   const unpracticedTerms = items.filter(item => item.masteryScore === undefined);
 
+  const todayStr = getLocalDateString(new Date());
+  const wordsStudiedToday = items.filter(item => {
+    if (item.masteryScore === undefined) return false;
+    const unlockedDate = normalizeDateToYYYYMMDD(item.unlockedAt);
+    const learnedDate = getLearnedDateStr(item, activeDay);
+    return unlockedDate === todayStr || learnedDate === todayStr;
+  }).length;
+
   return (
     <div className="space-y-8" id="stats-panel-dashboard">
       
       {/* 1. Statistics Bento Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         
         {/* Wordbook Expansion Card */}
         <div className="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between" id="stat-wordbook">
@@ -226,6 +244,81 @@ export default function StatsPanel({ items, activityDates, activeDay = 1 }: Stat
           </div>
           <div className="mt-4 pt-4 border-t border-slate-850 text-3xs text-slate-500">
             Ratio size: <span className="text-white font-bold font-mono">{Math.round((masteredCount / (totalItems || 1)) * 100)}%</span> of active catalog.
+          </div>
+        </div>
+
+        {/* Daily Study Goal */}
+        <div className="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between" id="stat-daily-goal">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-3xs uppercase text-slate-500 font-bold tracking-widest font-mono">Daily Study Goal</span>
+              <div className="bg-cyan-950/40 border border-cyan-900/30 p-2.5 rounded-xl text-cyan-400">
+                <Target className="h-4.5 w-4.5" />
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-center py-2 relative">
+              <svg className="h-20 w-20 transform -rotate-90" viewBox="0 0 100 100">
+                {/* Track circle */}
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  className="stroke-slate-800"
+                  strokeWidth="8"
+                  fill="transparent"
+                />
+                {/* Progress circle */}
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  className={`transition-all duration-500 ${
+                    wordsStudiedToday >= dailyGoal ? "stroke-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" : "stroke-cyan-400"
+                  }`}
+                  strokeWidth="8"
+                  fill="transparent"
+                  strokeDasharray="251.2"
+                  strokeDashoffset={251.2 - (Math.min(100, (wordsStudiedToday / dailyGoal) * 100) / 100) * 251.2}
+                  strokeLinecap="round"
+                />
+              </svg>
+              <div className="absolute flex flex-col items-center">
+                <span className="text-xl font-display font-black text-white">{wordsStudiedToday}</span>
+                <span className="text-slate-500 text-[10px] font-mono leading-none">/ {dailyGoal}</span>
+              </div>
+            </div>
+            
+            <p className="text-[11px] text-slate-400 text-center mt-2 leading-tight">
+              {wordsStudiedToday >= dailyGoal ? (
+                <span className="text-emerald-400 font-bold flex items-center justify-center gap-1">
+                  Goal Achieved! 🎉
+                </span>
+              ) : (
+                <span>{dailyGoal - wordsStudiedToday} more to reach your goal</span>
+              )}
+            </p>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-slate-850">
+            <div className="flex items-center justify-between bg-slate-950/80 p-1.5 rounded-2xl border border-slate-850/60">
+              <button 
+                onClick={() => updateDailyGoal(Math.max(1, dailyGoal - 1))}
+                className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition disabled:opacity-30"
+                disabled={dailyGoal <= 1}
+                title="Decrease Goal"
+              >
+                <Minus className="h-3.5 w-3.5" />
+              </button>
+              <span className="text-3xs font-mono text-slate-300 font-bold font-mono">Goal: {dailyGoal}</span>
+              <button 
+                onClick={() => updateDailyGoal(dailyGoal + 1)}
+                className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition"
+                title="Increase Goal"
+              >
+                <Plus className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
         </div>
 
