@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { VocabItem, DayDrop } from "./types";
 import { baselineDrops, baselineVocab } from "./data";
+import { validateVocabData } from "./dataValidator";
 import VocabCard from "./components/VocabCard";
 import QuizPanel from "./components/QuizPanel";
 import WordIndex from "./components/WordIndex";
@@ -65,6 +66,14 @@ export default function App() {
 
   // ─── LOCAL STORAGE LIFE CYCLES ─────────────────────────────────────────────
   useEffect(() => {
+    // Run Core Data Verification on startup
+    const valResult = validateVocabData();
+    if (valResult.isValid) {
+      console.log(`%c[LingoFlex Data Validator] 100% verified! Checked ${valResult.totalChecked} baseline terms and all drops.`, "color: #10B981; font-weight: bold;");
+    } else {
+      console.error("[LingoFlex Data Validator] Data validation issues found on startup!", valResult.issues);
+    }
+
     try {
       const storedVocab = localStorage.getItem("lingoflex_vocab_items");
       const storedDrops = localStorage.getItem("lingoflex_drops");

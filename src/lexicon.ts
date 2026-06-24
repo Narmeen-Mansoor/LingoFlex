@@ -725,7 +725,18 @@ export function generateLexiconIndex(): IndexTerm[] {
     "Concomitant", "Concord", "Concrete", "Concur", "Concurrent", "Concussion", "Condemn", "Condemnation", "Condense", "Condescend",
     "Condition", "Condole", "Condone", "Conduct", "Conductor", "Conduit", "Cone", "Confection", "Federacy", "Federate",
     "Federation", "Fee", "Feeble", "Feed", "Feel", "Feign", "Feint", "Felicity", "Feline", "Fell",
-    "Fellow", "Felon", "Felony", "Female", "Feminine", "Fence", "Fend", "Ferment", "Ferocious", "Ferocity"
+    "Fellow", "Felon", "Felony", "Female", "Feminine", "Fence", "Fend", "Ferment", "Ferocious", "Ferocity",
+    "Abrasive", "Dearth", "Debunk", "Decipher", "Deconstruct", "Decorum", "Deficit", "Definitive", "Deleterious", "Delineate",
+    "Demeanor", "Demystify", "Denounce", "Depict", "Deplorable", "Depreciate", "Deride", "Derivative", "Desolate", "Deterrent",
+    "Deviate", "Devious", "Dexterity", "Diatribe", "Dichotomy", "Didactic", "Diffident", "Diffuse", "Digress", "Diligent",
+    "Diminish", "Discern", "Discrepancy", "Disdain", "Disillusion", "Disparate", "Disseminate", "Divergent", "Dogmatic", "Dormant",
+    "Duplicity", "Earnest", "Ebullient", "Eccentric", "Eclectic", "Efficacy", "Epitome", "Equivocal", "Eradicate", "Erratic",
+    "Esoteric", "Exacerbate", "Exacting", "Exemplary", "Exonerate", "Exorbitant", "Expedient", "Explicit", "Extol", "Extraneous",
+    "Fabricate", "Facetious", "Feasible", "Fervent", "Fickle", "Fidelity", "Finesse", "Flagrant", "Flamboyant", "Fortitude",
+    "Foster", "Frivolous", "Furtive", "Futile", "Garish", "Garrulous", "Generic", "Gratuitous", "Gregarious", "Gullible",
+    "Haphazard", "Harangue", "Heinous", "Hierarchy", "Hindrance", "Homogeneous", "Hypocrisy", "Imminent", "Immutable", "Impartial",
+    "Impede", "Incessant", "Incongruous", "Indolent", "Inundate", "Jargon", "Judicious", "Juxtapose", "Kinetic", "Lament",
+    "Languid"
   ];
 
   // Map each common word programmatically to authentic dictionary lookups 
