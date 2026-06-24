@@ -729,26 +729,26 @@ export function generateLexiconIndex(): IndexTerm[] {
   ];
 
   // Map each common word programmatically to authentic dictionary lookups 
-  // to ensure exactly 1,000+ total unique high-quality elements in the list!
+  // to ensure extremely high-quality and verified elements in the list!
   let i = 0;
-  while (finalIndex.length < 1010 && i < commonWords.length) {
+  while (i < commonWords.length) {
     let word = commonWords[i];
     if (word === "Acceled") word = "Accelerated"; // Correct typo in baseline list
     
     const lowercaseWord = word.toLowerCase();
     if (!termsSeen.has(lowercaseWord)) {
-      termsSeen.add(lowercaseWord);
-      
-      // Assign realistic categories and types
-      let type: "word" | "phrase" | "idiom" = "word";
-      let category: "Business" | "Everyday" | "Academic" | "Colloquial" = "Everyday";
-      if (i % 3 === 0) category = "Business";
-      else if (i % 3 === 1) category = "Academic";
-
       // Look up inside advancedWordsDict for 100% human-crafted accuracy
       const dictEntry = advancedWordsDict[word] || advancedWordsDict[word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()];
 
       if (dictEntry) {
+        termsSeen.add(lowercaseWord);
+        
+        // Assign realistic categories and types
+        let type: "word" | "phrase" | "idiom" = "word";
+        let category: "Business" | "Everyday" | "Academic" | "Colloquial" = "Everyday";
+        if (i % 3 === 0) category = "Business";
+        else if (i % 3 === 1) category = "Academic";
+
         finalIndex.push({
           term: word,
           type: type,
@@ -758,26 +758,6 @@ export function generateLexiconIndex(): IndexTerm[] {
           synonyms: dictEntry.syns,
           examples: dictEntry.exs,
           muscle_memory_prompt: `Start with: 'To speak professionally, I believe we should utilize "${word}" when...'`
-        });
-      } else {
-        // High quality dynamic fallback for remaining words to guarantee natural presentation
-        const definition = `To actively integrate, apply, or express the concept of "${lowercaseWord}" in natural spoken and written communications.`;
-        const pronunciation = lowercaseWord + "-ing";
-        const synonyms = [`active ${lowercaseWord}`, `${lowercaseWord} application`];
-        const examples = [
-          `Learning to properly utilize "${word}" helps language learners build higher cognitive fluency.`,
-          `She practiced incorporating "${word}" in her regular daily speaking exercises.`
-        ];
-        
-        finalIndex.push({
-          term: word,
-          type: type,
-          category: category,
-          definition: definition,
-          pronunciation_respelling: pronunciation,
-          synonyms: synonyms,
-          examples: examples,
-          muscle_memory_prompt: `Form a personal connection: 'I encountered the word "${word}" in a professional discussion or sentence relative to...'`
         });
       }
     }

@@ -1137,6 +1137,228 @@ export const advancedWordsDict: Record<string, DictEntry> = {
     syns: ["increase", "improve", "support", "augment"],
     exs: ["The new update will help boost server performance.", "She drank a cup of coffee to boost her energy levels."]
   },
+  "Border": {
+    def: "The edge, boundary, or outer margin of a geographic area or object.",
+    tts: "BOR-der",
+    syns: ["boundary", "edge", "frontier", "margin", "rim"],
+    exs: ["We crossed the national border into Canada early in the morning.", "She drew a clean decorative border around the page of the journal."]
+  },
+  "Bore": {
+    def: "To make a hole in something with a drill or tool; or to weary someone by being dull and uninteresting.",
+    tts: "bor",
+    syns: ["drill", "pierce", "weary", "tire", "fatigue"],
+    exs: ["They had to bore a hole through the solid rock to lay the water pipe.", "His extremely long speech began to bore the audience."]
+  },
+  "Botanical": {
+    def: "Relating to plants or the scientific study of plant life.",
+    tts: "buh-TAN-ih-kuhl",
+    syns: ["plant", "herbal", "vegetative", "agricultural"],
+    exs: ["The research center features a vast botanical garden of rare tropical flowers.", "She uses natural botanical extracts in her homemade soaps."]
+  },
+  "Bound": {
+    def: "Walking or running with leaping strides; or restricted, tied, or destined to a certain outcome.",
+    tts: "bownd",
+    syns: ["destined", "obligated", "tied", "leap", "bounce"],
+    exs: ["We are bound to face a few challenges, but we will succeed.", "The excited dog began to bound across the green field."]
+  },
+  "Bounty": {
+    def: "A generous amount of something; or a reward offered for capturing a criminal.",
+    tts: "BOWN-tee",
+    syns: ["abundance", "plenty", "reward", "prize", "generosity"],
+    exs: ["The local farmers celebrated the autumn's rich bounty of fresh apples.", "The government offered a substantial bounty for the return of the stolen art."]
+  },
+  "Brace": {
+    def: "To prepare or steady oneself for something difficult, unpleasant, or impactful.",
+    tts: "brays",
+    syns: ["prepare", "steady", "strengthen", "support", "fortify"],
+    exs: ["The crew had to brace themselves as the ship hit the rough waves.", "We must brace for a sudden drop in market sales this quarter."]
+  },
+  "Brag": {
+    def: "To boast or speak with excessive pride about one's achievements or possessions.",
+    tts: "brag",
+    syns: ["boast", "crow", "show off", "vaunt"],
+    exs: ["He is always eager to brag about his high test scores to his friends.", "She didn't want to brag, but she did win the first prize."]
+  },
+  "Brand": {
+    def: "A distinctive identity, name, design, or reputation associated with a company or product.",
+    tts: "brand",
+    syns: ["trademark", "label", "identity", "image", "make"],
+    exs: ["Building a trusted brand is essential for long-term business success.", "They decided to launch a new brand of organic clothing."]
+  },
+  "Bravado": {
+    def: "A bold, swaggering, or boastful show of courage or confidence, often intended to impress or intimidate.",
+    tts: "bruh-VAH-doh",
+    syns: ["boastfulness", "boldness", "swagger", "pretence", "audacity"],
+    exs: ["His aggressive speech was just a show of bravado to hide his fear.", "She stepped onto the stage with a sense of calm bravado."]
+  },
+  "Brazen": {
+    def: "Bold, shameless, and completely audacious in behavior.",
+    tts: "BRAY-zuhn",
+    syns: ["shameless", "bold", "audacious", "insolent", "brash"],
+    exs: ["The thief made a brazen attempt to steal the painting in broad daylight.", "She was shocked by his brazen lies to the committee."]
+  },
+  "Breach": {
+    def: "An act of breaking a law, agreement, promise, or security protocol.",
+    tts: "breech",
+    syns: ["violation", "break", "infraction", "rupture", "cleft"],
+    exs: ["Sharing confidential client data is a serious breach of contract.", "Engineers quickly patched the security breach on the server."]
+  },
+  "Brevity": {
+    def: "Conciseness, shortness, or the economical use of words in writing or speech.",
+    tts: "BREV-it-ee",
+    syns: ["conciseness", "shortness", "briefness", "succinctness"],
+    exs: ["The manager appreciated the brevity of the weekly project report.", "The brevity of human life makes every moment valuable."]
+  },
+  "Brief": {
+    def: "Short in duration, length, or extent; or to give essential information to someone.",
+    tts: "breef",
+    syns: ["short", "concise", "summarize", "instruct", "inform"],
+    exs: ["We had a brief meeting to outline our main goals for the week.", "The commander will brief the team before they launch the mission."]
+  },
+  "Brilliant": {
+    def: "Exceptionally clever, talented, or intelligent; or extremely bright and radiant.",
+    tts: "BRIL-yuhnt",
+    syns: ["bright", "radiant", "clever", "smart", "ingenious"],
+    exs: ["She came up with a brilliant solution to our database query bottleneck.", "The diamond gave off a brilliant sparkle under the light."]
+  },
+  "Brisk": {
+    def: "Active, fast, energetic, or pleasantly cool and fresh.",
+    tts: "brisk",
+    syns: ["fast", "quick", "energetic", "refreshing", "rapid"],
+    exs: ["Taking a brisk walk in the morning helps boost your energy.", "Our shop enjoyed brisk sales during the holiday season."]
+  },
+  "Broad": {
+    def: "Having a wide distance from side to side; spacious, comprehensive, or general.",
+    tts: "brawd",
+    syns: ["wide", "spacious", "vast", "comprehensive", "general"],
+    exs: ["The study covers a broad range of topics in cognitive science.", "He had a broad smile on his face as he welcomed the guests."]
+  },
+  "Brochure": {
+    def: "A small booklet or pamphlet containing descriptive information or advertising.",
+    tts: "broh-SHOOR",
+    syns: ["booklet", "pamphlet", "leaflet", "flyer"],
+    exs: ["We handed out a colorful brochure outlining our holiday tour packages.", "You can read the technical specifications in our product brochure."]
+  },
+  "Bronze": {
+    def: "A yellowish-brown alloy of copper and tin, often used for sculptures and medals.",
+    tts: "bronz",
+    syns: ["alloy", "metallic", "copper-alloy"],
+    exs: ["He won a bronze medal for finishing third in the swimming race.", "The artist cast the beautiful cat sculpture in solid bronze."]
+  },
+  "Browse": {
+    def: "To casually look through or scan books, goods, websites, or information.",
+    tts: "browz",
+    syns: ["scan", "skim", "explore", "surf", "look through"],
+    exs: ["I love to browse old books in the neighborhood library on weekends.", "She spent an hour browsing the online catalog for new boots."]
+  },
+  "Bruise": {
+    def: "An injury appearing as an area of discolored skin on the body; or to damage a fruit or ego.",
+    tts: "brooz",
+    syns: ["contusion", "mark", "injury", "damage", "hurt"],
+    exs: ["He got a minor bruise on his knee after bumping into the desk.", "Be careful not to bruise the ripe peaches when packing them."]
+  },
+  "Brutal": {
+    def: "Savagely violent, harsh, ruthless, or extremely demanding.",
+    tts: "BROO-tuhl",
+    syns: ["harsh", "ruthless", "cruel", "severe", "savage"],
+    exs: ["The winter weather was brutal, with sub-zero winds all week.", "He gave a brutal, but honest, review of our prototype's defects."]
+  },
+  "Bubble": {
+    def: "A thin sphere of liquid enclosing air or gas; or an economic situation where assets are overvalued.",
+    tts: "BUB-uhl",
+    syns: ["globe", "bead", "inflation", "illusion"],
+    exs: ["The children laughed as they blew soap bubbles in the backyard.", "Economists warned that the tech stock market had become a bubble."]
+  },
+  "Budget": {
+    def: "An estimate of income and expenditure for a set period of time.",
+    tts: "BUJ-it",
+    syns: ["allowance", "finances", "funds", "plan", "estimate"],
+    exs: ["We need to manage our marketing budget carefully to avoid losses.", "The city approved a new budget for building public parks."]
+  },
+  "Buffer": {
+    def: "A person or thing that reduces a shock, impact, or delay; or extra time/space allocated for safety.",
+    tts: "BUF-er",
+    syns: ["shield", "cushion", "safeguard", "intermediary", "reserve"],
+    exs: ["We added a two-week buffer to our schedule to handle unexpected delays.", "Trees act as a natural sound buffer between the highway and houses."]
+  },
+  "Buffet": {
+    def: "A meal consisting of several dishes from which guests serve themselves; or to strike repeatedly.",
+    tts: "BUF-ay",
+    syns: ["smorgasbord", "spread", "strike", "batter", "pummel"],
+    exs: ["The hotel served a delicious breakfast buffet with fresh fruits.", "Strong winds continued to buffet the small wooden cabin on the coast."]
+  },
+  "Build": {
+    def: "To construct, assemble, or create a structure, system, or relationship over time.",
+    tts: "bild",
+    syns: ["construct", "create", "assemble", "establish", "develop"],
+    exs: ["It takes years to build a reputation, but only minutes to lose it.", "They plan to build a new office tower in the downtown area."]
+  },
+  "Bulk": {
+    def: "The mass, magnitude, or large size of something; or purchasing in large quantities.",
+    tts: "bulk",
+    syns: ["majority", "mass", "volume", "magnitude", "size"],
+    exs: ["The bulk of our sales come from returning corporate clients.", "Buying ingredients in bulk is a great way to reduce costs."]
+  },
+  "Bulletin": {
+    def: "A short official statement or summary of news, updates, or public information.",
+    tts: "BUL-it-in",
+    syns: ["update", "announcement", "report", "news-flash", "newsletter"],
+    exs: ["The hospital issued a bulletin regarding the president's health status.", "Check the staff bulletin board for safety updates."]
+  },
+  "Buoyant": {
+    def: "Able or apt to stay afloat or rise to the top of a liquid; or cheerful and optimistic.",
+    tts: "BOY-uhnt",
+    syns: ["floating", "cheerful", "optimistic", "bouncy", "resilient"],
+    exs: ["The cork is highly buoyant and floated easily on the lake.", "She was in a buoyant mood after receiving the promotion."]
+  },
+  "Burden": {
+    def: "A heavy load, duty, responsibility, or trouble that is difficult to bear.",
+    tts: "BER-duhn",
+    syns: ["load", "weight", "responsibility", "hardship", "strain"],
+    exs: ["The high tax rates became a heavy financial burden on small shops.", "I do not wish to burden you with my personal worries."]
+  },
+  "Bureaucracy": {
+    def: "A complex system of administration, rules, and official procedures that can cause delays.",
+    tts: "byoo-ROK-ruh-see",
+    syns: ["administration", "red tape", "system", "management"],
+    exs: ["We had to navigate through endless government bureaucracy to get a permit.", "The new CEO promised to reduce corporate bureaucracy."]
+  },
+  "Burgeon": {
+    def: "To grow, expand, flourish, or develop rapidly.",
+    tts: "BER-juhn",
+    syns: ["flourish", "thrive", "grow", "expand", "mushroom"],
+    exs: ["The organic food industry continues to burgeon worldwide.", "New tech startups began to burgeon in the revitalized district."]
+  },
+  "Burnish": {
+    def: "To polish something, especially metal, by rubbing to make it bright and smooth; or to enhance a reputation.",
+    tts: "BER-nish",
+    syns: ["polish", "shine", "buff", "enhance", "improve"],
+    exs: ["She used a soft cloth to burnish the vintage silver teapot.", "He wrote several articles to burnish his reputation as an expert."]
+  },
+  "Bustle": {
+    def: "To move or act with great energy, speed, and noisy activity; or a busy commotion.",
+    tts: "BUS-uhl",
+    syns: ["commotion", "activity", "hurry", "rush", "scurry"],
+    exs: ["The streets were filled with the hustle and bustle of holiday shoppers.", "She began to bustle around the kitchen preparing dinner."]
+  },
+  "Cabin": {
+    def: "A small, simple wooden shelter or house, typically in a wild or remote area.",
+    tts: "KAB-in",
+    syns: ["cottage", "hut", "shelter", "lodge"],
+    exs: ["They spent a relaxing weekend at a cozy log cabin in the mountains.", "The ship's crew slept in a small cabin below deck."]
+  },
+  "Cable": {
+    def: "A thick, strong rope of wire or fiber used for construction or carrying digital signals.",
+    tts: "KAY-buhl",
+    syns: ["wire", "cord", "rope", "line"],
+    exs: ["Make sure to plug the ethernet cable directly into your router.", "The suspension bridge is held up by massive steel cables."]
+  },
+  "Cache": {
+    def: "A hidden store of things, weapons, or goods; or auxiliary computer memory for rapid data retrieval.",
+    tts: "kash",
+    syns: ["store", "hoard", "stash", "reserve", "storage"],
+    exs: ["Clearing your browser's cache can help resolve loading speed issues.", "The explorers discovered a hidden cache of supplies in the cave."]
+  },
   "Cacophony": {
     def: "A harsh, discordant, and noisy mixture of sounds.",
     tts: "kuh-KOF-uh-nee",
