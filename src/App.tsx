@@ -519,7 +519,7 @@ export default function App() {
           {/* 4. Fluency dashboard / metrics screen */}
           {activeTab === "stats" && (
             <div className="animate-fade-in text-xs" id="stats-viewport">
-              <StatsPanel items={vocabList} activityDates={activityDates} />
+              <StatsPanel items={vocabList} activityDates={activityDates} activeDay={activeDay} />
             </div>
           )}
 

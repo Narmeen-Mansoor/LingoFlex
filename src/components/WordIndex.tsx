@@ -255,6 +255,7 @@ export default function WordIndex({
           displayedItems.map((item) => {
             const isActivelyStudying = items.some(i => i.term.toLowerCase() === item.term.toLowerCase());
             const isMastered = item.masteryScore !== undefined && item.masteryScore >= 80;
+            const score = item.masteryScore !== undefined ? item.masteryScore : 0;
             return (
               <div
                 key={item.term}
@@ -289,13 +290,47 @@ export default function WordIndex({
                   </p>
                 </div>
 
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center space-x-2 flex-shrink-0">
+                  {isActivelyStudying && (
+                    <div 
+                      className="relative flex items-center justify-center cursor-help" 
+                      title={item.masteryScore !== undefined ? `Mastery Level: ${item.masteryScore}%` : "Added to Study List - Not yet practiced"}
+                    >
+                      <svg className="h-8 w-8 transform -rotate-90" viewBox="0 0 24 24">
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="9"
+                          className="stroke-slate-800/80"
+                          strokeWidth="2"
+                          fill="transparent"
+                        />
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="9"
+                          className={`transition-all duration-500 ${
+                            isMastered ? "stroke-emerald-400" : "stroke-cyan-400"
+                          }`}
+                          strokeWidth="2.2"
+                          fill="transparent"
+                          strokeDasharray={56.54}
+                          strokeDashoffset={56.54 - (score / 100) * 56.54}
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      <span className="absolute text-[8px] font-mono font-black text-slate-300">
+                        {score}
+                      </span>
+                    </div>
+                  )}
+
                   <button 
                     onClick={(e) => {
                       e.stopPropagation();
                       handleTTS(item.term);
                     }}
-                    className="p-1 text-slate-400 hover:text-white rounded-full bg-slate-900 border border-slate-850 hover:bg-slate-800 transition"
+                    className="p-1.5 text-slate-400 hover:text-white rounded-full bg-slate-900 border border-slate-850 hover:bg-slate-800 transition"
                   >
                     <Volume2 className="h-3.5 w-3.5" />
                   </button>

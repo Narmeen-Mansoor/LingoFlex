@@ -1,10 +1,12 @@
 import React from "react";
 import { VocabItem } from "../types";
-import { Award, Zap, BookOpen, CheckCircle2, TrendingUp, History, Copy, Clock } from "lucide-react";
+import { Award, Zap, BookOpen, CheckCircle2, TrendingUp, History, Copy, Clock, Sparkles } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 interface StatsPanelProps {
   items: VocabItem[];
   activityDates?: string[];
+  activeDay?: number;
 }
 
 export interface HistoryLog {
@@ -15,7 +17,7 @@ export interface HistoryLog {
   draft: string;
 }
 
-export default function StatsPanel({ items, activityDates }: StatsPanelProps) {
+export default function StatsPanel({ items, activityDates, activeDay = 1 }: StatsPanelProps) {
   // Calculations
   const totalItems = items.length;
   const testedCount = items.filter(item => item.masteryScore !== undefined).length;
@@ -92,6 +94,55 @@ export default function StatsPanel({ items, activityDates }: StatsPanelProps) {
     }
     return list;
   };
+
+  const normalizeDateToYYYYMMDD = (dateVal?: string): string | null => {
+    if (!dateVal) return null;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateVal)) return dateVal;
+    try {
+      const d = new Date(dateVal);
+      if (!isNaN(d.getTime())) {
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+    } catch {}
+    return null;
+  };
+
+  const getLearnedDateStr = (item: VocabItem, currentActiveDay: number): string | null => {
+    if (item.unlockedAt) {
+      return normalizeDateToYYYYMMDD(item.unlockedAt);
+    }
+    if (item.id.startsWith("baseline-")) {
+      const numStr = item.id.replace("baseline-", "");
+      const num = parseInt(numStr, 10);
+      if (!isNaN(num)) {
+        const itemDay = Math.ceil(num / 2);
+        if (currentActiveDay >= itemDay) {
+          const diffDays = currentActiveDay - itemDay;
+          const d = new Date();
+          d.setDate(d.getDate() - diffDays);
+          return getLocalDateString(d);
+        }
+      }
+    }
+    return null;
+  };
+
+  const last7DaysList = getLast7Days();
+  const chartData = last7DaysList.map((day) => {
+    const count = items.filter((item) => {
+      const learnedDate = getLearnedDateStr(item, activeDay);
+      return learnedDate === day.dateStr;
+    }).length;
+    return {
+      name: day.dayName,
+      date: day.dateStr,
+      count: count,
+      isToday: day.isToday,
+    };
+  });
 
   const masteringTerms = items.filter(item => item.masteryScore !== undefined && item.masteryScore < 80);
   const masteredTerms = items.filter(item => item.masteryScore !== undefined && item.masteryScore >= 80);
@@ -180,77 +231,149 @@ export default function StatsPanel({ items, activityDates }: StatsPanelProps) {
 
       </div>
 
-      {/* Streak Booster Board (Consecutive Days Tracking) */}
+      {/* Streak Booster Board (Consecutive Days Tracking & Daily Learned Bar Chart) */}
       <div className="bg-slate-900/50 border border-slate-800/80 rounded-3xl p-5 md:p-6 shadow-xl relative overflow-hidden" id="streak-booster-board">
         <div className="absolute inset-x-0 bottom-0 top-0 bg-[radial-gradient(ellipse_160%_120%_at_40%_120%,rgba(245,158,11,0.04),transparent_60%)] pointer-events-none"></div>
-        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center space-x-1 bg-amber-955 bg-amber-950/20 px-2.5 py-0.5 rounded-full text-amber-400 border border-amber-900/40 text-[9px] uppercase tracking-wider font-mono">
-              <Zap className="h-3.5 w-3.5 animate-pulse text-amber-400" />
-              <span>Consecutive Drills Streak</span>
-            </div>
-            <h3 className="text-sm font-display font-black text-white">Daily Consistency Log</h3>
-            <p className="text-slate-400 text-3xs leading-relaxed">
-              Complete at least one active situation-based practice or vocab evaluation drill daily to maintain consistency.
-            </p>
-          </div>
+        
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           
-          <div className="flex items-center space-x-2.5">
-            <div className="bg-slate-950/80 border border-slate-850 p-3 rounded-2xl flex items-center space-x-3.5 shadow-inner">
-              <div className="text-center">
-                <span className="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">Active</span>
-                <span className="text-xl font-display font-black text-amber-400">{realStreak} {realStreak === 1 ? "Day" : "Days"}</span>
+          {/* Left Column: Daily Consistency Log & Streak (lg:col-span-7) */}
+          <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div className="space-y-1">
+                <div className="inline-flex items-center space-x-1 bg-amber-955 bg-amber-950/20 px-2.5 py-0.5 rounded-full text-amber-400 border border-amber-900/40 text-[9px] uppercase tracking-wider font-mono">
+                  <Zap className="h-3.5 w-3.5 animate-pulse text-amber-400" />
+                  <span>Consecutive Drills Streak</span>
+                </div>
+                <h3 className="text-sm font-display font-black text-white">Daily Consistency Log</h3>
+                <p className="text-slate-400 text-3xs leading-relaxed">
+                  Complete at least one active situation-based practice or vocab evaluation drill daily to maintain consistency.
+                </p>
               </div>
-              <div className="h-8 w-[1px] bg-slate-850"></div>
-              <div>
-                <span className="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">Today's Status</span>
-                {activeDatesList.includes(getLocalDateString(new Date())) ? (
-                  <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1 font-mono">
-                    <CheckCircle2 className="h-3.5 w-3.5" /> Completed
-                  </span>
-                ) : (
-                  <span className="text-[10px] font-bold text-amber-500 flex items-center gap-1 font-mono">
-                    <Clock className="h-3.5 w-3.5 animate-pulse" /> Pending Practice
-                  </span>
-                )}
+              
+              <div className="flex items-center space-x-2.5">
+                <div className="bg-slate-950/80 border border-slate-850 p-3 rounded-2xl flex items-center space-x-3.5 shadow-inner">
+                  <div className="text-center">
+                    <span className="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">Active</span>
+                    <span className="text-xl font-display font-black text-amber-400">{realStreak} {realStreak === 1 ? "Day" : "Days"}</span>
+                  </div>
+                  <div className="h-8 w-[1px] bg-slate-850"></div>
+                  <div>
+                    <span className="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">Today's Status</span>
+                    {activeDatesList.includes(getLocalDateString(new Date())) ? (
+                      <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1 font-mono">
+                        <CheckCircle2 className="h-3.5 w-3.5" /> Completed
+                      </span>
+                    ) : (
+                      <span className="text-[10px] font-bold text-amber-500 flex items-center gap-1 font-mono">
+                        <Clock className="h-3.5 w-3.5 animate-pulse" /> Pending Practice
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* 7-day visualization timeline track */}
-        <div className="mt-5 grid grid-cols-7 gap-1.5 md:gap-3">
-          {getLast7Days().map((day) => {
-            const hasActivity = activeDatesList.includes(day.dateStr);
-            return (
-              <div 
-                key={day.dateStr} 
-                className={`p-2.5 rounded-2xl flex flex-col items-center justify-between border text-center transition-all ${
-                  day.isToday 
-                    ? "bg-slate-950 border-cyan-500/50 shadow-md ring-1 ring-cyan-500/20" 
-                    : hasActivity 
-                      ? "bg-slate-900 border-amber-500/20" 
-                      : "bg-slate-950/40 border-slate-850/60"
-                }`}
-              >
-                <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-tight">{day.dayName}</span>
-                <div className={`my-2 h-7 w-7 rounded-full flex items-center justify-center transition-all ${
-                  hasActivity 
-                    ? "bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 shadow" 
-                    : "bg-slate-900 border border-slate-800 text-slate-600"
-                }`}>
-                  {hasActivity ? (
-                    <Zap className="h-4 w-4 fill-current text-slate-950" />
-                  ) : (
-                    <span className="text-2xs font-mono text-slate-500">{day.dayNum}</span>
-                  )}
-                </div>
-                <span className={`text-[8px] font-mono font-medium ${day.isToday ? "text-cyan-400 font-bold" : hasActivity ? "text-amber-400" : "text-slate-600"}`}>
-                  {day.isToday ? "Today" : hasActivity ? "Done" : "Missed"}
-                </span>
+            {/* 7-day visualization timeline track */}
+            <div className="grid grid-cols-7 gap-1.5 md:gap-3">
+              {last7DaysList.map((day) => {
+                const hasActivity = activeDatesList.includes(day.dateStr);
+                return (
+                  <div 
+                    key={day.dateStr} 
+                    className={`p-2 rounded-xl flex flex-col items-center justify-between border text-center transition-all ${
+                      day.isToday 
+                        ? "bg-slate-950 border-cyan-500/50 shadow-md ring-1 ring-cyan-500/20" 
+                        : hasActivity 
+                          ? "bg-slate-900 border-amber-500/20" 
+                          : "bg-slate-950/40 border-slate-850/60"
+                    }`}
+                  >
+                    <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-tight">{day.dayName}</span>
+                    <div className={`my-1.5 h-6.5 w-6.5 rounded-full flex items-center justify-center transition-all ${
+                      hasActivity 
+                        ? "bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 shadow" 
+                        : "bg-slate-900 border border-slate-800 text-slate-600"
+                    }`}>
+                      {hasActivity ? (
+                        <Zap className="h-3.5 w-3.5 fill-current text-slate-950" />
+                      ) : (
+                        <span className="text-3xs font-mono text-slate-500">{day.dayNum}</span>
+                      )}
+                    </div>
+                    <span className={`text-[8px] font-mono font-medium ${day.isToday ? "text-cyan-400 font-bold" : hasActivity ? "text-amber-400" : "text-slate-600"}`}>
+                      {day.isToday ? "Today" : hasActivity ? "Done" : "Missed"}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Column: Recharts Daily Streak Bar Chart (lg:col-span-5) */}
+          <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-slate-800/60 pt-5 lg:pt-0 lg:pl-6 flex flex-col justify-between space-y-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center space-x-1 bg-cyan-950/40 px-2 py-0.5 rounded-full text-cyan-400 border border-cyan-900/30 text-[9px] uppercase tracking-wider font-mono">
+                <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+                <span>Weekly Growth</span>
               </div>
-            );
-          })}
+              <h3 className="text-sm font-display font-black text-white">Words Learned (7 Days)</h3>
+              <p className="text-slate-400 text-3xs leading-relaxed">
+                Visualizing new terms added and unlocked in your study lists.
+              </p>
+            </div>
+
+            {/* Recharts BarChart container */}
+            <div className="h-[140px] w-full bg-slate-950/40 border border-slate-850/50 p-2 rounded-2xl flex items-center justify-center" id="learned-recharts-bar-chart">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                  <XAxis 
+                    dataKey="name" 
+                    stroke="#475569" 
+                    fontSize={9} 
+                    tickLine={false} 
+                    axisLine={false} 
+                    dy={5}
+                  />
+                  <YAxis 
+                    stroke="#475569" 
+                    fontSize={9} 
+                    tickLine={false} 
+                    axisLine={false} 
+                    allowDecimals={false}
+                    dx={-5}
+                  />
+                  <Tooltip 
+                    cursor={{ fill: "rgba(30, 41, 59, 0.3)" }}
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length) {
+                        const data = payload[0].payload;
+                        return (
+                          <div className="bg-slate-950/95 backdrop-blur border border-slate-800 p-2 rounded-xl shadow-2xl">
+                            <p className="text-[8px] font-mono text-slate-500 font-bold uppercase tracking-wider">{data.date}</p>
+                            <p className="text-2xs text-white mt-0.5">
+                              Learned: <span className="text-cyan-400 font-extrabold font-mono">{data.count}</span> {data.count === 1 ? "word" : "words"}
+                            </p>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                  <Bar dataKey="count" radius={[4, 4, 0, 0]} maxBarSize={28}>
+                    {chartData.map((entry, index) => (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={entry.isToday ? "#22d3ee" : "#f59e0b"} 
+                        fillOpacity={entry.count > 0 ? 0.95 : 0.15}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
         </div>
       </div>
 
