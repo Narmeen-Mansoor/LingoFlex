@@ -28,6 +28,11 @@ export default function WordIndex({
   const [expansionError, setExpansionError] = useState<string | null>(null);
   const [expansionSuccess, setExpansionSuccess] = useState(false);
 
+  // Group expansion toggles for separate arrangement
+  const [isIdiomsExpanded, setIsIdiomsExpanded] = useState(true);
+  const [isPhrasesExpanded, setIsPhrasesExpanded] = useState(true);
+  const [isWordsExpanded, setIsWordsExpanded] = useState(true);
+
   // Performance - chunk rendering pagination
   const [visibleCount, setVisibleCount] = useState(40);
 
@@ -123,6 +128,97 @@ export default function WordIndex({
       case "phrase": return "bg-emerald-950/40 text-emerald-300 border-emerald-900/30";
       default: return "bg-cyan-950/40 text-cyan-300 border-cyan-900/30";
     }
+  };
+
+  const idioms = React.useMemo(() => filteredItems.filter(item => item.type === "idiom"), [filteredItems]);
+  const phrases = React.useMemo(() => filteredItems.filter(item => item.type === "phrase"), [filteredItems]);
+  const words = React.useMemo(() => filteredItems.filter(item => item.type === "word"), [filteredItems]);
+
+  const renderItemCard = (item: VocabItem) => {
+    const isActivelyStudying = items.some(i => i.term.toLowerCase() === item.term.toLowerCase());
+    const isMastered = item.masteryScore !== undefined && item.masteryScore >= 80;
+    const score = item.masteryScore !== undefined ? item.masteryScore : 0;
+    return (
+      <div
+        key={item.term}
+        onClick={() => setInspectedItem(item)}
+        className={`p-3 rounded-xl border transition-all cursor-pointer flex justify-between items-center ${
+          inspectedItem?.term === item.term 
+            ? "bg-slate-850 border-cyan-550/40" 
+            : isActivelyStudying 
+              ? "bg-slate-900/60 border-slate-800/80" 
+              : "bg-slate-950/40 border-slate-900/50"
+        } hover:bg-slate-900/40`}
+        id={`matrix-item-${item.term}`}
+      >
+        <div className="space-y-1 pr-2 max-w-[80%]">
+          <div className="flex items-center space-x-1.5 flex-wrap gap-y-1">
+            <span className="font-display font-black text-xs text-slate-100 tracking-tight">
+              {item.term}
+            </span>
+            <span className={`text-[8px] font-mono px-1 rounded uppercase tracking-wide leading-3 ${getBadgeClass(item.type)}`}>
+              {item.type}
+            </span>
+            {isActivelyStudying && (
+              <span className={`text-[8px] font-mono font-bold px-1 rounded-sm ${
+                isMastered ? "bg-emerald-950/60 text-emerald-400" : "bg-cyan-950/60 text-cyan-400"
+              }`}>
+                {item.masteryScore !== undefined ? `${item.masteryScore}%` : "In Syllabus"}
+              </span>
+            )}
+          </div>
+          <p className="text-slate-450 text-[10px] line-clamp-1 leading-relaxed text-slate-450">
+            {item.definition}
+          </p>
+        </div>
+
+        <div className="flex items-center space-x-2 flex-shrink-0">
+          {isActivelyStudying && (
+            <div 
+              className="relative flex items-center justify-center cursor-help" 
+              title={item.masteryScore !== undefined ? `Mastery Level: ${item.masteryScore}%` : "Added to Study List - Not yet practiced"}
+            >
+              <svg className="h-8 w-8 transform -rotate-90" viewBox="0 0 24 24">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  className="stroke-slate-800/80"
+                  strokeWidth="2"
+                  fill="transparent"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  className={`transition-all duration-500 ${
+                    isMastered ? "stroke-emerald-400" : "stroke-cyan-400"
+                  }`}
+                  strokeWidth="2.2"
+                  fill="transparent"
+                  strokeDasharray={56.54}
+                  strokeDashoffset={56.54 - (score / 100) * 56.54}
+                  strokeLinecap="round"
+                />
+              </svg>
+              <span className="absolute text-[8px] font-mono font-black text-slate-300">
+                {score}
+              </span>
+            </div>
+          )}
+
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleTTS(item.term);
+            }}
+            className="p-1.5 text-slate-400 hover:text-white rounded-full bg-slate-900 border border-slate-850 hover:bg-slate-800 transition"
+          >
+            <Volume2 className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -242,8 +338,8 @@ export default function WordIndex({
       </div>
 
       {/* Lexical items list stack */}
-      <div className="space-y-2 max-h-[360px] overflow-y-auto pr-1 select-none" style={{ scrollbarWidth: "none" }}>
-        {displayedItems.length === 0 ? (
+      <div className="space-y-4 max-h-[420px] overflow-y-auto pr-1 select-none" style={{ scrollbarWidth: "none" }}>
+        {filteredItems.length === 0 ? (
           <div className="bg-slate-900/20 rounded-2xl p-8 text-center border border-slate-850/80">
             <BookOpen className="h-6 w-6 text-slate-650 mx-auto mb-2" />
             <h5 className="font-semibold text-slate-400 text-xs">No entries found</h5>
@@ -252,102 +348,130 @@ export default function WordIndex({
             </p>
           </div>
         ) : (
-          displayedItems.map((item) => {
-            const isActivelyStudying = items.some(i => i.term.toLowerCase() === item.term.toLowerCase());
-            const isMastered = item.masteryScore !== undefined && item.masteryScore >= 80;
-            const score = item.masteryScore !== undefined ? item.masteryScore : 0;
-            return (
-              <div
-                key={item.term}
-                onClick={() => setInspectedItem(item)}
-                className={`p-3 rounded-xl border transition-all cursor-pointer flex justify-between items-center ${
-                  inspectedItem?.term === item.term 
-                    ? "bg-slate-850 border-cyan-550/40" 
-                    : isActivelyStudying 
-                      ? "bg-slate-900/60 border-slate-800/80" 
-                      : "bg-slate-950/40 border-slate-900/50"
-                } hover:bg-slate-900/40`}
-                id={`matrix-item-${item.term}`}
-              >
-                <div className="space-y-1 pr-2 max-w-[80%]">
-                  <div className="flex items-center space-x-1.5 flex-wrap gap-y-1">
-                    <span className="font-display font-black text-xs text-slate-100 tracking-tight">
-                      {item.term}
-                    </span>
-                    <span className={`text-[8px] font-mono px-1 rounded uppercase tracking-wide leading-3 ${getBadgeClass(item.type)}`}>
-                      {item.type}
-                    </span>
-                    {isActivelyStudying && (
-                      <span className={`text-[8px] font-mono font-bold px-1 rounded-sm ${
-                        isMastered ? "bg-emerald-950/60 text-emerald-400" : "bg-cyan-950/60 text-cyan-400"
-                      }`}>
-                        {item.masteryScore !== undefined ? `${item.masteryScore}%` : "In Syllabus"}
-                      </span>
+          <div className="space-y-4">
+            {/* Idioms Category Group */}
+            {idioms.length > 0 && (
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setIsIdiomsExpanded(!isIdiomsExpanded)}
+                  className="w-full flex items-center justify-between px-3 py-2 bg-slate-900/50 hover:bg-slate-900 border border-slate-800 rounded-xl transition text-[11px] font-mono font-bold text-emerald-400"
+                >
+                  <span className="flex items-center gap-1.5">
+                    💡 Idioms ({idioms.length})
+                  </span>
+                  <span className="text-[10px] text-slate-500">
+                    {isIdiomsExpanded ? "Collapse ▲" : "Expand ▼"}
+                  </span>
+                </button>
+                {isIdiomsExpanded && (
+                  <div className="space-y-2 pl-1.5 border-l border-emerald-950/40">
+                    {idioms.slice(0, selectedType === "idiom" ? visibleCount : 15).map(renderItemCard)}
+                    {selectedType !== "idiom" && idioms.length > 15 && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedType("idiom")}
+                        className="text-[10px] text-emerald-500/80 hover:text-emerald-400 font-semibold px-2 py-1 block"
+                      >
+                        Show all {idioms.length} Idioms...
+                      </button>
+                    )}
+                    {selectedType === "idiom" && idioms.length > visibleCount && (
+                      <button
+                        type="button"
+                        onClick={() => setVisibleCount(p => p + 40)}
+                        className="text-[10px] text-emerald-500/80 hover:text-emerald-400 font-semibold px-2 py-1 block"
+                      >
+                        Load More Idioms...
+                      </button>
                     )}
                   </div>
-                  <p className="text-slate-450 text-[10px] line-clamp-1 leading-relaxed text-slate-400">
-                    {item.definition}
-                  </p>
-                </div>
-
-                <div className="flex items-center space-x-2 flex-shrink-0">
-                  {isActivelyStudying && (
-                    <div 
-                      className="relative flex items-center justify-center cursor-help" 
-                      title={item.masteryScore !== undefined ? `Mastery Level: ${item.masteryScore}%` : "Added to Study List - Not yet practiced"}
-                    >
-                      <svg className="h-8 w-8 transform -rotate-90" viewBox="0 0 24 24">
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="9"
-                          className="stroke-slate-800/80"
-                          strokeWidth="2"
-                          fill="transparent"
-                        />
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="9"
-                          className={`transition-all duration-500 ${
-                            isMastered ? "stroke-emerald-400" : "stroke-cyan-400"
-                          }`}
-                          strokeWidth="2.2"
-                          fill="transparent"
-                          strokeDasharray={56.54}
-                          strokeDashoffset={56.54 - (score / 100) * 56.54}
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                      <span className="absolute text-[8px] font-mono font-black text-slate-300">
-                        {score}
-                      </span>
-                    </div>
-                  )}
-
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleTTS(item.term);
-                    }}
-                    className="p-1.5 text-slate-400 hover:text-white rounded-full bg-slate-900 border border-slate-850 hover:bg-slate-800 transition"
-                  >
-                    <Volume2 className="h-3.5 w-3.5" />
-                  </button>
-                </div>
+                )}
               </div>
-            );
-          })
-        )}
+            )}
 
-        {/* Load More Trigger */}
-        {filteredItems.length > visibleCount && (
-          <button
-            onClick={() => setVisibleCount(prev => prev + 40)}
-            className="w-full py-2 bg-slate-900 hover:bg-slate-850 text-cyan-400 border border-slate-800 rounded-xl text-[10px] font-semibold transition"
-          >
-            Load More Expressions ({filteredItems.length - visibleCount} hidden)
-          </button>
+            {/* Phrases Category Group */}
+            {phrases.length > 0 && (
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setIsPhrasesExpanded(!isPhrasesExpanded)}
+                  className="w-full flex items-center justify-between px-3 py-2 bg-slate-900/50 hover:bg-slate-900 border border-slate-800 rounded-xl transition text-[11px] font-mono font-bold text-cyan-400"
+                >
+                  <span className="flex items-center gap-1.5">
+                    💬 Phrases ({phrases.length})
+                  </span>
+                  <span className="text-[10px] text-slate-500">
+                    {isPhrasesExpanded ? "Collapse ▲" : "Expand ▼"}
+                  </span>
+                </button>
+                {isPhrasesExpanded && (
+                  <div className="space-y-2 pl-1.5 border-l border-cyan-950/40">
+                    {phrases.slice(0, selectedType === "phrase" ? visibleCount : 15).map(renderItemCard)}
+                    {selectedType !== "phrase" && phrases.length > 15 && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedType("phrase")}
+                        className="text-[10px] text-cyan-500/80 hover:text-cyan-400 font-semibold px-2 py-1 block"
+                      >
+                        Show all {phrases.length} Phrases...
+                      </button>
+                    )}
+                    {selectedType === "phrase" && phrases.length > visibleCount && (
+                      <button
+                        type="button"
+                        onClick={() => setVisibleCount(p => p + 40)}
+                        className="text-[10px] text-cyan-500/80 hover:text-cyan-400 font-semibold px-2 py-1 block"
+                      >
+                        Load More Phrases...
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Words Category Group */}
+            {words.length > 0 && (
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setIsWordsExpanded(!isWordsExpanded)}
+                  className="w-full flex items-center justify-between px-3 py-2 bg-slate-900/50 hover:bg-slate-900 border border-slate-800 rounded-xl transition text-[11px] font-mono font-bold text-slate-300"
+                >
+                  <span className="flex items-center gap-1.5">
+                    📖 Words ({words.length})
+                  </span>
+                  <span className="text-[10px] text-slate-500">
+                    {isWordsExpanded ? "Collapse ▲" : "Expand ▼"}
+                  </span>
+                </button>
+                {isWordsExpanded && (
+                  <div className="space-y-2 pl-1.5 border-l border-slate-800/60">
+                    {words.slice(0, selectedType === "word" ? visibleCount : 30).map(renderItemCard)}
+                    {selectedType !== "word" && words.length > 30 && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedType("word")}
+                        className="text-[10px] text-slate-400 hover:text-slate-300 font-semibold px-2 py-1 block"
+                      >
+                        Show all {words.length} Words...
+                      </button>
+                    )}
+                    {selectedType === "word" && words.length > visibleCount && (
+                      <button
+                        type="button"
+                        onClick={() => setVisibleCount(p => p + 40)}
+                        className="text-[10px] text-slate-400 hover:text-slate-300 font-semibold px-2 py-1 block"
+                      >
+                        Load More Words...
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         )}
       </div>
 

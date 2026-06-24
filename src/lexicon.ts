@@ -665,6 +665,136 @@ const newIdiomsAndPhrases: IndexTerm[] = [
       "The budget for the next quarter is still up in the air until the board approves the strategy."
     ],
     muscle_memory_prompt: "Is there anything in your current weekly planning that is still up in the air?"
+  },
+  {
+    term: "Bite the bullet",
+    type: "idiom",
+    category: "Everyday",
+    definition: "To face a difficult situation with courage and get it over with.",
+    pronunciation_respelling: "byt thuh bul-it",
+    synonyms: ["face the music", "brave it", "endure", "stand firm"],
+    examples: [
+      "I decided to bite the bullet and tell my boss that I wanted to resign.",
+      "She had to bite the bullet and accept the pay cut during the hard times."
+    ],
+    muscle_memory_prompt: "Tell us about a time you had to bite the bullet and make a hard decision."
+  },
+  {
+    term: "Burn the midnight oil",
+    type: "idiom",
+    category: "Everyday",
+    definition: "To work or study late into the night.",
+    pronunciation_respelling: "bern thuh mid-nyt oyl",
+    synonyms: ["work late", "burn the candle at both ends", "overwork", "toil"],
+    examples: [
+      "The team burned the midnight oil to finish the proposal before the deadline.",
+      "He is burning the midnight oil studying for his advanced certification exam."
+    ],
+    muscle_memory_prompt: "When was the last time you had to burn the midnight oil for a project or exam?"
+  },
+  {
+    term: "Hit the nail on the head",
+    type: "idiom",
+    category: "Everyday",
+    definition: "To describe exactly what is causing a situation or problem.",
+    pronunciation_respelling: "hit thuh nayl on thuh hed",
+    synonyms: ["be exactly right", "be spot on", "pinpoint", "identify precisely"],
+    examples: [
+      "Your analysis of the customer feedback really hit the nail on the head.",
+      "She hit the nail on the head when she suggested improving the mobile user interface."
+    ],
+    muscle_memory_prompt: "Have you ever said something that hit the nail on the head during a team discussion?"
+  },
+  {
+    term: "Break a leg",
+    type: "idiom",
+    category: "Everyday",
+    definition: "A good-luck wish, especially to an actor or performer before a show.",
+    pronunciation_respelling: "brayk uh leg",
+    synonyms: ["good luck", "best of luck", "knock 'em dead"],
+    examples: [
+      "I know you are nervous about the presentation, but go out there and break a leg!",
+      "The director went backstage to tell the cast to break a leg."
+    ],
+    muscle_memory_prompt: "Do you have any nervous rituals before a big speech, or do you just tell yourself to break a leg?"
+  },
+  {
+    term: "Piece of cake",
+    type: "idiom",
+    category: "Everyday",
+    definition: "Something that is very easy to do.",
+    pronunciation_respelling: "pees ov kayk",
+    synonyms: ["breeze", "child's play", "walk in the park", "easy task"],
+    examples: [
+      "The coding challenge was a piece of cake once I understood the algorithm.",
+      "Don't worry about the driving test; it's a piece of cake."
+    ],
+    muscle_memory_prompt: "What is a skill or task that used to be hard but is now a piece of cake for you?"
+  },
+  {
+    term: "On the same page",
+    type: "phrase",
+    category: "Business",
+    definition: "Thinking in a similar way or having the same understanding as others.",
+    pronunciation_respelling: "on thuh saym payj",
+    synonyms: ["in agreement", "of one mind", "aligned", "harmonious"],
+    examples: [
+      "We need to have a quick meeting to make sure everyone is on the same page.",
+      "I'm glad we are on the same page regarding the project budget."
+    ],
+    muscle_memory_prompt: "How do you align with your team members to make sure everyone is on the same page?"
+  },
+  {
+    term: "Under the weather",
+    type: "phrase",
+    category: "Everyday",
+    definition: "Slightly unwell, sick, or exhausted.",
+    pronunciation_respelling: "uhn-der thuh weh-ther",
+    synonyms: ["unwell", "sick", "ailing", "out of sorts"],
+    examples: [
+      "I'm feeling a bit under the weather today, so I might work from home.",
+      "He missed the meeting because he was feeling under the weather."
+    ],
+    muscle_memory_prompt: "What is your favorite comfort food when you are feeling under the weather?"
+  },
+  {
+    term: "Back to square one",
+    type: "phrase",
+    category: "Everyday",
+    definition: "Back to the very beginning of a process or project, starting over.",
+    pronunciation_respelling: "bak too skwair wuhn",
+    synonyms: ["start over", "recommence", "begin anew", "fresh start"],
+    examples: [
+      "If this proposal is rejected, we are back to square one with our research.",
+      "The files were corrupted, so we had to go back to square one."
+    ],
+    muscle_memory_prompt: "Tell us about a project where you had to go back to square one. How did you handle it?"
+  },
+  {
+    term: "By all means",
+    type: "phrase",
+    category: "Business",
+    definition: "Of course; absolutely (used to give permission or show agreement).",
+    pronunciation_respelling: "by awl meenz",
+    synonyms: ["absolutely", "certainly", "of course", "definitely"],
+    examples: [
+      "If you want to use my notebook, by all means, go ahead.",
+      "By all means, contact me if you have any questions during the weekend."
+    ],
+    muscle_memory_prompt: "Do you encourage friends to reach out, saying 'By all means, call me anytime'?"
+  },
+  {
+    term: "Down to earth",
+    type: "phrase",
+    category: "Everyday",
+    definition: "Practical, realistic, friendly, and straightforward.",
+    pronunciation_respelling: "down too erth",
+    synonyms: ["practical", "realistic", "grounded", "unpretentious", "sensible"],
+    examples: [
+      "Despite her immense wealth, she is extremely down to earth and easy to talk to.",
+      "We need a down-to-earth manager who understands the practical challenges of coding."
+    ],
+    muscle_memory_prompt: "Who is the most down-to-earth person you know, and what makes them that way?"
   }
 ];
 
@@ -772,6 +902,110 @@ const raw100Words: { term: string; def: string; tts: string; syns: string[]; exs
   { term: "Vacillate", def: "To waver between different opinions or actions; be indecisive.", tts: "VAS-ih-layt", syns: ["waver", "hesitate", "dither", "fluctuate"], exs: ["The manager began to vacillate between the two software suites.", "Please don't vacillate; choose a direction and stick to it."], cat: "Academic" }
 ];
 
+// 100 more high-utility advanced ESL words
+const raw100WordsPart2: { term: string; def: string; tts: string; syns: string[]; exs: string[]; cat: "Business" | "Everyday" | "Academic" | "Colloquial" }[] = [
+  { term: "Altruistic", def: "Unselfishly concerned for or devoted to the welfare of others.", tts: "al-troo-IS-tik", syns: ["charitable", "humane", "benevolent", "selfless"], exs: ["Her altruistic work in the community has changed many lives.", "He made an altruistic donation to support clean water initiatives."], cat: "Academic" },
+  { term: "Ambivalent", def: "Having mixed feelings or contradictory ideas about something or someone.", tts: "am-BIV-uh-luhnt", syns: ["undecided", "hesitant", "uncertain", "doubtful"], exs: ["He was ambivalent about the new job offer, as it required a longer commute.", "The team felt ambivalent about adopting the new database technology."], cat: "Academic" },
+  { term: "Ameliorate", def: "To make something bad or unsatisfactory better.", tts: "uh-MEE-lee-uh-rayt", syns: ["improve", "upgrade", "enhance", "remedy"], exs: ["The new governor took steps to ameliorate the state's economic crisis.", "We installed additional insulation to ameliorate the noise in the workspace."], cat: "Business" },
+  { term: "Anachronism", def: "A thing belonging or appropriate to a period other than that in which it exists.", tts: "uh-NAK-ruh-niz-uhm", syns: ["misplacement", "solecism", "oddity"], exs: ["The old manual typewriter in his modern office is an anachronism.", "A castle with modern electrical wiring is a historic anachronism."], cat: "Academic" },
+  { term: "Apathy", def: "Lack of interest, enthusiasm, or concern.", tts: "AP-uh-thee", syns: ["indifference", "insensitivity", "lethargy", "detachment"], exs: ["There is widespread apathy among voters about the upcoming election.", "The manager struggled to overcome the apathy of his unmotivated staff."], cat: "Everyday" },
+  { term: "Apprehensive", def: "Anxious or fearful that something bad or unpleasant will happen.", tts: "ap-ree-HEN-siv", syns: ["fearful", "anxious", "worried", "nervous"], exs: ["She felt apprehensive about giving a speech in front of hundreds of experts.", "We are apprehensive about the potential impact of the new regulations."], cat: "Everyday" },
+  { term: "Archaic", def: "Very old or old-fashioned; no longer in general use.", tts: "ahr-KAY-ik", syns: ["obsolete", "ancient", "outdated", "antique"], exs: ["The company's archaic computer system is prone to frequent crashes.", "He refused to comply with what he saw as archaic rules."], cat: "Academic" },
+  { term: "Arduous", def: "Involving or requiring strenuous effort; difficult and tiring.", tts: "AHR-joo-uhs", syns: ["strenuous", "laborious", "grueling", "taxing"], exs: ["Climbing the mountain proved to be an arduous and hazardous journey.", "Writing a complete operating system is an arduous programming task."], cat: "Academic" },
+  { term: "Articulate", def: "Having or showing the ability to speak fluently and coherently.", tts: "ahr-TIK-yoo-lit", syns: ["fluent", "eloquent", "expressive", "lucid"], exs: ["She is an articulate speaker who can explain complex ideas clearly.", "He gave an articulate defense of his team's design choices."], cat: "Everyday" },
+  { term: "Auspicious", def: "Conducive to success; favorable or promising.", tts: "aw-SPISH-uhs", syns: ["promising", "favorable", "encouraging", "optimistic"], exs: ["The team's victory in the first game was an auspicious start to the season.", "The launch of the new product coincided with an auspicious rise in stock prices."], cat: "Academic" },
+  { term: "Austere", def: "Severe or strict in manner, attitude, or appearance; simple and without luxury.", tts: "aw-STEER", syns: ["strict", "stern", "frugal", "severe"], exs: ["The monks lived an austere life in their remote mountain monastery.", "Her home's austere design featured plain walls and minimal furniture."], cat: "Academic" },
+  { term: "Avarice", def: "Extreme greed for wealth or material gain.", tts: "AV-uh-ris", syns: ["greed", "cupidity", "rapacity", "covetousness"], exs: ["The business mogul's avarice led him to exploit his employees.", "Avarice was the primary motive behind the corporate fraud scheme."], cat: "Business" },
+  { term: "Banal", def: "So lacking in originality as to be obvious and boring.", tts: "buh-NAL", syns: ["trite", "clichéd", "commonplace", "hackneyed"], exs: ["The movie's plot was banal and entirely predictable.", "His speech was full of banal remarks about unity and progress."], cat: "Everyday" },
+  { term: "Benign", def: "Gentle and kindly; (of a disease) not harmful in effect.", tts: "bih-NYN", syns: ["harmless", "kind", "friendly", "wholesome"], exs: ["The doctor reassured us that the tumor was completely benign.", "He was respected as a benign and generous local leader."], cat: "Everyday" },
+  { term: "Bolster", def: "To support or strengthen; prop up.", tts: "BOHL-ster", syns: ["support", "reinforce", "boost", "strengthen"], exs: ["She read several books to bolster her knowledge of ancient history.", "Our positive review helped bolster public interest in the app."], cat: "Everyday" },
+  { term: "Bombastic", def: "High-sounding but with little meaning; inflated.", tts: "bom-BAS-tik", syns: ["pompous", "turgid", "verbose", "grandiloquent"], exs: ["The politician's bombastic speech failed to impress the crowd.", "He dismissed the critic's report as bombastic nonsense."], cat: "Academic" },
+  { term: "Capricious", def: "Given to sudden and unaccountable changes of mood or behavior.", tts: "kuh-PRISH-uhs", syns: ["unpredictable", "fickle", "erratic", "changeable"], exs: ["The weather in this region is capricious, changing from sunny to rainy in minutes.", "Her manager's capricious demands made it hard to plan tasks."], cat: "Academic" },
+  { term: "Chastise", def: "To reprimand or scold severely.", tts: "chas-TYZ", syns: ["scold", "reprimand", "castigate", "censure"], exs: ["The manager had to chastise the employee for being late repeatedly.", "The board castigated and chastised the executives for the leak."], cat: "Academic" },
+  { term: "Circumspect", def: "Wary and unwilling to take risks; cautious.", tts: "SER-kuhm-spekt", syns: ["cautious", "wary", "careful", "circumspect"], exs: ["He is circumspect in his business dealings, always checking the details.", "The company made a circumspect decision to delay the expansion."], cat: "Everyday" },
+  { term: "Clandestine", def: "Kept secret or done secretively, especially because illicit.", tts: "klan-DES-tin", syns: ["secret", "covert", "stealthy", "surreptitious"], exs: ["The rebels held a clandestine meeting in an abandoned warehouse.", "They conducted a clandestine investigation into the embezzlement."], cat: "Academic" },
+  { term: "Coalesce", def: "To come together to form one mass or whole.", tts: "koh-uh-LES", syns: ["merge", "unite", "combine", "blend"], exs: ["The two political parties coalesced to form a new coalition.", "Several small ideas started to coalesce into a viable product plan."], cat: "Academic" },
+  { term: "Compelling", def: "Evoking interest, attention, or admiration in a powerfully irresistible way.", tts: "kuhm-PEL-ing", syns: ["convincing", "powerful", "persuasive", "cogent"], exs: ["The book presents a compelling case for renewable energy.", "He gave a compelling explanation of why the change was needed."], cat: "Everyday" },
+  { term: "Complacent", def: "Showing smug or uncritical satisfaction with oneself or one's achievements.", tts: "kuhm-PLAY-suhnt", syns: ["self-satisfied", "smug", "careless", "lazy"], exs: ["We cannot afford to be complacent about our security systems.", "He was so complacent with his lead that he didn't practice for the final."], cat: "Everyday" },
+  { term: "Condone", def: "To accept and allow (behavior that is considered morally wrong or offensive) to continue.", tts: "kuhn-DOHN", syns: ["excuse", "forgive", "tolerate", "overlook"], exs: ["The school does not condone bullying under any circumstances.", "The local government seemed to condone minor tax evasions."], cat: "Everyday" },
+  { term: "Connoisseur", def: "An expert judge in matters of taste, especially the fine arts or food.", tts: "kon-uh-SER", syns: ["expert", "specialist", "authority", "buff"], exs: ["He is a connoisseur of fine wines and has a large collection.", "As an art connoisseur, she immediately spotted the rare painting."], cat: "Everyday" },
+  { term: "Consensus", def: "A general agreement.", tts: "kuhn-SEN-suhs", syns: ["agreement", "harmony", "concord", "unanimity"], exs: ["The board of directors reached a consensus on the new budget.", "It was hard to reach a consensus among so many different players."], cat: "Business" },
+  { term: "Contrite", def: "Feeling or expressing remorse or penitence; affected by guilt.", tts: "kuhn-TRYT", syns: ["remorseful", "apologetic", "regretful", "penitent"], exs: ["He looked genuinely contrite as he apologized for his mistake.", "Her contrite response mollified the angry clients."], cat: "Academic" },
+  { term: "Conundrum", def: "A confusing and difficult problem or question.", tts: "kuh-NUHN-druhm", syns: ["puzzle", "riddle", "dilemma", "problem"], exs: ["Trying to balance the budget without raising taxes is a major conundrum.", "How to distribute resources fairly remains an ethical conundrum."], cat: "Everyday" },
+  { term: "Deference", def: "Humble submission and respect.", tts: "DEF-er-uhns", syns: ["respect", "regard", "esteem", "reverence"], exs: ["He bowed his head in deference as the queen entered the room.", "The judge showed deference to the opinions of the legal scholars."], cat: "Academic" },
+  { term: "Deleterious", def: "Causing harm or damage.", tts: "del-ih-TEER-ee-uhs", syns: ["harmful", "damaging", "detrimental", "injurious"], exs: ["Smoking has extremely deleterious effects on your long-term health.", "Divisive comments have a deleterious effect on team morale."], cat: "Academic" },
+  { term: "Delineate", def: "To describe or portray something precisely.", tts: "dih-LIN-ee-ayt", syns: ["describe", "define", "outline", "depict"], exs: ["The contract clearly delineates the duties of each partner.", "The architect drew clear lines to delineate the property boundaries."], cat: "Academic" },
+  { term: "Demure", def: "Reserved, modest, and shy.", tts: "dih-MYOOR", syns: ["modest", "shy", "reserved", "quiet"], exs: ["She gave a demure smile when they praised her painting.", "His demure outfit was in stark contrast to his flamboyant personality."], cat: "Everyday" },
+  { term: "Depict", def: "To show or represent by a drawing, painting, or other art form; describe in words.", tts: "dih-PIKT", syns: ["describe", "portray", "represent", "illustrate"], exs: ["The mural depicts the history of our city over the last century.", "The reporter sought to depict the harsh reality of life in the camp."], cat: "Everyday" },
+  { term: "Derelict", def: "In a very poor condition as a result of disuse and neglect.", tts: "DEHR-uh-likt", syns: ["abandoned", "ruined", "dilapidated", "neglected"], exs: ["The old train station has been derelict for over twenty years.", "They converted the derelict factory into luxury lofts."], cat: "Everyday" },
+  { term: "Derogatory", def: "Showing a critical or disrespectful attitude.", tts: "dih-ROG-uh-tor-ee", syns: ["disrespectful", "offensive", "insulting", "pejorative"], exs: ["The manager warned him about making derogatory remarks about coworkers.", "He was sued for making derogatory public statements about the store."], cat: "Everyday" },
+  { term: "Despondent", def: "In low spirits from loss of hope or courage.", tts: "dih-SPON-duhnt", syns: ["hopeless", "depressed", "discouraged", "gloomy"], exs: ["He became despondent after his business went bankrupt.", "The long stretch of bad news made many citizens feel despondent."], cat: "Everyday" },
+  { term: "Detrimental", def: "Tending to cause harm.", tts: "de-truh-MEN-tuhl", syns: ["harmful", "damaging", "deleterious", "prejudicial"], exs: ["The delay could be highly detrimental to the success of our project.", "Eating too much processed food is detrimental to overall health."], cat: "Everyday" },
+  { term: "Deviate", def: "To depart from an established course or standard.", tts: "DEE-vee-ayt", syns: ["stray", "depart", "diverge", "veer"], exs: ["We must not deviate from the plan if we want to finish on time.", "The test results deviate significantly from our previous readings."], cat: "Everyday" },
+  { term: "Dexterity", def: "Skill in performing tasks, especially with the hands.", tts: "dek-STER-uh-thee", syns: ["skill", "agility", "nimbleness", "proficiency"], exs: ["The surgeon showed incredible dexterity during the complex operation.", "Playing video games can improve a person's manual dexterity."], cat: "Everyday" },
+  { term: "Didactic", def: "Intended to teach, particularly in having moral instruction as an ulterior motive.", tts: "dy-DAK-tik", syns: ["instructive", "educational", "academic", "preachy"], exs: ["The children's book has a didactic tone, teaching the value of honesty.", "His presentation was highly didactic, feeling more like a lecture."], cat: "Academic" },
+  { term: "Diligent", def: "Having or showing care and conscientiousness in one's work or duties.", tts: "DIL-ih-juhnt", syns: ["hardworking", "industrious", "meticulous", "conscientious"], exs: ["A diligent student will always review their notes after class.", "The auditor carried out a diligent review of all financial files."], cat: "Everyday" },
+  { term: "Discrepancy", def: "An illogical lack of compatibility or similarity between two or more facts.", tts: "dih-SKREP-uhn-see", syns: ["difference", "inconsistency", "variance", "gap"], exs: ["There is a major discrepancy between his two accounts of the accident.", "We found a slight discrepancy in the final numbers of the balance sheet."], cat: "Academic" },
+  { term: "Disdain", def: "The feeling that someone or something is unworthy of one's consideration or respect.", tts: "dis-DAYN", syns: ["contempt", "scorn", "disrespect", "dislike"], exs: ["He looked at the cheap watch with obvious disdain.", "She treated their unsolicited advice with cold disdain."], cat: "Everyday" },
+  { term: "Divergent", def: "Tending to be different or develop in different directions.", tts: "dy-VER-juhnt", syns: ["differing", "varying", "dissimilar", "contradictory"], exs: ["The two economists held divergent views on how to control inflation.", "After college, they went in divergent directions, taking different paths."], cat: "Academic" },
+  { term: "Dormant", def: "Having normal physical functions suspended or slowed down for a period; temporary inactivity.", tts: "DOR-muhnt", syns: ["inactive", "sleeping", "latent", "passive"], exs: ["The volcano has been dormant for over three hundred years.", "The disease can remain dormant in the body for decades before symptoms show."], cat: "Everyday" },
+  { term: "Duplicity", def: "Deceitfulness; double-dealing.", tts: "doo-PLIS-ih-thee", syns: ["deceit", "dishonesty", "treachery", "chicanery"], exs: ["She was shocked by the duplicity of her business partner.", "The espionage novel was filled with double agents and political duplicity."], cat: "Academic" },
+  { term: "Earnest", def: "Resulting from or showing sincere and intense conviction.", tts: "ER-nist", syns: ["sincere", "serious", "solemn", "grave"], exs: ["The young activist made an earnest plea for environmental protection.", "He entered into earnest discussions about buying the property."], cat: "Everyday" },
+  { term: "Eccentric", def: "Unconventional and slightly strange.", tts: "ek-SEN-trik", syns: ["unconventional", "odd", "peculiar", "weird"], exs: ["The eccentric billionaire lived alone in a mansion filled with clocks.", "Her eccentric style of painting raised eyebrows in the art community."], cat: "Everyday" },
+  { term: "Eloquent", def: "Fluent or persuasive in speaking or writing.", tts: "EL-uh-kwent", syns: ["persuasive", "fluent", "articulate", "silver-tongued"], exs: ["His eloquent defense of civil rights moved many in the audience to tears.", "The author wrote an eloquent summary of the country's history."], cat: "Everyday" },
+  { term: "Emulate", def: "To match or surpass a person or achievement, typically by imitation.", tts: "EM-yoo-layt", syns: ["imitate", "copy", "follow", "mimic"], exs: ["He tried to emulate his older brother's academic success.", "We should emulate the best features of their system while avoiding its bugs."], cat: "Everyday" },
+  { term: "Enhance", def: "To intensify, increase, or further improve the quality, value, or extent of.", tts: "en-HANS", syns: ["improve", "boost", "upgrade", "magnify"], exs: ["Adding fresh herbs can greatly enhance the flavor of the soup.", "You can use this software tool to enhance low-quality photos."], cat: "Everyday" },
+  { term: "Enigma", def: "A person or thing that is mysterious, puzzling, or difficult to understand.", tts: "ih-NIG-muh", syns: ["mystery", "puzzle", "riddle", "conundrum"], exs: ["The cause of the disease remains a complete enigma to doctors.", "Her sudden departure from the company is still an enigma to coworkers."], cat: "Everyday" },
+  { term: "Ephemeral", def: "Lasting for a very short time.", tts: "ih-FEM-er-uhl", syns: ["fleeting", "transient", "short-lived", "brief"], exs: ["The beauty of the cherry blossoms is ephemeral, lasting only a few days.", "Fame is often ephemeral, disappearing as quickly as it arrives."], cat: "Academic" },
+  { term: "Epitome", def: "A person or thing that is a perfect example of a particular quality or type.", tts: "ih-PIT-uh-mee", syns: ["perfect example", "embodiment", "paragon", "essence"], exs: ["She is the epitome of elegance and grace.", "This clean code structure is the epitome of premium software design."], cat: "Everyday" },
+  { term: "Equivocate", def: "To use ambiguous language so as to conceal the truth or avoid committing oneself.", tts: "ih-KWIV-uh-kayt", syns: ["prevaricate", "evade", "dodge", "stall"], exs: ["The politician tried to equivocate when asked about tax increases.", "Don't equivocate; we need a clear decision by tonight."], cat: "Academic" },
+  { term: "Eradicate", def: "To destroy completely; put an end to.", tts: "ih-RAD-ih-kayt", syns: ["eliminate", "destroy", "wipe out", "abolish"], exs: ["The government launched a campaign to eradicate poverty in rural areas.", "Our target is to completely eradicate the malware from all servers."], cat: "Everyday" },
+  { term: "Erratic", def: "Not even or regular in pattern or movement; unpredictable.", tts: "ih-RAT-ik", syns: ["unpredictable", "inconsistent", "unstable", "changeable"], exs: ["His erratic behavior alarmed his family and friends.", "The sensor provided erratic readings because of a loose wire."], cat: "Everyday" },
+  { term: "Exacerbate", def: "To make a bad situation or negative feeling worse.", tts: "ig-ZAS-er-bayt", syns: ["worsen", "aggravate", "inflame", "intensify"], exs: ["Scratching the bug bite will only exacerbate the itching.", "Unchecked inflation will exacerbate the housing crisis."], cat: "Everyday" },
+  { term: "Exacting", def: "Making great demands on one's skill, attention, or other resources.", tts: "ig-ZAK-ting", syns: ["demanding", "challenging", "strict", "rigorous"], exs: ["Training to be a pilot is an exacting and stressful process.", "She has exacting standards when it comes to database indexing."], cat: "Everyday" },
+  { term: "Exemplary", def: "Serving as a desirable model; very good.", tts: "ig-ZEM-pluh-ree", syns: ["perfect", "model", "admirable", "praiseworthy"], exs: ["Her conduct during the crisis was exemplary and praised by all.", "We received an exemplary performance rating on our security audit."], cat: "Everyday" },
+  { term: "Exorbitant", def: "Unreasonably high price or amount charged.", tts: "ig-ZOR-bih-tuhnt", syns: ["excessive", "outrageously high", "extreme", "inflationary"], exs: ["The hotel charged an exorbitant fee for laundry services.", "We had to reject the proposal due to its exorbitant price tag."], cat: "Everyday" },
+  { term: "Expedient", def: "Convenient and practical although possibly improper or immoral.", tts: "ik-SPEE-dee-uhnt", syns: ["convenient", "practical", "useful", "advantageous"], exs: ["The company found it expedient to settle the lawsuit out of court.", "Taking a shortcut was politically expedient but technically messy."], cat: "Everyday" },
+  { term: "Explicit", def: "Stated clearly and in detail, leaving no room for confusion or doubt.", tts: "ik-SPLIS-it", syns: ["clear", "direct", "precise", "unequivocal"], exs: ["He gave me explicit instructions on how to use the machinery.", "The contract contains explicit clauses preventing data leaks."], cat: "Everyday" },
+  { term: "Extol", def: "To praise enthusiastically.", tts: "ik-STOHL", syns: ["praise", "laud", "acclaim", "glorify"], exs: ["The health organization extols the benefits of regular exercise.", "He went on stage to extol the virtues of open-source software."], cat: "Everyday" },
+  { term: "Extraneous", def: "Irrelevant or unrelated to the subject being dealt with.", tts: "ik-STRAY-nee-uhs", syns: ["irrelevant", "unrelated", "superficial", "tangential"], exs: ["You should remove any extraneous details from your essay.", "The filter removes extraneous noise from the recorded audio track."], cat: "Everyday" },
+  { term: "Fabricate", def: "To invent or concoct something, typically with deceitful intent.", tts: "FAB-rih-kayt", syns: ["invent", "falsify", "make up", "concoct"], exs: ["He had to fabricate an excuse for missing the important meeting.", "The suspect tried to fabricate an alibi to mislead the detectives."], cat: "Everyday" },
+  { term: "Facetious", def: "Treating serious issues with deliberately inappropriate humor.", tts: "fuh-SEE-shuhs", syns: ["humorous", "playful", "tongue-in-cheek", "flip"], exs: ["His facetious remarks during the meeting were seen as highly unprofessional.", "I was being facetious when I said I would quit coding forever."], cat: "Everyday" },
+  { term: "Feasible", def: "Possible to do easily or conveniently.", tts: "FEE-zuh-buhl", syns: ["practical", "viable", "achievable", "workable"], exs: ["It is feasible to complete the construction by the end of the year.", "The developer proved that migrating to PostgreSQL is highly feasible."], cat: "Everyday" },
+  { term: "Fervent", def: "Having or displaying a passionate intensity.", tts: "FER-vuhnt", syns: ["passionate", "intense", "ardent", "vehement"], exs: ["He made a fervent appeal for help after the earthquake destroyed the town.", "She is a fervent supporter of regional trade expansion."], cat: "Everyday" },
+  { term: "Fickle", def: "Changing frequently, especially as regards one's loyalties, interests, or affection.", tts: "FIK-uhl", syns: ["volatile", "changeable", "unpredictable", "capricious"], exs: ["The fashion industry is fickle, with trends changing every month.", "Customer tastes are fickle, so we must adapt our product regularly."], cat: "Everyday" },
+  { term: "Fidelity", def: "Faithfulness to a person, cause, or belief, demonstrated by continuing loyalty and support.", tts: "fih-DEL-ih-thee", syns: ["loyalty", "faithfulness", "devotion", "accuracy"], exs: ["The employee was rewarded for his twenty years of fidelity to the firm.", "The speaker system reproduces audio with high fidelity."], cat: "Everyday" },
+  { term: "Finesse", def: "Impressive delicacy and skill in action or performance.", tts: "fih-NES", syns: ["skill", "expertise", "sophistication", "tact"], exs: ["The diplomat handled the delicate negotiations with great finesse.", "He coded the complex state management feature with impressive finesse."], cat: "Everyday" },
+  { term: "Flagrant", def: "Obviously offensive; conspicuously or obviously wrong.", tts: "FLAY-gruhnt", syns: ["blatant", "obvious", "glaring", "egregious"], exs: ["The company was fined for its flagrant violation of environmental rules.", "His cheating in the exam was a flagrant breach of school policy."], cat: "Everyday" },
+  { term: "Flamboyant", def: "Tending to attract attention because of exuberance, confidence, and stylishness.", tts: "flam-BOY-uhnt", syns: ["showy", "ostentatious", "colorful", "extravagant"], exs: ["The flamboyant singer wore a suit made entirely of sequins.", "His flamboyant slide deck design featured bright neon pink highlights."], cat: "Everyday" },
+  { term: "Fortitude", def: "Courage in pain or adversity.", tts: "FOR-tih-tood", syns: ["courage", "bravery", "resilience", "grit"], exs: ["She showed incredible fortitude during her long battle with the illness.", "The team displayed impressive fortitude during the server outage crisis."], cat: "Everyday" },
+  { term: "Foster", def: "To encourage or promote the development of something.", tts: "FOS-ter", syns: ["encourage", "promote", "nurture", "cultivate"], exs: ["The teacher tried to foster a love of reading in her students.", "Our startup hub aims to foster collaborative innovation among developers."], cat: "Everyday" },
+  { term: "Frivolous", def: "Not having any serious purpose or value.", tts: "FRIV-uh-luhs", syns: ["silly", "trivial", "lighthearted", "fatuous"], exs: ["She wasted her inheritance on frivolous purchases like designer shoes.", "The judge dismissed the frivolous lawsuit as an abuse of the system."], cat: "Everyday" },
+  { term: "Furtive", def: "Attempting to avoid notice or attention, typically because of guilt.", tts: "FER-tiv", syns: ["secretive", "stealthy", "surreptitious", "sneaky"], exs: ["He cast a furtive glance around the room before hiding the envelope.", "They exchanged furtive whispers during the critical negotiation."], cat: "Everyday" },
+  { term: "Futile", def: "Pointless or useless; producing no result.", tts: "FYOO-tyl", syns: ["useless", "pointless", "in vain", "fruitless"], exs: ["Their attempts to restart the old engine proved to be futile.", "It is futile to argue with someone who refuses to look at the facts."], cat: "Everyday" },
+  { term: "Garish", def: "Obtrusively bright and showy; lurid.", tts: "GAIR-ish", syns: ["flashy", "gaudy", "showy", "glaring"], exs: ["The hotel lobby was decorated in a garish style with neon statues.", "He regretted buying the garish yellow jacket that everyone mocked."], cat: "Everyday" },
+  { term: "Generic", def: "Characteristic of or relating to a class or group of things; not specific.", tts: "juh-NEHR-ik", syns: ["general", "common", "universal", "unbranded"], exs: ["The store sells generic brands of food at a much lower price.", "His design proposal was generic, lacking any unique features."], cat: "Everyday" },
+  { term: "Gratuitous", def: "Given or done free of charge; uncalled for or lacking good reason.", tts: "gruh-TOO-ih-tuhs", syns: ["unwarranted", "uncalled-for", "unnecessary", "free"], exs: ["The movie was criticized for its gratuitous violence and foul language.", "She offered some gratuitous advice that nobody had asked for."], cat: "Everyday" },
+  { term: "Gullible", def: "Easily persuaded to believe something; credulous.", tts: "GUHL-ih-buhl", syns: ["naive", "trusting", "impressionable", "susceptible"], exs: ["He is so gullible that he believed his friends when they said it was snowing in July.", "Internet scammers often target gullible users with fake prize offers."], cat: "Everyday" },
+  { term: "Haphazard", def: "Lacking any obvious principle of organization.", tts: "hap-HAZ-erd", syns: ["random", "disorganized", "chaotic", "unplanned"], exs: ["His books were piled in a haphazard fashion on the desk.", "The construction work seemed haphazard, without any clear sequence."], cat: "Everyday" },
+  { term: "Heinous", def: "Utterly odious or wicked.", tts: "HAY-nuhs", syns: ["wicked", "atrocious", "monstrous", "abominable"], exs: ["The dictator was arrested for his heinous crimes against humanity.", "Stealing donations meant for the children's home is a heinous act."], cat: "Everyday" },
+  { term: "Hierarchy", def: "A system or organization in which people or groups are ranked according to status.", tts: "HY-er-ahr-kee", syns: ["ranking", "order", "structure", "pecking order"], exs: ["In the corporate hierarchy, the CEO holds the highest position.", "He felt constrained by the strict hierarchy of the old government agency."], cat: "Everyday" },
+  { term: "Hindrance", def: "A thing that provides resistance, delay, or obstruction.", tts: "HIN-druhns", syns: ["obstacle", "barrier", "obstruction", "impediment"], exs: ["The heavy snowstorm was a major hindrance to our travel plans.", "Bureaucracy is often a hindrance to business growth."], cat: "Everyday" },
+  { term: "Homogeneous", def: "Of the same kind; alike.", tts: "hoh-moh-JEE-nee-uhs", syns: ["uniform", "consistent", "identical", "standardized"], exs: ["The neighborhood has a highly homogeneous population of young professionals.", "Mixing the solution thoroughly ensures a homogeneous substance."], cat: "Everyday" },
+  { term: "Hypocrisy", def: "The practice of claiming to have moral standards or beliefs that differ from one's behavior.", tts: "hih-POK-ruh-see", syns: ["insincerity", "deceit", "double-dealing", "sanctimony"], exs: ["It is sheer hypocrisy for him to lecture us on saving money while he buys sports cars.", "She criticized the hypocrisy of politicians who ignore their own laws."], cat: "Everyday" },
+  { term: "Imminent", def: "About to happen.", tts: "IM-ih-nuhnt", syns: ["impending", "close", "approaching", "near"], exs: ["The dark clouds indicated that a storm was imminent.", "The spokesperson warned that a system outage was imminent due to load."], cat: "Everyday" },
+  { term: "Immutable", def: "Unchanging over time or unable to be changed.", tts: "ih-MYOO-tuh-buhl", syns: ["unchangeable", "constant", "permanent", "unalterable"], exs: ["The laws of physics are immutable and govern our universe.", "Once compiled, the smart contract's code is completely immutable."], cat: "Everyday" },
+  { term: "Impartial", def: "Treating all rivals or disputants equally; fair and just.", tts: "im-PAHR-shuhl", syns: ["unbiased", "neutral", "fair", "objective"], exs: ["A judge must remain completely impartial during a trial.", "The ombudsman is trusted to provide an impartial review of complaints."], cat: "Everyday" },
+  { term: "Impede", def: "To delay or prevent someone or something by obstructing them.", tts: "im-PEED", syns: ["hinder", "obstruct", "delay", "thwart"], exs: ["The fallen trees on the road will impede the rescue efforts.", "Outdated database servers will severely impede app performance."], cat: "Everyday" },
+  { term: "Incessant", def: "Continuing without pause or interruption.", tts: "in-SES-uhnt", syns: ["continuous", "non-stop", "endless", "perpetual"], exs: ["The incessant noise from the construction site kept us awake all day.", "His incessant questions during the class annoyed the teacher."], cat: "Everyday" },
+  { term: "Incongruous", def: "Not in harmony or keeping with the surroundings or other aspects.", tts: "in-KONG-groo-uhs", syns: ["out of place", "inconsistent", "inappropriate", "clashing"], exs: ["The modern glass building looked incongruous among the historic stone houses.", "A vintage phone in a high-tech smart home looks highly incongruous."], cat: "Everyday" },
+  { term: "Indolent", def: "Wanting to avoid exertion; lazy.", tts: "IN-duh-luhnt", syns: ["lazy", "idle", "sluggish", "slothful"], exs: ["The indolent teenager spent the entire weekend playing video games.", "He had an indolent summer, lounging by the pool every day."], cat: "Everyday" },
+  { term: "Jargon", def: "Special words used by a particular profession that are difficult for others to understand.", tts: "JAHR-guhn", syns: ["terminology", "slang", "lingo", "parlance"], exs: ["The manual is filled with technical jargon that is hard for beginners.", "He tried to speak simply and avoid legal jargon in front of the jury."], cat: "Everyday" },
+  { term: "Judicious", def: "Having, showing, or done with good judgment or sense.", tts: "joo-DISH-uhs", syns: ["wise", "sensible", "prudent", "shrewd"], exs: ["We need a judicious manager who can resolve conflicts fairly.", "The investor made a judicious decision to diversify his portfolio."], cat: "Everyday" },
+  { term: "Juxtapose", def: "To place close together for contrasting effect.", tts: "juk-stuh-POHZ", syns: ["contrast", "compare", "pair", "collocate"], exs: ["The exhibition juxtaposes ancient sculptures with modern abstract paintings.", "We can juxtapose the old and new system models to compare their speed."], cat: "Everyday" },
+  { term: "Kinetic", def: "Relating to or resulting from motion.", tts: "kih-NET-ik", syns: ["active", "moving", "dynamic", "energetic"], exs: ["The dance performance was full of kinetic energy and fluid movements.", "The sculpture's kinetic parts spin beautifully in the wind."], cat: "Everyday" }
+];
+
 // Let's programmatically synthesize a highly realistic, clean, and authentic list of 1,000+ real words
 // to provide a massive database of genuine vocabulary words that help ESL learners build real fluency.
 export function generateLexiconIndex(): IndexTerm[] {
@@ -788,6 +1022,24 @@ export function generateLexiconIndex(): IndexTerm[] {
 
   // Add our 100 raw words
   raw100Words.forEach((w) => {
+    const lowercaseWord = w.term.toLowerCase();
+    if (!termsSeen.has(lowercaseWord)) {
+      termsSeen.add(lowercaseWord);
+      finalIndex.push({
+        term: w.term,
+        type: "word",
+        category: w.cat,
+        definition: w.def,
+        pronunciation_respelling: w.tts,
+        synonyms: w.syns,
+        examples: w.exs,
+        muscle_memory_prompt: `Start with: 'To speak professionally, I believe we should utilize "${w.term}" when...'`
+      });
+    }
+  });
+
+  // Add our second batch of 100 words
+  raw100WordsPart2.forEach((w) => {
     const lowercaseWord = w.term.toLowerCase();
     if (!termsSeen.has(lowercaseWord)) {
       termsSeen.add(lowercaseWord);
